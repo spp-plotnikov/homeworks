@@ -27,7 +27,7 @@ void rabinKarp(char *string, char *substring)
 				isFound = true;
 			}
 		}
-		stringHash -= string[i] * unsigned long long(pow(base, substringLength - 1));
+		stringHash -= string[i] * static_cast < unsigned long long > (pow(base, substringLength - 1));
 		stringHash = stringHash * base + string[substringLength + i];
 	}
 	if (!isFound)
@@ -44,7 +44,7 @@ unsigned long long calculateHashCode(char *string, int finalPosition)
 
 	for (int i = 0; i < finalPosition; i++)
 	{
-		hashCode += string[finalPosition - i - 1] * pow(base, i);
+		hashCode += string[finalPosition - i - 1] * static_cast < unsigned long long > (pow(base, i));
 	}
 	return hashCode;
 }
