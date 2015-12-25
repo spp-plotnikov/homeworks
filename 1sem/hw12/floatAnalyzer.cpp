@@ -3,7 +3,7 @@
 #include <cstring>
 #include <cctype>
 
-bool isSign(char);
+bool isPlusAndMinusSign(char);
 bool isPoint(char);
 
 bool isCorrectFloat(char *string)
@@ -80,7 +80,7 @@ bool isCorrectFloat(char *string)
 		}
 		case exponentSymbolState:
 		{
-			if (isSign(current))
+			if (isPlusAndMinusSign(current))
 			{
 				state = exponentSignState;
 			}
@@ -120,7 +120,7 @@ bool isCorrectFloat(char *string)
 }
 
 
-bool isSign(char symbol)
+bool isPlusAndMinusSign(char symbol)
 {
 	return (symbol == '-' || symbol == '+');
 }
