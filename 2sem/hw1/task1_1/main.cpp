@@ -82,7 +82,6 @@ int main(int argc, char *argv[])
         }
         }
     } while (userCommand);
-    delete list;
     return a.exec();
 }
 

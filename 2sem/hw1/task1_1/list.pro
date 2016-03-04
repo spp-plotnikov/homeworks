@@ -16,13 +16,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    list.cpp \
     arraylist.cpp \
-    pointerlist.cpp \
-    listnode.cpp
+    pointerlist.cpp
 
 HEADERS += \
     list.h \
     arraylist.h \
-    pointerlist.h \
-    listnode.h
+    pointerlist.h

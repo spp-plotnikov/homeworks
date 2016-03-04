@@ -1,16 +1,27 @@
 #pragma once
+#include <iostream>
 #include "list.h"
-#include "listnode.h"
 
 class PointerList : public List
 {
 public:
-    PointerList();
-    void add(int);
-    bool isFound(int) const;
-    void remove(int);
+    PointerList() {}
+    void add(int value);
+    bool isFound(int target) const;
+    void remove(int target);
     void print() const;
     ~PointerList();
 private:
-    ListNode *first;
+    class ListNode
+    {
+    public:
+        int value;
+        ListNode *next;
+    public:
+        ListNode(int, ListNode*);
+        void updateNext(ListNode*);
+        int getValue();
+    };
+
+    ListNode *first = NULL;
 };
