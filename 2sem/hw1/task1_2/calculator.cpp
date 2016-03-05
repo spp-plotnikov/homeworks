@@ -6,11 +6,8 @@
 
 Calculator::Calculator()
 {
-    numbers = new PointerStack<double>();   //  You can use ArrayStack also
     numbers->push(0);   //  This is "the guard".
-    signs = new PointerStack<char>();   //  You can use ArrayStack also
     signs->push('0');   //  This is "the guard".
-    lengthOfPostfix = 0;
 }
 
 

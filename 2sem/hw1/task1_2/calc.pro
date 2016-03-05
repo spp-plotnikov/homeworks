@@ -22,5 +22,4 @@ HEADERS += \
     stack.h \
     arraystack.h \
     pointerstack.h \
-    stacknode.h \
     calculator.h

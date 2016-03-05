@@ -8,30 +8,21 @@ template <typename Type>
 class ArrayStack : public Stack<Type>
 {
 public:
-    ArrayStack();
-    void push(const Type);
+    ArrayStack() {}
+    void push(const Type value);
     Type pop();
     Type viewTheTop() const;
     ~ArrayStack();
 private:
-    int size;
-    int quantity;
-    Type *array;
-private:
     void resize();
+
+    int size = 32;
+    int quantity = 0;
+    Type *array = new Type[size + 1];
 };
 
 
 //--------------------------------------
-
-
-template <typename Type>
-ArrayStack<Type>::ArrayStack()
-{
-    size = 32;
-    quantity = 0;
-    array = new Type[size + 1];
-}
 
 
 template <typename Type>
