@@ -4,5 +4,5 @@
 class BubbleSorter : public Sorter
 {
 public:
-    void sort(int*, int);
+    void sort(int *array, int length);
 };

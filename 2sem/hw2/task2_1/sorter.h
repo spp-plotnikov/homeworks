@@ -3,5 +3,6 @@
 class Sorter
 {
 public:
-    virtual void sort(int*, int) = 0;
+    virtual void sort(int *array, int length) = 0;
+    virtual ~Sorter() {}
 };

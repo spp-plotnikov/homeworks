@@ -4,7 +4,7 @@
 class HeapSorter : public Sorter
 {
 public:
-    void sort(int*, int);
+    void sort(int *array, int length);
 private:
-    void siftDown(int*, int, int);
+    void siftDown(int *arrayOfElements, int root, int bottom);
 };

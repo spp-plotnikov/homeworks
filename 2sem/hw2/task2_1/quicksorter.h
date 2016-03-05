@@ -4,7 +4,7 @@
 class QuickSorter : public Sorter
 {
 public:
-    void sort(int*, int);
+    void sort(int *array, int length);
 private:
-    void qSortFunction(int*, int, int);
+    void qSortFunction(int *arrayOfElements, int start, int finish);
 };
