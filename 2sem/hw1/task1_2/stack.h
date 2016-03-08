@@ -1,5 +1,13 @@
 #pragma once
 
+/// Interface of the module for working with the stack.
+/*!
+    \author © Sasha Plotnikov Production, Ltd.
+
+    The parent class. Does not have implementation of methods,
+    all methods are virtual and implemented in child-classes.
+*/
+
 template <typename Type>
 class Stack
 {

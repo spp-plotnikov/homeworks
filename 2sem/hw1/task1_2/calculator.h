@@ -3,6 +3,8 @@
 #include "arraystack.h"
 #include "pointerstack.h"
 
+/// special class for mathematical calculations
+
 class Calculator
 {
 public:
@@ -10,7 +12,7 @@ public:
     double calculate(char *infixForm);
     ~Calculator();
 
-    static const int maxLength = 260;
+    static const int maxLength = 260;    ///<  Max length of infix and postfix forms
 
 private:
     char* infixToPostfixForm(char infixForm[]);

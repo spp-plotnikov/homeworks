@@ -4,6 +4,14 @@
 
 using namespace std;
 
+/// Implementation of the module for working with the stack (pointers).
+/*!
+    \author © Sasha Plotnikov Production, Ltd.
+
+    The child class. Inherits from Stack.
+    The class uses the pointers to implement the Stack functionality
+*/
+
 template <typename Type>
 class PointerStack : public Stack<Type>
 {
@@ -14,9 +22,14 @@ public:
     Type viewTheTop() const;
     ~PointerStack();
 private:
+    /// Class for working with the nodes of stack
     class StackNode
     {
     public:
+        /*!
+           Constructor creates new node with value newValue
+           and pointer to the next node newNext
+        */
         StackNode(const Type newValue, StackNode *newNext);
         Type getValue();
         StackNode* getNext();

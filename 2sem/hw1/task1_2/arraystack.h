@@ -4,6 +4,14 @@
 
 using namespace std;
 
+/// Implementation of the module for working with the stack (arrays).
+/*!
+    \author © Sasha Plotnikov Production, Ltd.
+
+    The child class. Inherits from Stack.
+    The class uses the arrays to implement Stack functionality
+*/
+
 template <typename Type>
 class ArrayStack : public Stack<Type>
 {
@@ -14,9 +22,15 @@ public:
     Type viewTheTop() const;
     ~ArrayStack();
 private:
+    /*!
+       \brief this method resizes the array
+
+       If the array is full or filled to half, then
+       this method increases or reduces its size by half, respectively.
+    */
     void resize();
 
-    int size = 32;
+    int size = 32;    ///<  Starting size of the array
     int quantity = 0;
     Type *array = new Type[size + 1];
 };
