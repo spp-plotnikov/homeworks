@@ -17,12 +17,12 @@ private:
     class StackNode
     {
     public:
-        Type value;
-        StackNode *next;
-    public:
         StackNode(const Type newValue, StackNode *newNext);
         Type getValue();
         StackNode* getNext();
+
+        Type value;
+        StackNode *next;
     };
 
     StackNode *top = NULL;
