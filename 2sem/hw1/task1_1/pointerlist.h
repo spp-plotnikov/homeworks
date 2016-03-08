@@ -15,12 +15,12 @@ private:
     class ListNode
     {
     public:
-        int value;
-        ListNode *next;
-    public:
         ListNode(int, ListNode*);
         void updateNext(ListNode*);
         int getValue();
+
+        int value;
+        ListNode *next;
     };
 
     ListNode *first = NULL;
