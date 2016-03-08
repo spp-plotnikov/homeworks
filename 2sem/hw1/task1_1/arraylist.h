@@ -21,6 +21,7 @@ public:
 private:
     /*!
        \brief this method resizes the array
+
        If the array is full or filled to half, then
        this method increases or reduces its size by half, respectively.
     */
