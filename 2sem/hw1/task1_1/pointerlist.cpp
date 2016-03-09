@@ -1,14 +1,7 @@
 #include "pointerlist.h"
-#include "listnode.h"
 #include <iostream>
 
 using namespace std;
-
-PointerList::PointerList()
-{
-    first = NULL;
-}
-
 
 void PointerList::add(int value)
 {
@@ -76,4 +69,26 @@ PointerList::~PointerList()
         delete current;
         current = temp;
     }
+}
+
+
+//----------------------------------------------------------------------
+
+
+PointerList::ListNode::ListNode(int newValue, ListNode *newNext)
+{
+    value = newValue;
+    next = newNext;
+}
+
+
+void PointerList::ListNode::updateNext(ListNode *newNext)
+{
+    next = newNext;
+}
+
+
+int PointerList::ListNode::getValue()
+{
+    return value;
 }

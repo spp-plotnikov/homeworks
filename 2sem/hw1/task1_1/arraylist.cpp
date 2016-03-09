@@ -3,14 +3,6 @@
 
 using namespace std;
 
-ArrayList::ArrayList()
-{
-    size = 32;
-    quantity = 0;
-    array = new int[size + 1];
-}
-
-
 void ArrayList::add(int newElement)
 {
     array[quantity] = newElement;
