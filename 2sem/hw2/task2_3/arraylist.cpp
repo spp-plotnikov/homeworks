@@ -1,0 +1,74 @@
+#include "arraylist.h"
+
+using namespace std;
+
+void ArrayList::add(int newElement)
+{
+    array[quantity] = newElement;
+    quantity++;
+    if (quantity >= size)
+    {
+        size *= 2;
+        resize();
+    }
+}
+
+
+bool ArrayList::isFound(int target) const
+{
+    for (int i = 0; i < quantity; i++)
+    {
+        if (array[i] == target)
+            return true;
+    }
+    return false;
+}
+
+
+void ArrayList::remove(int target)
+{
+    int index = 0;
+    for (; index < quantity; index++)
+    {
+        if (array[index] == target)
+        {
+            quantity--;
+            break;
+        }
+    }
+
+    for (int i = index; i < quantity; i++)
+    {
+        array[i] = array[i + 1];
+    }
+
+    if (size > 32 && quantity == size / 2 - 1)
+    {
+        size /= 2;
+        resize();
+    }
+}
+
+
+ArrayList::~ArrayList()
+{
+    delete []array;
+}
+
+
+void ArrayList::resize()
+{
+    int *temp = new int[size + 1];
+    for (int i = 0; i < quantity; i++)
+    {
+        temp[i] = array[i];
+    }
+    delete []array;
+    array = temp;
+}
+
+
+int ArrayList::length() const
+{
+    return quantity;
+}
