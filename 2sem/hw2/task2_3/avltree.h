@@ -14,7 +14,6 @@ template <typename Type>
 class AVLTree : public SortedSet<Type>
 {
 public:
-    AVLTree();
     void add(Type *newValue);
     void remove(Type *target);
     bool isFound(Type *target) const;
@@ -30,7 +29,6 @@ private:
            height and pointers to the left and right children
         */
         TreeNode(const Type *newValue, int newHeight, TreeNode *left, TreeNode *right);
-        ~TreeNode();
 
         Type *value;
         int height;
@@ -40,7 +38,15 @@ private:
 
 
     TreeNode* addNewElement(TreeNode *parent, Type *newValue);
-    TreeNode* deleteElement(TreeNode*, Type *forRemoval);
+    TreeNode* deleteElement(TreeNode *current, Type *forRemoval);
+    TreeNode* findMinElement(TreeNode *thisNode);
+    TreeNode* rotateRight(TreeNode *thisRoot);
+    TreeNode* rotateLeft(TreeNode *thisRoot);
+    TreeNode* balance(TreeNode *p);
+    TreeNode* removeMinElement(TreeNode *current);
+    void updateHeight(TreeNode *node);
+    int balanceFactor(TreeNode *node);
+    int height(TreeNode *node);
 
 
     TreeNode *root = NULL;
@@ -65,6 +71,41 @@ void AVLTree<Type>::remove(Type *target)
 
 
 template <typename Type>
+bool AVLTree<Type>::isFound(Type *target) const
+{
+    TreeNode* current = root;
+    while (current != NULL)
+    {
+        if (*current->value > *target)
+        {
+            current = current->leftChild;
+        }
+        else if (*current->value < *target)
+        {
+            current = current->rightChild;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+AVLTree<Type>::~AVLTree()
+{
+    while (root != NULL)
+    {
+        remove(root->value);
+    }
+}
+
+
+//---------------------------------------------------------
+
+
+template <typename Type>
 TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
 {
     if (parent == NULL)
@@ -81,4 +122,148 @@ TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
     return balance(parentNode);
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, Type *forRemoval)
+{
+    if (current != NULL)
+    {
+        if (*forRemoval < *current->value)
+        {
+            current->leftChild = deleteElement(current->leftChild, forRemoval);
+        }
+        else if (*forRemoval > *current->value)
+        {
+            current->rightChild = deleteElement(current->rightChild, forRemoval);
+        }
+        else
+        {
+            TreeNode *left = current->leftChild;
+            TreeNode *right = current->rightChild;
+            delete current;
+            if (right == NULL)
+            {
+                return left;
+            }
+            TreeNode *minElement = findMinElement(right);
+            minElement->rightChild = removeMinElement(right);
+            minElement->leftChild = left;
+            return balance(minElement);
+        }
+        return balance(current);
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::findMinElement(TreeNode *thisNode)
+{
+    while (thisNode->leftChild != NULL)
+    {
+        thisNode = thisNode->leftChild;
+    }
+    return thisNode;
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::rotateRight(TreeNode *thisRoot)
+{
+    TreeNode* pivot = thisRoot->leftChild;
+    thisRoot->leftChild = pivot->rightChild;
+    pivot->rightChild = thisRoot;
+    updateHeight(thisRoot);
+    updateHeight(pivot);
+    return pivot;
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::rotateLeft(TreeNode *thisRoot)
+{
+    TreeNode* pivot = thisRoot->rightChild;
+    thisRoot->rightChild = pivot->leftChild;
+    pivot->leftChild = thisRoot;
+    updateHeight(thisRoot);
+    updateHeight(pivot);
+    return pivot;
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::balance(TreeNode *p)
+{
+    updateHeight(p);
+
+    if (balanceFactor(p) == 2)
+    {
+        if (balanceFactor(p->rightChild) < 0)
+            p->rightChild = rotateRight(p->rightChild);
+
+        return rotateLeft(p);
+    }
+
+    if (balanceFactor(p) == -2)
+    {
+        if (balanceFactor(p->leftChild) > 0)
+            p->leftChild = rotateLeft(p->leftChild);
+
+        return rotateRight(p);
+    }
+
+    return p;
+}
+
+
+template <typename Type>
+TreeNode* AVLTree<Type>::removeMinElement(TreeNode *current)
+{
+    if (current->leftChild == NULL)
+    {
+        return current->rightChild;
+    }
+    current->leftChild = removeMinElement(current->leftChild);
+    return balance(current);
+}
+
+
+template <typename Type>
+void AVLTree<Type>::updateHeight(TreeNode *node)
+{
+    int heightLeft = height(node->leftChild);
+    int heightRight = height(node->rightChild);
+    node->height = ((heightLeft > heightRight) ? heightLeft : heightRight) + 1;
+}
+
+
+template <typename Type>
+int AVLTree<Type>::balanceFactor(TreeNode *node)
+{
+    return height(node->rightChild) - height(node->leftChild);
+}
+
+
+template <typename Type>
+int AVLTree<Type>::height(TreeNode *node)
+{
+    return node ? node->height : 0;
+}
+
+
+//---------------------------------------------------------
+
+
+template <typename Type>
+AVLTree<Type>::TreeNode::TreeNode(const Type *newValue, int newHeight, TreeNode *left, TreeNode *right)
+{
+    value = newValue;
+    height = newHeight;
+    leftChild = left;
+    rightChild = right;
 }
