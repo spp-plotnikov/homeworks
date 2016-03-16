@@ -16,6 +16,7 @@ public:
     void add(int newElement);
     bool isFound(int target) const;
     void remove(int target);
+    void print() const;
     int length() const;
     ~ArrayList();
 private:

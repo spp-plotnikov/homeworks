@@ -48,6 +48,18 @@ void PointerList::remove(int target)
 }
 
 
+void PointerList::print() const
+{
+    ListNode *current = first;
+    while (current)
+    {
+        cout << current->getValue() << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
+
 int PointerList::length() const
 {
     return count;

@@ -93,6 +93,7 @@ bool AVLTree<Type>::isFound(Type *target) const
 }
 
 
+template <typename Type>
 AVLTree<Type>::~AVLTree()
 {
     while (root != NULL)
@@ -106,7 +107,7 @@ AVLTree<Type>::~AVLTree()
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
 {
     if (parent == NULL)
     {
@@ -121,12 +122,12 @@ TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
-    return balance(parentNode);
+    return balance(parent);
 }
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, Type *forRemoval)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, Type *forRemoval)
 {
     if (current != NULL)
     {
@@ -162,7 +163,7 @@ TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, Type *forRemoval)
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::findMinElement(TreeNode *thisNode)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::findMinElement(TreeNode *thisNode)
 {
     while (thisNode->leftChild != NULL)
     {
@@ -173,7 +174,7 @@ TreeNode* AVLTree<Type>::findMinElement(TreeNode *thisNode)
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::rotateRight(TreeNode *thisRoot)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::rotateRight(TreeNode *thisRoot)
 {
     TreeNode* pivot = thisRoot->leftChild;
     thisRoot->leftChild = pivot->rightChild;
@@ -185,7 +186,7 @@ TreeNode* AVLTree<Type>::rotateRight(TreeNode *thisRoot)
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::rotateLeft(TreeNode *thisRoot)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::rotateLeft(TreeNode *thisRoot)
 {
     TreeNode* pivot = thisRoot->rightChild;
     thisRoot->rightChild = pivot->leftChild;
@@ -197,7 +198,7 @@ TreeNode* AVLTree<Type>::rotateLeft(TreeNode *thisRoot)
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::balance(TreeNode *p)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::balance(TreeNode *p)
 {
     updateHeight(p);
 
@@ -222,7 +223,7 @@ TreeNode* AVLTree<Type>::balance(TreeNode *p)
 
 
 template <typename Type>
-TreeNode* AVLTree<Type>::removeMinElement(TreeNode *current)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::removeMinElement(TreeNode *current)
 {
     if (current->leftChild == NULL)
     {

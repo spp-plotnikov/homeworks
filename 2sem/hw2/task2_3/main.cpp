@@ -13,22 +13,24 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-//    List *x = new PointerList();
-//    List *y = new ArrayList();
+    List *x = new PointerList();
+    List *y = new ArrayList();
 
 //    SortedSet<ArrayList> *c = new AVLTree<ArrayList>();
 
 //    cout << ListsComparator::compare(x, y) << " ";
-//    x->add(7);
+    x->add(7);
 //    cout << ListsComparator::compare(x, y) << " ";
-//    x->add(8);
+    x->add(8);
 //    cout << ListsComparator::compare(x, y) << " ";
-//    y->add(9);
+    y->add(9);
 //    cout << ListsComparator::compare(x, y) << " ";
 //    y->add(10);
 //    cout << ListsComparator::compare(x, y) << " ";
-//    y->add(7);
+    y->add(7);
 //    cout << ListsComparator::compare(x, y) << " ";
+    cout << *x;
+    cout << *y;
+
     return a.exec();
 }
-

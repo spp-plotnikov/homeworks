@@ -1,4 +1,5 @@
 #include "list.h"
+#include <iostream>
 
 
 bool List::operator >(const List &list) const

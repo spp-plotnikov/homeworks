@@ -12,7 +12,6 @@ SOURCES += main.cpp \
     pointerlist.cpp \
     list.cpp \
     listscomparator.cpp \
-    ../avltree.cpp
 
 HEADERS += \
     arraylist.h \
@@ -20,6 +19,5 @@ HEADERS += \
     pointerlist.h \
     listscomparator.h \
     sortedset.h \
-    ../avltree.h \
     avltree.h
 

@@ -50,6 +50,16 @@ void ArrayList::remove(int target)
 }
 
 
+void ArrayList::print() const
+{
+    for (int i = 0; i < quantity; i++)
+    {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
+
 ArrayList::~ArrayList()
 {
     delete []array;

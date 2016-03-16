@@ -2,6 +2,8 @@
 #include <iostream>
 #include "list.h"
 
+using namespace std;
+
 /// Implementation of the module for working with the list (pointers).
 /*!
     \author © Sasha Plotnikov Production, Ltd.
@@ -17,8 +19,10 @@ public:
     void add(int value);
     bool isFound(int target) const;
     void remove(int target);
+    void print() const;
     int length() const;
     ~PointerList();
+
 private:
     /// Class for working with the nodes of list
     class ListNode
