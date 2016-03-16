@@ -11,11 +11,15 @@ SOURCES += main.cpp \
     arraylist.cpp \
     pointerlist.cpp \
     list.cpp \
-    listscomparator.cpp
+    listscomparator.cpp \
+    ../avltree.cpp
 
 HEADERS += \
     arraylist.h \
     list.h \
     pointerlist.h \
-    listscomparator.h
+    listscomparator.h \
+    sortedset.h \
+    ../avltree.h \
+    avltree.h
 

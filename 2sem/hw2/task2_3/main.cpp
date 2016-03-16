@@ -1,7 +1,9 @@
 #include <QCoreApplication>
 #include <iostream>
 #include "list.h"
+#include "avltree.h"
 #include "arraylist.h"
+#include "sortedset.h"
 #include "pointerlist.h"
 #include "listscomparator.h"
 
@@ -13,6 +15,8 @@ int main(int argc, char *argv[])
 
 //    List *x = new PointerList();
 //    List *y = new ArrayList();
+
+//    SortedSet<ArrayList> *c = new AVLTree<ArrayList>();
 
 //    cout << ListsComparator::compare(x, y) << " ";
 //    x->add(7);
