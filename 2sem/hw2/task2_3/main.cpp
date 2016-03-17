@@ -56,14 +56,14 @@ int main(int argc, char *argv[])
         cout << "OK, this list is full. You can continue... " << endl;
     }
 
-    cout << "Well done! Maybe you want to see the contents of the SortedSet: " << endl;
+    cout << "Well done! Maybe you want to see the contents of the SortedSet: " << endl << " ";
     set->displayContent();
 
+    delete set;
     for (int i = 0; i < quantityOfLists; i++)
     {
         delete lists[i];
     }
     delete []lists;
-    delete set;
     return a.exec();
 }

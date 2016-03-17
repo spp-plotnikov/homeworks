@@ -131,6 +131,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
+    // else: an exception
     return balance(parent);
 }
 
