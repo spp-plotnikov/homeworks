@@ -12,8 +12,9 @@ template <typename Type>
 class SortedSet
 {
 public:
-    virtual void add(Type *newValue) = 0;
-    virtual void remove(Type *target) = 0;
-    virtual bool isFound(Type *target) const = 0;
+    virtual void add(const Type *newValue) = 0;
+    virtual void remove(const Type *target) = 0;
+    virtual bool isFound(const Type *target) const = 0;
+    virtual void displayContent() const = 0;
     virtual ~SortedSet() {}
 };

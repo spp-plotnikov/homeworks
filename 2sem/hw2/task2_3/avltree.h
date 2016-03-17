@@ -14,9 +14,10 @@ template <typename Type>
 class AVLTree : public SortedSet<Type>
 {
 public:
-    void add(Type *newValue);
-    void remove(Type *target);
-    bool isFound(Type *target) const;
+    void add(const Type *newValue);
+    void remove(const Type *target);
+    bool isFound(const Type *target) const;
+    void displayContent() const;
     ~AVLTree();
 
 private:
@@ -30,20 +31,21 @@ private:
         */
         TreeNode(const Type *newValue, int newHeight, TreeNode *left, TreeNode *right);
 
-        Type *value;
+        const Type *value;
         int height;
         TreeNode *leftChild;
         TreeNode *rightChild;
     };
 
 
-    TreeNode* addNewElement(TreeNode *parent, Type *newValue);
-    TreeNode* deleteElement(TreeNode *current, Type *forRemoval);
+    TreeNode* addNewElement(TreeNode *parent, const Type *newValue);
+    TreeNode* deleteElement(TreeNode *current, const Type *forRemoval);
     TreeNode* findMinElement(TreeNode *thisNode);
     TreeNode* rotateRight(TreeNode *thisRoot);
     TreeNode* rotateLeft(TreeNode *thisRoot);
     TreeNode* balance(TreeNode *p);
     TreeNode* removeMinElement(TreeNode *current);
+    void inAscendingOrderPrint(TreeNode *current) const;
     void updateHeight(TreeNode *node);
     int balanceFactor(TreeNode *node);
     int height(TreeNode *node);
@@ -57,24 +59,24 @@ private:
 
 
 template <typename Type>
-void AVLTree<Type>::add(Type *newValue)
+void AVLTree<Type>::add(const Type *newValue)
 {
     root = addNewElement(root, newValue);
 }
 
 
 template <typename Type>
-void AVLTree<Type>::remove(Type *target)
+void AVLTree<Type>::remove(const Type *target)
 {
     root = deleteElement(root, target);
 }
 
 
 template <typename Type>
-bool AVLTree<Type>::isFound(Type *target) const
+bool AVLTree<Type>::isFound(const Type *target) const
 {
     TreeNode* current = root;
-    while (current != NULL)
+    while (current)
     {
         if (*current->value > *target)
         {
@@ -94,9 +96,16 @@ bool AVLTree<Type>::isFound(Type *target) const
 
 
 template <typename Type>
+void AVLTree<Type>::displayContent() const
+{
+    inAscendingOrderPrint(root);
+}
+
+
+template <typename Type>
 AVLTree<Type>::~AVLTree()
 {
-    while (root != NULL)
+    while (root)
     {
         remove(root->value);
     }
@@ -107,7 +116,7 @@ AVLTree<Type>::~AVLTree()
 
 
 template <typename Type>
-typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, Type *newValue)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, const Type *newValue)
 {
     if (parent == NULL)
     {
@@ -127,9 +136,9 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
 
 
 template <typename Type>
-typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, Type *forRemoval)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, const Type *forRemoval)
 {
-    if (current != NULL)
+    if (current)
     {
         if (*forRemoval < *current->value)
         {
@@ -231,6 +240,18 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::removeMinElement(TreeNode *curr
     }
     current->leftChild = removeMinElement(current->leftChild);
     return balance(current);
+}
+
+
+template <typename Type>
+void AVLTree<Type>::inAscendingOrderPrint(TreeNode *current) const
+{
+    if (current)
+    {
+        inAscendingOrderPrint(current->leftChild);
+        cout << *current->value << " ";
+        inAscendingOrderPrint(current->rightChild);
+    }
 }
 
 
