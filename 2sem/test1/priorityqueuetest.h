@@ -3,6 +3,7 @@
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
 #include "priorityqueue.h"
+#include "deletingfromemptyqueue.h"
 
 class PriorityQueueTest : public QObject
 {
@@ -48,16 +49,20 @@ private slots:
 
     void addTest()
     {
-        queue->enqueue(7, 0);
+        queue->enqueue(7, 1);
         QVERIFY(!queue->isEmpty());
     }
 
 
     void removeTest()
     {
+        queue->enqueue(42, 1); // 42 is the answer to The Ultimate Question of Life, the Universe, and Everything
         queue->dequeue();
         QVERIFY(queue->isEmpty());
     }
 private:
     PriorityQueue<int> *queue;
 };
+
+
+QTEST_MAIN(PriorityQueueTest)
