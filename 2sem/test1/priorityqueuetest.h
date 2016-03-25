@@ -60,6 +60,38 @@ private slots:
         queue->dequeue();
         QVERIFY(queue->isEmpty());
     }
+
+
+    void priorityTest()
+    {
+        queue->enqueue(0, 1);
+        queue->enqueue(3, 3);
+        queue->enqueue(1, 2);
+        queue->enqueue(2, 2);
+        queue->enqueue(4, 3);
+
+        bool result = true;
+        for (int i = 0; i < 5; i++)
+        {
+            result &= (queue->dequeue() == i);
+        }
+        QVERIFY(result);
+    }
+
+
+    void veryMuchElementsTest()
+    {
+        for (int i = 0; i < 10000; i++)
+        {
+            queue->enqueue(i, i % 10);
+        }
+        for (int i = 0; i < 10000; i++)
+        {
+            queue->dequeue();
+        }
+        QVERIFY(queue->isEmpty());
+    }
+
 private:
     PriorityQueue<int> *queue;
 };
