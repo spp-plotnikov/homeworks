@@ -4,8 +4,10 @@
 #include "avltree.h"
 #include "arraylist.h"
 #include "sortedset.h"
+#include "comparator.h"
 #include "pointerlist.h"
-#include "listscomparator.h"
+#include "elementexists.h"
+
 
 using namespace std;
 
@@ -52,8 +54,16 @@ int main(int argc, char *argv[])
             lists[i]->add(newElement);
         }
 
-        set->add(lists[i]);
         cout << "OK, this list is full. You can continue... " << endl;
+        try
+        {
+            set->add(lists[i]);
+        }
+        catch (ElementExistsException &)
+        {
+            cout << "Error: You can't add this list, because it already exists" << endl;
+            cout << "Please continue..." << endl;
+        }
     }
 
     cout << "Well done! Maybe you want to see the contents of the SortedSet: " << endl << " ";

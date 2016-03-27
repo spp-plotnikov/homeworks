@@ -1,5 +1,7 @@
 #pragma once
 #include "sortedset.h"
+#include "comparator.h"
+#include "elementexists.h"
 
 /// Implementation of the module for working with the sorted set (on the basis of the tree).
 /*!
@@ -78,7 +80,7 @@ bool AVLTree<Type>::isFound(const Type *target) const
     TreeNode* current = root;
     while (current)
     {
-        if (*current->value > *target)
+        if (Comparator<Type>::compare(current->value, target) == 1)
         {
             current = current->leftChild;
         }
@@ -123,15 +125,18 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
         TreeNode *newNode = new TreeNode(newValue, 1, NULL, NULL);
         return newNode;
     }
-    else if (*newValue < *parent->value)
+    else if (Comparator<Type>::compare(newValue, parent->value) == -1)
     {
         parent->leftChild = addNewElement(parent->leftChild, newValue);
     }
-    else if (*newValue > *parent->value)
+    else if (Comparator<Type>::compare(newValue, parent->value) == 1)
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
-    // else: an exception
+    else
+    {
+        throw ElementExistsException();
+    }
     return balance(parent);
 }
 
@@ -141,11 +146,11 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current
 {
     if (current)
     {
-        if (*forRemoval < *current->value)
+        if (Comparator<Type>::compare(forRemoval, current->value) == -1)
         {
             current->leftChild = deleteElement(current->leftChild, forRemoval);
         }
-        else if (*forRemoval > *current->value)
+        else if (Comparator<Type>::compare(forRemoval, current->value) == 1)
         {
             current->rightChild = deleteElement(current->rightChild, forRemoval);
         }
@@ -164,10 +169,6 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current
             return balance(minElement);
         }
         return balance(current);
-    }
-    else
-    {
-        return NULL;
     }
 }
 

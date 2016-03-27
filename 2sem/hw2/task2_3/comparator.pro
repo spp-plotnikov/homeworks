@@ -10,14 +10,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     arraylist.cpp \
     pointerlist.cpp \
-    list.cpp \
-    listscomparator.cpp \
+    list.cpp
 
 HEADERS += \
     arraylist.h \
     list.h \
     pointerlist.h \
-    listscomparator.h \
     sortedset.h \
-    avltree.h
+    avltree.h \
+    comparator.h \
+    elementexists.h
 
