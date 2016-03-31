@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(forPrinting, SIGNAL(mapped(const QString &)),
         this, SLOT(printExpression(const QString &)));
+    delete forPrinting;
 }
 
 
