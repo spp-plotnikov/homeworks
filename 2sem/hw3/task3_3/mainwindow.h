@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QSignalMapper>
 
 namespace Ui {
 class MainWindow;
@@ -16,7 +17,10 @@ public:
 
 public slots:
     void printExpression(const QString &text);
+    void deletePreviousSymbol();
+    void calculate();
 
 private:
     Ui::MainWindow *ui;
+    QSignalMapper *forPrinting = new QSignalMapper(this);
 };
