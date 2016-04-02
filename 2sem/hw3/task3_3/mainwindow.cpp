@@ -1,6 +1,9 @@
 #include <QSignalMapper>
+#include <ctype.h>
+#include <cmath>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "../../../2sem/hw1/task1_2/calculator.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     statusBar()->showMessage("© Sasha Plotnikov Production, Ltd.");
 
-    foreach  (QPushButton *button, this->findChildren<QPushButton*>())
+    foreach (QPushButton *button, this->findChildren<QPushButton*>())
     {
         if (button->text() != "C" && button->text() != "←" && button->text() != "=")
         {
@@ -34,7 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::printExpression(const QString &text)
 {
+    char symbol = text.toLocal8Bit().constData()[0];
+
+    if (text != QString(",") && text != QString(")") && !isdigit(symbol))
+        ui->expression->insertPlainText(QString(" "));
     ui->expression->insertPlainText(text);
+    if (text != QString(",") && text != QString("(") && !isdigit(symbol))
+        ui->expression->insertPlainText(QString(" "));
 }
 
 
@@ -46,10 +55,23 @@ void MainWindow::deletePreviousSymbol()
 
 void MainWindow::calculate()
 {
-    try
+    Calculator *calculator = new Calculator;
+    char forCalculating[1024] = {};
+    strcpy(forCalculating, ui->expression->toPlainText().toLocal8Bit().constData());
+    double result = 0.0;
+
+    result = calculator->calculate(forCalculating);
+
+    if (!std::isinf(result) && !std::isnan(result))
     {
-        ui->expression->;
+        ui->result->setText(QString::number(result));
     }
+    else
+    {
+        ui->result->setText(QString("incorrect input"));
+    }
+
+    delete calculator;
 }
 
 

@@ -13,9 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ../../hw1/task1_2/calculator.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ../../hw1/task1_2/arraystack.h \
+    ../../hw1/task1_2/calculator.h \
+    ../../hw1/task1_2/pointerstack.h \
+    ../../hw1/task1_2/stack.h
 
 FORMS    += mainwindow.ui
 
