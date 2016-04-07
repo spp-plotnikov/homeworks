@@ -18,4 +18,5 @@ TEMPLATE = app
 SOURCES += main.cpp
 
 HEADERS += \
-    hashtable.h
+    hashtable.h \
+    nonexistentelementexception.h
