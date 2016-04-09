@@ -1,7 +1,11 @@
 #pragma once
 
 #include <QList>
+#include <iostream>
 #include "nonexistentelementexception.h"
+#include "notspecifiedhashfunctionexception.h"
+
+using namespace std;
 
 /*!
  * \author © Sasha Plotnikov Production, Ltd.
@@ -24,9 +28,11 @@ public:
 private:
     /// \brief This method rebuilds the table if its size was changed
     void updateTable(int newSizeOfTable);
+    int hashFunction(Type value, const int divisor);
 
     int size = 2048;    ///<    The starting value
     int fullness = 0;
+    int(*hashFunc)(Type, const int) = NULL;    ///<    a pointer to the User hash function
     QList **table = new QList*[size];
 };
 
@@ -98,14 +104,38 @@ bool HashTable<Type>::find(Type &target)
 template <typename Type>
 void HashTable<Type>::statistics()
 {
+    int maxLength = 0;
+    int emptyCells = 0;
+    int conflicts = 0;
 
+    for (int i = 0; i < size; i++)
+    {
+        if (table[i]->length() > maxLength)
+            maxLength = table[i]->length();
+        if (!table[i])
+            emptyCells++;
+        if (table[i]->length() > 1)
+            conflicts++;
+    }
+
+    cout << endl << "------------------------------------------" << endl;
+    cout << "The quantity of different values: " << fullness << endl;
+    cout << "Table size: " << size << endl;
+    double loadFactor = static_cast < double > ( fullness ) / size;
+    cout << "Load factor: ~ " << int(loadFactor * 100) << "%" << endl;
+    cout << "Quantity of empty cells in the table: " << emptyCells << endl;
+    cout << "Quantity of conflicts: " << conflicts << endl;
+    double  averageLength = static_cast < double > ( fullness ) / (size - emptyCells);
+    cout << "The average chain length: " << averageLength << endl;
+    cout << "The maximal chain length: " << maxLength << endl;
+    cout << "------------------------------------------" << endl;
 }
 
 
 template <typename Type>
 void HashTable<Type>::setHashFunction(function<int (Type *, int)> hasFunction)
 {
-
+    hashFunc = hasFunction;
 }
 
 
@@ -116,6 +146,23 @@ HashTable<Type>::~HashTable()
         if (table[i])
             delete table[i];
     delete []table;
+}
+
+
+//--------------------------------------------------------------
+
+
+template <typename Type>
+int HashTable<Type>::hashFunction(Type value, const int divisor)
+{
+    if (hashFunc)
+    {
+        return (*hashFunc)(value, divisor);
+    }
+    else
+    {
+        throw NotSpecifiedHashFunctionException();
+    }
 }
 
 
