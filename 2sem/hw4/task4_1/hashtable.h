@@ -136,6 +136,7 @@ template <typename Type>
 void HashTable<Type>::setHashFunction(function<int (Type *, int)> hasFunction)
 {
     hashFunc = hasFunction;
+    updateTable(size);
 }
 
 
@@ -164,9 +165,6 @@ int HashTable<Type>::hashFunction(Type value, const int divisor)
         throw NotSpecifiedHashFunctionException();
     }
 }
-
-
-//--------------------------------------------------------------
 
 
 template <typename Type>
