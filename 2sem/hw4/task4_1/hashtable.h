@@ -21,18 +21,18 @@ public:
     bool remove(Type &target);  ///<    \returns false if the table doesn't contains this value
     bool find(Type &target);
     void statistics();    ///<  prints load factor, the number of cells, max len of the list, etc.
-    void setHashFunction(function<int (Type *value, int size)> userHashFunction);
+    void setHashFunction(function<int (Type &value, int size)> userHashFunction);
     ~HashTable();
 
 private:
     /// \brief This method rebuilds the table if its size was changed
     void updateTable(int newSizeOfTable);
-    int hashFunction(Type value, const int divisor);
+    int hashFunction(Type &value, const int divisor);
 
     int size = 2048;    ///<    The starting value
     int fullness = 0;
-    int(*hashFunc)(Type, const int) = NULL;    ///<    a pointer to the User hash function
-    QList **table = new QList*[size];
+    int(*hashFunc)(Type &, const int) = NULL;    ///<    a pointer to the User hash function
+    QList<Type> **table = new QList<Type>*[size];
 };
 
 
@@ -57,7 +57,7 @@ void HashTable<Type>::add(Type &newElement)
 
     if (!table[hashCode])
     {
-        table[hashCode] = new QList;
+        table[hashCode] = new QList<Type>;
     }
     if (!table[hashCode]->contains(newElement))
     {
@@ -134,7 +134,7 @@ void HashTable<Type>::statistics()
 
 
 template <typename Type>
-void HashTable<Type>::setHashFunction(function<int (Type *, int)> userHashFunction)
+void HashTable<Type>::setHashFunction(function<int (Type &, int)> userHashFunction)
 {
     hashFunc = userHashFunction;
     updateTable(size);
@@ -155,7 +155,7 @@ HashTable<Type>::~HashTable()
 
 
 template <typename Type>
-int HashTable<Type>::hashFunction(Type value, const int divisor)
+int HashTable<Type>::hashFunction(Type &value, const int divisor)
 {
     if (hashFunc)
     {
@@ -173,13 +173,13 @@ void HashTable<Type>::updateTable(int newSizeOfTable)
 {
     const int obsoleteSize = size;
     size = newSizeOfTable;
-    QList **newTable = new QList*[size];
+    QList<Type> **newTable = new QList<Type>*[size];
     for (int i = 0; i < size; i++)
     {
         newTable[i] = NULL;
     }
 
-    QList **tempTable = table;  //  hah hah hah the pun as the name for the variable :-)
+    QList<Type> **tempTable = table;  //  hah hah hah the pun as the name for the variable :-)
     table = newTable;
     for (int i = 0; i < obsoleteSize; i++)
     {

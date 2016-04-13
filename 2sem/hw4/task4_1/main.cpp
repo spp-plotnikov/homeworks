@@ -3,6 +3,9 @@
 #include "hashtable.h"
 
 void showComments();
+int optimalHashFunction(QString &string, int divider);
+int standardHashFunction(QString &string, int divider);
+
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +16,7 @@ int main(int argc, char *argv[])
     int command = 0;
     QString currentString;
 
-    HashTable<QString> *table = new HashTable<QString>(ololo);
+    HashTable<QString> *table = new HashTable<QString>(standardHashFunction);
     do
     {
         cin >> command;
@@ -68,11 +71,11 @@ int main(int argc, char *argv[])
             cin >> number;
             if (number == 1)
             {
-                table->setHashFunction(ololo1);
+                table->setHashFunction(standardHashFunction);
             }
             else if (number == 2)
             {
-                table->setHashFunction(ololo2);
+                table->setHashFunction(optimalHashFunction);
             }
             else
             {
@@ -108,4 +111,35 @@ void showComments()
     cout << "another with certain number" << endl << "You can ";
     cout << "use numbers 1 and 2. The default is number 1." << endl;
     cout << "You can start :)" << endl;
+}
+
+
+int optimalHashFunction(QString &string, int divider)
+{
+    const char *source = string.toLocal8Bit().constData();
+    unsigned long long result = 0;
+    for (int i = 0; i <= string.length(); i += 2)
+    {
+        result += source[i] * 14 + (result % 23);
+    }
+    for (int i = string.length(); i >= 0; i--)
+    {
+        result += source[i] * 17 + (result % 35);
+    }
+    result += divider / 19 * source[0];
+    result %= divider;
+    return result;
+}
+
+
+int standardHashFunction(QString &string, int divider)
+{
+    const char *source = string.toLocal8Bit().constData();
+    int result = 0;
+    for (int i = 0; i <= string.length(); i++)
+    {
+        result += source[i] * 73;
+        result %= divider;
+    }
+    return result;
 }
