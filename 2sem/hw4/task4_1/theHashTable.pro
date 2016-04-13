@@ -19,5 +19,4 @@ SOURCES += main.cpp
 
 HEADERS += \
     hashtable.h \
-    nonexistentelementexception.h \
     notspecifiedhashfunctionexception.h

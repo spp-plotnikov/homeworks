@@ -2,7 +2,6 @@
 
 #include <QList>
 #include <iostream>
-#include "nonexistentelementexception.h"
 #include "notspecifiedhashfunctionexception.h"
 
 using namespace std;
@@ -17,12 +16,12 @@ template <typename Type>
 class HashTable
 {
 public:
-    HashTable();
+    HashTable(function<int (Type *value, int size)> hasFunction);
     void add(Type &newElement);
-    void remove(Type &target);
+    bool remove(Type &target);  ///<    \returns false if the table doesn't contains this value
     bool find(Type &target);
     void statistics();    ///<  prints load factor, the number of cells, max len of the list, etc.
-    void setHashFunction(function<int (Type *value, int size)> hasFunction);
+    void setHashFunction(function<int (Type *value, int size)> userHashFunction);
     ~HashTable();
 
 private:
@@ -41,12 +40,13 @@ private:
 
 
 template <typename Type>
-HashTable<Type>::HashTable()
+HashTable<Type>::HashTable(function<int (Type *value, int size)> userHashFunction)
 {
     for (int i = 0; i < size; i++)
     {
         table[i] = NULL;
     }
+    hashFunc = userHashFunction;
 }
 
 
@@ -73,11 +73,11 @@ void HashTable<Type>::add(Type &newElement)
 
 
 template <typename Type>
-void HashTable<Type>::remove(Type &target)
+bool HashTable<Type>::remove(Type &target)
 {
     if (!find(target))
     {
-        throw NonexistentElementException();
+        return false;
     }
 
     const int hashCode = hashFunction(target, size);
@@ -88,6 +88,7 @@ void HashTable<Type>::remove(Type &target)
     {
         updateTable(size / 2);
     }
+    return true;
 }
 
 
@@ -133,9 +134,9 @@ void HashTable<Type>::statistics()
 
 
 template <typename Type>
-void HashTable<Type>::setHashFunction(function<int (Type *, int)> hasFunction)
+void HashTable<Type>::setHashFunction(function<int (Type *, int)> userHashFunction)
 {
-    hashFunc = hasFunction;
+    hashFunc = userHashFunction;
     updateTable(size);
 }
 
