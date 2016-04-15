@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QTextStream>
 #include <iostream>
 #include "hashtable.h"
 
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     enum Commands {exit, add, remove, find, statistics, changeFunction};
     int command = 0;
     QString currentString;
+    QTextStream cin(stdin);
 
     HashTable<QString> *table = new HashTable<QString>(standardHashFunction);
     do
@@ -72,15 +74,18 @@ int main(int argc, char *argv[])
             if (number == 1)
             {
                 table->setHashFunction(standardHashFunction);
+                cout << "Successfully done. Go on..." << endl;
             }
             else if (number == 2)
             {
                 table->setHashFunction(optimalHashFunction);
+                cout << "Successfully done. Go on..." << endl;
             }
             else
             {
                 cout << "Error: Wrong number" << endl;
             }
+            break;
         }
         default:
         {
@@ -116,17 +121,16 @@ void showComments()
 
 int optimalHashFunction(QString &string, int divider)
 {
-    const char *source = string.toLocal8Bit().constData();
     unsigned long long result = 0;
     for (int i = 0; i <= string.length(); i += 2)
     {
-        result += source[i] * 14 + (result % 23);
+        result += string[i].toLatin1() * 14 + (result % 23);
     }
     for (int i = string.length(); i >= 0; i--)
     {
-        result += source[i] * 17 + (result % 35);
+        result += string[i].toLatin1() * 17 + (result % 35);
     }
-    result += divider / 19 * source[0];
+    result += divider / 19 * string[0].toLatin1();
     result %= divider;
     return result;
 }
@@ -134,11 +138,10 @@ int optimalHashFunction(QString &string, int divider)
 
 int standardHashFunction(QString &string, int divider)
 {
-    const char *source = string.toLocal8Bit().constData();
     int result = 0;
     for (int i = 0; i <= string.length(); i++)
     {
-        result += source[i] * 73;
+        result += string[i].toLatin1();
         result %= divider;
     }
     return result;

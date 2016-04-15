@@ -2,6 +2,4 @@
 
 class NotSpecifiedHashFunctionException
 {
-public:
-    NotSpecifiedHashFunctionException();
 };

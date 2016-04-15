@@ -16,12 +16,12 @@ template <typename Type>
 class HashTable
 {
 public:
-    HashTable(function<int (Type *value, int size)> hasFunction);
+    HashTable(int (*userHashFunction)(Type&, int));
     void add(Type &newElement);
     bool remove(Type &target);  ///<    \returns false if the table doesn't contains this value
     bool find(Type &target);
     void statistics();    ///<  prints load factor, the number of cells, max len of the list, etc.
-    void setHashFunction(function<int (Type &value, int size)> userHashFunction);
+    void setHashFunction(int (*userHashFunction)(Type&, int));
     ~HashTable();
 
 private:
@@ -40,7 +40,7 @@ private:
 
 
 template <typename Type>
-HashTable<Type>::HashTable(function<int (Type *value, int size)> userHashFunction)
+HashTable<Type>::HashTable(int (*userHashFunction)(Type&, int))
 {
     for (int i = 0; i < size; i++)
     {
@@ -111,12 +111,17 @@ void HashTable<Type>::statistics()
 
     for (int i = 0; i < size; i++)
     {
-        if (table[i]->length() > maxLength)
-            maxLength = table[i]->length();
-        if (!table[i])
+        if (!table[i] || table[i]->length() == 0)
+        {
             emptyCells++;
-        if (table[i]->length() > 1)
-            conflicts++;
+        }
+        else
+        {
+            if (table[i]->length() > maxLength)
+                maxLength = table[i]->length();
+            if (table[i]->length() > 1)
+                conflicts++;
+        }
     }
 
     cout << endl << "------------------------------------------" << endl;
@@ -127,6 +132,8 @@ void HashTable<Type>::statistics()
     cout << "Quantity of empty cells in the table: " << emptyCells << endl;
     cout << "Quantity of conflicts: " << conflicts << endl;
     double  averageLength = static_cast < double > ( fullness ) / (size - emptyCells);
+    if (averageLength != averageLength)
+        averageLength = 0;  //  In case of occurrence of NaN
     cout << "The average chain length: " << averageLength << endl;
     cout << "The maximal chain length: " << maxLength << endl;
     cout << "------------------------------------------" << endl;
@@ -134,7 +141,7 @@ void HashTable<Type>::statistics()
 
 
 template <typename Type>
-void HashTable<Type>::setHashFunction(function<int (Type &, int)> userHashFunction)
+void HashTable<Type>::setHashFunction(int (*userHashFunction)(Type&, int))
 {
     hashFunc = userHashFunction;
     updateTable(size);
@@ -178,6 +185,7 @@ void HashTable<Type>::updateTable(int newSizeOfTable)
     {
         newTable[i] = NULL;
     }
+    fullness = 0;
 
     QList<Type> **tempTable = table;  //  hah hah hah the pun as the name for the variable :-)
     table = newTable;
