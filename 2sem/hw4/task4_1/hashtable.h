@@ -180,15 +180,15 @@ void HashTable<Type>::updateTable(int newSizeOfTable)
 {
     const int obsoleteSize = size;
     size = newSizeOfTable;
-    QList<Type> **newTable = new QList<Type>*[size];
+
+    QList<Type> **tempTable = table;  //  hah hah hah the pun as the name for the variable :-)
+    table = new QList<Type>*[size];
     for (int i = 0; i < size; i++)
     {
-        newTable[i] = NULL;
+        table[i] = NULL;
     }
     fullness = 0;
 
-    QList<Type> **tempTable = table;  //  hah hah hah the pun as the name for the variable :-)
-    table = newTable;
     for (int i = 0; i < obsoleteSize; i++)
     {
         if (tempTable[i])
