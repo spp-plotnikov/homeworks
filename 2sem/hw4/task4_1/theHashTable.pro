@@ -18,5 +18,4 @@ TEMPLATE = app
 SOURCES += main.cpp
 
 HEADERS += \
-    hashtable.h \
-    notspecifiedhashfunctionexception.h
+    hashtable.h

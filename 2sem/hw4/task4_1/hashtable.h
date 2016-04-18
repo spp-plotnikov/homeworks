@@ -2,7 +2,6 @@
 
 #include <QList>
 #include <iostream>
-#include "notspecifiedhashfunctionexception.h"
 
 using namespace std;
 
@@ -23,6 +22,10 @@ public:
     void statistics();    ///<  prints load factor, the number of cells, max len of the list, etc.
     void setHashFunction(int (*userHashFunction)(Type&, int));
     ~HashTable();
+
+    class NotSpecifiedHashFunctionException
+    {
+    };
 
 private:
     /// \brief This method rebuilds the table if its size was changed
