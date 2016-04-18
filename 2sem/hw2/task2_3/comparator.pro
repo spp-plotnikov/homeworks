@@ -18,6 +18,5 @@ HEADERS += \
     pointerlist.h \
     sortedset.h \
     avltree.h \
-    comparator.h \
-    elementexists.h
+    comparator.h
 

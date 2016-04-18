@@ -6,7 +6,6 @@
 #include "sortedset.h"
 #include "comparator.h"
 #include "pointerlist.h"
-#include "elementexists.h"
 
 
 using namespace std;
@@ -59,7 +58,7 @@ int main(int argc, char *argv[])
         {
             set->add(lists[i]);
         }
-        catch (ElementExistsException &)
+        catch (SortedSet<List>::ElementExistsException &)
         {
             cout << "Error: You can't add this list, because it already exists" << endl;
             cout << "Please continue..." << endl;

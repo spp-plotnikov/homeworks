@@ -17,4 +17,12 @@ public:
     virtual bool isFound(const Type *target) const = 0;
     virtual void displayContent() const = 0;
     virtual ~SortedSet() {}
+
+    /*!
+     * In the sorted set elements must appear only once.
+     * If you add one item twice, you will catch this exception.
+     */
+    class ElementExistsException
+    {
+    };
 };

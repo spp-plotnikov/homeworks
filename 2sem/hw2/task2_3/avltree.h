@@ -1,7 +1,6 @@
 #pragma once
 #include "sortedset.h"
 #include "comparator.h"
-#include "elementexists.h"
 
 /// Implementation of the module for working with the sorted set (on the basis of the tree).
 /*!
@@ -135,7 +134,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
     }
     else
     {
-        throw ElementExistsException();
+        throw typename SortedSet<Type>::ElementExistsException();
     }
     return balance(parent);
 }
