@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include "printer.h"
+#include "printertest.h"
 #include "fileprinter.h"
 #include "consoleprinter.h"
 
@@ -10,6 +11,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    PrinterTest test;
+    QTest::qExec(&test);
 
     cout << "This app displays the numbers from the array of size NxN ";
     cout << "in a spiral starting from the centre. N must be odd." << endl;

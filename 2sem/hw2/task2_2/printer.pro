@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = printer
@@ -23,4 +23,5 @@ SOURCES += main.cpp \
 HEADERS += \
     printer.h \
     consoleprinter.h \
-    fileprinter.h
+    fileprinter.h \
+    printertest.h
