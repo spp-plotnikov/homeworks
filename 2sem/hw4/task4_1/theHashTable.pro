@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = theHashTable
@@ -15,7 +15,10 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    libraryofhashfunctions.cpp
 
 HEADERS += \
-    hashtable.h
+    hashtable.h \
+    libraryofhashfunctions.h \
+    hashtabletest.h
