@@ -1,11 +1,14 @@
 #include <QCoreApplication>
+#include <QtTest/QtTest>
 #include <iostream>
 #include "list.h"
 #include "avltree.h"
 #include "arraylist.h"
 #include "sortedset.h"
-#include "comparator.h"
 #include "pointerlist.h"
+#include "sortedsettest.h"
+#include "comparatortest.h"
+
 
 
 using namespace std;
@@ -13,6 +16,12 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    ComparatorTest comparatorTest;
+    QTest::qExec(&comparatorTest);
+
+    SortedSetTest sortedSetTest;
+    QTest::qExec(&sortedSetTest);
 
     SortedSet<List> *set = new AVLTree<List>();
  // SortedSet<List> *set = new SomeOtherSet<List>(); (the User has great opportunities)

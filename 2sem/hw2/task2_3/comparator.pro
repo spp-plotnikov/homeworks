@@ -1,5 +1,6 @@
 QT += core
 QT -= gui
+QT += testlib
 
 TARGET = comparator
 CONFIG += console
@@ -18,5 +19,7 @@ HEADERS += \
     pointerlist.h \
     sortedset.h \
     avltree.h \
-    comparator.h
+    comparator.h \
+    comparatortest.h \
+    sortedsettest.h
 
