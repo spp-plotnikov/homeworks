@@ -15,7 +15,10 @@ void ArithmeticTree::printTree(ostream &out)
 double ArithmeticTree::calculateTree()
 {
     if (!wasCalculated)
+    {
         result = calculateTheNode(root);
+        wasCalculated = true;
+    }
     return result;
 }
 
@@ -61,17 +64,64 @@ ArithmeticTree::TreeNode*  ArithmeticTree::readTheNode()
 
 double ArithmeticTree::calculateTheNode(TreeNode *current)
 {
+    if (current->sign == '$')
+    {
+        return current->value;
+    }
+    else
+    {
+        double leftValue = calculateTheNode(current->left);
+        double rightValue = calculateTheNode(current->right);
 
+        switch (current->sign)
+        {
+        case '*':
+        {
+            return leftValue * rightValue;
+            break;
+        }
+        case '/':
+        {
+            return leftValue / rightValue;
+            break;
+        }
+        case '+':
+        {
+            return leftValue + rightValue;
+            break;
+        }
+        case '-':
+        {
+            return leftValue - rightValue;
+            break;
+        }
+        }
+    }
 }
 
 
 void ArithmeticTree::printTheNode(TreeNode *current, ostream &out)
 {
 
+    if (currentNode->sign == '$')
+    {
+        out << currentNode->value;
+    }
+    else
+    {
+        out << '(';
+        printTheNode(currentNode->left, out);
+        out << ' ' << currentNode->sign << ' ';
+        printTheNode(currentNode->right, out);
+        out << ')';
+    }
 }
 
 
 void ArithmeticTree::deleteTree(TreeNode *current)
 {
-
+    deleteTree(current->left);
+    deleteTree(current->right);
+    if (current)
+        delete current;
 }

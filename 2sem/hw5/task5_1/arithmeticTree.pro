@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = arithmeticTree
@@ -19,4 +19,5 @@ SOURCES += main.cpp \
     arithmetictree.cpp
 
 HEADERS += \
-    arithmetictree.h
+    arithmetictree.h \
+    arithmetictreetest.h
