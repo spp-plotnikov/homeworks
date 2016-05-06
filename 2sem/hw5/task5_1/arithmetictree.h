@@ -6,12 +6,13 @@ class ArithmeticTree
 {
 public:
     ArithmeticTree(FILE *userInputFile);
-    void printTree(ostream &out);
+    void printTree(std::ostream &out);
     double calculateTree();
     ~ArithmeticTree();
 private:
     class TreeNode
     {
+    public:
         double value;
         char sign;
         TreeNode *left = nullptr;
@@ -20,7 +21,7 @@ private:
 
     TreeNode* readTheNode();
     double calculateTheNode(TreeNode *current);
-    void printTheNode(TreeNode* current, ostream &out);
+    void printTheNode(TreeNode* current, std::ostream &out);
     void deleteTree(TreeNode *current);
 
     TreeNode *root = nullptr;
@@ -29,5 +30,5 @@ private:
     bool wasCalculated = false;
 };
 
-TODO: doxigen comments
-TODO: tests
+//TODO: doxigen comments
+//TODO: tests

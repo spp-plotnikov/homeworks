@@ -6,7 +6,7 @@ ArithmeticTree::ArithmeticTree(FILE *userInputFile)
 }
 
 
-void ArithmeticTree::printTree(ostream &out)
+void ArithmeticTree::printTree(std::ostream &out)
 {
     printTheNode(root, out);
 }
@@ -100,19 +100,19 @@ double ArithmeticTree::calculateTheNode(TreeNode *current)
 }
 
 
-void ArithmeticTree::printTheNode(TreeNode *current, ostream &out)
+void ArithmeticTree::printTheNode(TreeNode *current, std::ostream &out)
 {
 
-    if (currentNode->sign == '$')
+    if (current->sign == '$')
     {
-        out << currentNode->value;
+        out << current->value;
     }
     else
     {
         out << '(';
-        printTheNode(currentNode->left, out);
-        out << ' ' << currentNode->sign << ' ';
-        printTheNode(currentNode->right, out);
+        printTheNode(current->left, out);
+        out << ' ' << current->sign << ' ';
+        printTheNode(current->right, out);
         out << ')';
     }
 }
