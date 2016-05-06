@@ -16,6 +16,7 @@ double ArithmeticTree::calculateTree()
 {
     if (!wasCalculated)
     {
+        root = readTheNode();
         result = calculateTheNode(root);
         wasCalculated = true;
     }
@@ -120,8 +121,10 @@ void ArithmeticTree::printTheNode(TreeNode *current, std::ostream &out)
 
 void ArithmeticTree::deleteTree(TreeNode *current)
 {
-    deleteTree(current->left);
-    deleteTree(current->right);
     if (current)
+    {
+        deleteTree(current->left);
+        deleteTree(current->right);
         delete current;
+    }
 }
