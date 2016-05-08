@@ -13,22 +13,45 @@ public:
     ArithmeticTree(FILE *userInputFile);
     /// \param out is the place of printing
     void printTree(std::ostream &out);
+    /// \returns result of expression represented in the tree
     double calculateTree();
     ~ArithmeticTree();
 private:
     class TreeNode
     {
     public:
+        virtual double getValue() = 0;
+        virtual void print(std::ostream &out) const = 0;
+        virtual ~TreeNode() {}
+    };
+
+    class NumberTreeNode : public TreeNode
+    {
+    public:
+        NumberTreeNode(double valueOfNode);
+        double getValue();
+        void print(std::ostream &out) const;
+        ~NumberTreeNode() {}
+
+    private:
         double value;
-        char sign;
+    };
+
+    class OperationTreeNode : public TreeNode
+    {
+    public:
+        OperationTreeNode(char operation, TreeNode *leftOperand, TreeNode *rightOperand);
+        double getValue();
+        void print(std::ostream &out) const;
+        ~OperationTreeNode();
+
+    private:
         TreeNode *left = nullptr;
         TreeNode *right = nullptr;
+        char sign;
     };
 
     TreeNode* readTheNode();
-    double calculateTheNode(TreeNode *current);
-    void printTheNode(TreeNode* current, std::ostream &out);
-    void deleteTree(TreeNode *current);
 
     TreeNode *root = nullptr;
     FILE *input = nullptr;

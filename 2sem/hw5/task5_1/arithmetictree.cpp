@@ -8,7 +8,7 @@ ArithmeticTree::ArithmeticTree(FILE *userInputFile)
 
 void ArithmeticTree::printTree(std::ostream &out)
 {
-    printTheNode(root, out);
+    root->print(out);
 }
 
 
@@ -17,7 +17,7 @@ double ArithmeticTree::calculateTree()
     if (!wasCalculated)
     {
         root = readTheNode();
-        result = calculateTheNode(root);
+        result = root->getValue();
         wasCalculated = true;
     }
     return result;
@@ -26,7 +26,7 @@ double ArithmeticTree::calculateTree()
 
 ArithmeticTree::~ArithmeticTree()
 {
-    deleteTree(root);
+    delete root;
 }
 
 
@@ -40,16 +40,13 @@ ArithmeticTree::TreeNode*  ArithmeticTree::readTheNode()
     {
         symbol = fgetc(input);
     }
-    TreeNode *newNode = new TreeNode;
+    TreeNode *newNode = nullptr;
     if (symbol == '(')
     {
-        newNode->sign = fgetc(input);
-        newNode->left = readTheNode();
-        newNode->right = readTheNode();
+        newNode = new OperationTreeNode(fgetc(input), readTheNode(), readTheNode());
     }
     else
     {
-        newNode->sign = '$';
         double number = 0.0;
         while (symbol != ')' && symbol != '\0' && symbol != '\n' && symbol != ' ')
         {
@@ -57,74 +54,81 @@ ArithmeticTree::TreeNode*  ArithmeticTree::readTheNode()
             number += (int(symbol) - int('0'));
             symbol = fgetc(input);
         }
-        newNode->value = number;
+        newNode = new NumberTreeNode(number);
     }
     return newNode;
 }
 
 
-double ArithmeticTree::calculateTheNode(TreeNode *current)
+ArithmeticTree::NumberTreeNode::NumberTreeNode(double valueOfNode)
 {
-    if (current->sign == '$')
-    {
-        return current->value;
-    }
-    else
-    {
-        double leftValue = calculateTheNode(current->left);
-        double rightValue = calculateTheNode(current->right);
+    value = valueOfNode;
+}
 
-        switch (current->sign)
-        {
-        case '*':
-        {
-            return leftValue * rightValue;
-            break;
-        }
-        case '/':
-        {
-            return leftValue / rightValue;
-            break;
-        }
-        case '+':
-        {
-            return leftValue + rightValue;
-            break;
-        }
-        case '-':
-        {
-            return leftValue - rightValue;
-            break;
-        }
-        }
+
+ArithmeticTree::OperationTreeNode::OperationTreeNode(char operation, TreeNode *leftOperand, TreeNode *rightOperand)
+{
+    sign = operation;
+    left = leftOperand;
+    right = rightOperand;
+}
+
+
+double ArithmeticTree::NumberTreeNode::getValue()
+{
+    return value;
+}
+
+
+double ArithmeticTree::OperationTreeNode::getValue()
+{
+    double leftValue = left->getValue();    //  left never be nullptr
+    double rightValue = right->getValue();  //  right never be nullptr
+
+    switch (sign)
+    {
+    case '*':
+    {
+        return leftValue * rightValue;
+        break;
+    }
+    case '/':
+    {
+        return leftValue / rightValue;
+        break;
+    }
+    case '+':
+    {
+        return leftValue + rightValue;
+        break;
+    }
+    case '-':
+    {
+        return leftValue - rightValue;
+        break;
+    }
     }
 }
 
 
-void ArithmeticTree::printTheNode(TreeNode *current, std::ostream &out)
+void ArithmeticTree::NumberTreeNode::print(std::ostream &out) const
 {
-
-    if (current->sign == '$')
-    {
-        out << current->value;
-    }
-    else
-    {
-        out << '(';
-        printTheNode(current->left, out);
-        out << ' ' << current->sign << ' ';
-        printTheNode(current->right, out);
-        out << ')';
-    }
+    out << value;
 }
 
 
-void ArithmeticTree::deleteTree(TreeNode *current)
+void ArithmeticTree::OperationTreeNode::print(std::ostream &out) const
 {
-    if (current)
-    {
-        deleteTree(current->left);
-        deleteTree(current->right);
-        delete current;
-    }
+    out << '(';
+    left->print(out);
+    out << ' ' << sign << ' ';
+    right->print(out);
+    out << ')';
+}
+
+
+ArithmeticTree::OperationTreeNode::~OperationTreeNode()
+{
+    delete left;
+    delete right;
 }
