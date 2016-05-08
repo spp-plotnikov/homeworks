@@ -16,9 +16,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    libraryofhashfunctions.cpp
+    optimalhashfunction.cpp \
+    standardhashfunction.cpp
 
 HEADERS += \
     hashtable.h \
-    libraryofhashfunctions.h \
-    hashtabletest.h
+    hashtabletest.h \
+    hashfunction.h \
+    optimalhashfunction.h \
+    standardhashfunction.h

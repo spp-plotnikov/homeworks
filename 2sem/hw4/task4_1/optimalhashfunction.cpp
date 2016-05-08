@@ -1,7 +1,6 @@
-#include "libraryofhashfunctions.h"
+#include "optimalhashfunction.h"
 
-
-int optimalHashFunction(QString &string, int divider)
+int OptimalHashFunction::getHashCode(QString &string, int divider) const
 {
     unsigned long long result = 0;
     for (int i = 0; i <= string.length(); i += 2)
@@ -14,17 +13,5 @@ int optimalHashFunction(QString &string, int divider)
     }
     result += divider / 19 * string[0].toLatin1();
     result %= divider;
-    return result;
-}
-
-
-int standardHashFunction(QString &string, int divider)
-{
-    int result = 0;
-    for (int i = 0; i <= string.length(); i++)
-    {
-        result += string[i].toLatin1();
-        result %= divider;
-    }
     return result;
 }

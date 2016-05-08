@@ -3,7 +3,9 @@
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
 #include "hashtable.h"
-#include "libraryofhashfunctions.h"
+#include "hashfunction.h"
+#include "optimalhashfunction.h"
+#include "standardhashfunction.h"
 
 
 
@@ -33,23 +35,6 @@ private slots:
         QVERIFY(!table->find(exampleString));
     }
 
-    void exceptionTest()
-    {
-        bool exception = false;
-        table->setHashFunction(nullptr);
-
-        try
-        {
-            table->add(exampleString);
-        }
-        catch (HashTable<QString>::NotSpecifiedHashFunctionException &)
-        {
-            exception = true;
-        }
-
-        QVERIFY(exception);
-    }
-
     void changedFunctionTest()
     {
         table->add(exampleString);
@@ -65,4 +50,6 @@ private slots:
 private:
     HashTable<QString> *table = nullptr;
     QString exampleString = "ololo";
+    OptimalHashFunction optimalHashFunction;
+    StandardHashFunction standardHashFunction;
 };

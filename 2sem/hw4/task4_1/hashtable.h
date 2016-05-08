@@ -2,6 +2,7 @@
 
 #include <QList>
 #include <iostream>
+#include "hashfunction.h"
 
 using namespace std;
 
@@ -15,26 +16,23 @@ template <typename Type>
 class HashTable
 {
 public:
-    HashTable(int (*userHashFunction)(Type&, int));
+    HashTable(HashFunction &userHashFunction);
     void add(Type &newElement);
     bool remove(Type &target);  ///<    \returns false if the table doesn't contains this value
     bool find(Type &target);
-    void statistics();    ///<  prints load factor, the number of cells, max len of the list, etc.
-    void setHashFunction(int (*userHashFunction)(Type&, int));
+    void statistics() const;    ///<  prints load factor, the number of cells, max len of the list, etc.
+    void setHashFunction(HashFunction &userHashFunction);
     ~HashTable();
-
-    class NotSpecifiedHashFunctionException
-    {
-    };
 
 private:
     /// \brief This method rebuilds the table if its size was changed
     void updateTable(int newSizeOfTable);
+    /// \brief the wrapper function for code readability
     int hashFunction(Type &value, const int divisor);
 
     int size = 2048;    ///<    The starting value
     int fullness = 0;
-    int(*hashFunc)(Type &, const int) = NULL;    ///<    a pointer to the User hash function
+    HashFunction *hashFunc = nullptr;    ///<    a pointer to the User hash function
     QList<Type> **table = new QList<Type>*[size];
 };
 
@@ -43,13 +41,13 @@ private:
 
 
 template <typename Type>
-HashTable<Type>::HashTable(int (*userHashFunction)(Type&, int))
+HashTable<Type>::HashTable(HashFunction &userHashFunction)
 {
     for (int i = 0; i < size; i++)
     {
-        table[i] = NULL;
+        table[i] = nullptr;
     }
-    hashFunc = userHashFunction;
+    hashFunc = &userHashFunction;
 }
 
 
@@ -106,7 +104,7 @@ bool HashTable<Type>::find(Type &target)
 
 
 template <typename Type>
-void HashTable<Type>::statistics()
+void HashTable<Type>::statistics() const
 {
     int maxLength = 0;
     int emptyCells = 0;
@@ -144,9 +142,9 @@ void HashTable<Type>::statistics()
 
 
 template <typename Type>
-void HashTable<Type>::setHashFunction(int (*userHashFunction)(Type&, int))
+void HashTable<Type>::setHashFunction(HashFunction &userHashFunction)
 {
-    hashFunc = userHashFunction;
+    hashFunc = &userHashFunction;
     updateTable(size);
 }
 
@@ -167,14 +165,7 @@ HashTable<Type>::~HashTable()
 template <typename Type>
 int HashTable<Type>::hashFunction(Type &value, const int divisor)
 {
-    if (hashFunc)
-    {
-        return (*hashFunc)(value, divisor);
-    }
-    else
-    {
-        throw NotSpecifiedHashFunctionException();
-    }
+    return hashFunc->getHashCode(value, divisor);
 }
 
 

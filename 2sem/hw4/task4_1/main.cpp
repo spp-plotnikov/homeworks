@@ -4,7 +4,9 @@
 #include <iostream>
 #include "hashtable.h"
 #include "hashtabletest.h"
-#include "libraryofhashfunctions.h"
+#include "optimalhashfunction.h"
+#include "standardhashfunction.h"
+
 
 void showComments();
 
@@ -22,7 +24,10 @@ int main(int argc, char *argv[])
     QString currentString;
     QTextStream cin(stdin);
 
-    HashTable<QString> *table = new HashTable<QString>(standardHashFunction);
+    OptimalHashFunction optimal;
+    StandardHashFunction standard;
+
+    HashTable<QString> *table = new HashTable<QString>(standard);
     do
     {
         cin >> command;
@@ -77,12 +82,12 @@ int main(int argc, char *argv[])
             cin >> number;
             if (number == 1)
             {
-                table->setHashFunction(standardHashFunction);
+                table->setHashFunction(standard);
                 cout << "Successfully done. Go on..." << endl;
             }
             else if (number == 2)
             {
-                table->setHashFunction(optimalHashFunction);
+                table->setHashFunction(optimal);
                 cout << "Successfully done. Go on..." << endl;
             }
             else
