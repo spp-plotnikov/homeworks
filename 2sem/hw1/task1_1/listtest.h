@@ -27,51 +27,51 @@ private slots:
 
    void addTest_data()
    {
-       QTest::addColumn<int>("number");
+       QTest::addColumn<int>("type");
 
-       QTest::newRow("largeNegativeNumber") << -100500;
-       QTest::newRow("negativeNumber") << -777;
-       QTest::newRow("zero") << 0;
-       QTest::newRow("answerToTheUltimateQuestion") << 42;
-       QTest::newRow("positiveNumber") << 666;
-       QTest::newRow("largePositiveNumber") << 1000000000;
+       QTest::newRow("array") << 0;
+       QTest::newRow("pointer") << 1;
    }
 
    void addTest()
    {
-       QFETCH(int, number);
+       QFETCH(int, type);
+       setType(type);
 
-       arrayList->add(number);
-       pointerList->add(number);
-       QVERIFY(arrayList->isFound(number) && pointerList->isFound(number));
+       currentList->add(777);
+       QVERIFY(currentList->isFound(777));
    }
 
    void removeTest_data()
    {
-       QTest::addColumn<int>("number");
+       QTest::addColumn<int>("type");
 
-       QTest::newRow("largeNegativeNumber") << -100500;
-       QTest::newRow("negativeNumber") << -777;
-       QTest::newRow("zero") << 0;
-       QTest::newRow("answerToTheUltimateQuestion") << 42;
-       QTest::newRow("positiveNumber") << 666;
-       QTest::newRow("largePositiveNumber") << 1000000000;
+       QTest::newRow("array") << 0;
+       QTest::newRow("pointer") << 1;
    }
 
    void removeTest()
    {
-       QFETCH(int, number);
+       QFETCH(int, type);
+       setType(type);
 
-       arrayList->add(number);
-       pointerList->add(number);
+       currentList->add(100500);
 
-       arrayList->remove(number);
-       pointerList->remove(number);
+       currentList->remove(100500);
 
-       QVERIFY(!arrayList->isFound(number) && !pointerList->isFound(number));
+       QVERIFY(!currentList->isFound(100500));
    }
 
 private:
-   List *arrayList = NULL;
-   List *pointerList = NULL;
+   void setType(int type)
+   {
+       if (type)
+           currentList = arrayList;
+       else
+           currentList = pointerList;
+   }
+
+   List *arrayList = nullptr;
+   List *pointerList = nullptr;
+   List *currentList = nullptr;
 };

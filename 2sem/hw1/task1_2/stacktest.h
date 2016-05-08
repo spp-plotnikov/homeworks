@@ -27,65 +27,77 @@ private slots:
 
    void pushTest_data()
    {
-       QTest::addColumn<int>("number");
+       QTest::addColumn<int>("type");
 
-       QTest::newRow("largeNegativeNumber") << -100500;
-       QTest::newRow("negativeNumber") << -777;
-       QTest::newRow("zero") << 0;
-       QTest::newRow("answerToTheUltimateQuestion") << 42;
-       QTest::newRow("positiveNumber") << 666;
-       QTest::newRow("largePositiveNumber") << 1000000000;
+       QTest::newRow("array") << 0;
+       QTest::newRow("pointer") << 1;
+
    }
 
    void pushTest()
    {
-       QFETCH(int, number);
+       QFETCH(int, type);
+       setType(type);
 
-       arrayStack->push(number);
-       pointerStack->push(number);
-       QVERIFY(arrayStack->viewTheTop() == number && pointerStack->viewTheTop() == number);
+       currentStack->push(42);
+       QVERIFY(currentStack->viewTheTop() == 42);
    }
 
    void popTest_data()
    {
-       QTest::addColumn<int>("number");
+       QTest::addColumn<int>("type");
 
-       QTest::newRow("largeNegativeNumber") << -100500;
-       QTest::newRow("negativeNumber") << -777;
-       QTest::newRow("zero") << 0;
-       QTest::newRow("answerToTheUltimateQuestion") << 42;
-       QTest::newRow("positiveNumber") << 666;
-       QTest::newRow("largePositiveNumber") << 1000000000;
+       QTest::newRow("array") << 0;
+       QTest::newRow("pointer") << 1;
    }
 
    void popTest()
    {
-       QFETCH(int, number);
+       QFETCH(int, type);
+       setType(type);
 
-       arrayStack->push(number);
-       pointerStack->push(number);
+       currentStack->push(666);
 
-       QVERIFY(arrayStack->pop() == number && pointerStack->pop() == number);
+       QVERIFY(currentStack->pop() == 666);
+   }
+
+   void manyElementsTest_data()
+   {
+       QTest::addColumn<int>("type");
+
+       QTest::newRow("array") << 0;
+       QTest::newRow("pointer") << 1;
    }
 
    void manyElementsTest()
    {
+       QFETCH(int, type);
+       setType(type);
+
        for (int i = 42; i <= 100500; i++)
        {
-           arrayStack->push(i);
-           pointerStack->push(i);
+           currentStack->push(i);
        }
 
        bool isRight = true;
        for (int i = 100500; i >= 42; i--)
        {
-           isRight &= arrayStack->pop() == i;
-           isRight &= pointerStack->pop() == i;
+           isRight &= currentStack->pop() == i;
        }
        QVERIFY(isRight);
    }
 
 private:
-   Stack<int> *arrayStack = NULL;
-   Stack<int> *pointerStack = NULL;
+   void setType(int type)
+   {
+       if (type)
+           currentStack = arrayStack;
+       else
+           currentStack = pointerStack;
+   }
+
+   Stack<int> *arrayStack = nullptr;
+   Stack<int> *pointerStack = nullptr;
+   Stack<int> *currentStack = nullptr;
+
 };
