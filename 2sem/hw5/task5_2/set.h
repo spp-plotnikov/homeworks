@@ -110,7 +110,7 @@ template <typename Type>
 void Set<Type>::setUnion(Set<Type> &otherSet)
 {
     int arraySize = 0;
-    Type *array = otherSet.tree->toPresentContentInArray(arraySize);
+    Type *array = otherSet.getContent(arraySize);
     for (int i = 0; i < arraySize; i++)
         add(array[i]);
     delete []array;
