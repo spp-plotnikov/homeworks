@@ -23,6 +23,12 @@ public:
     void setIntersection(Set<Type> &otherSet);
     /// \brief merge this set with other set
     void setUnion(Set<Type> &otherSet);
+    /*!
+    * \param sizeOfArray is incremented by the size of the array
+    * \returns pointer to array containing content of set in ascending order
+    * \warning you must delete an array (it is dynamic)
+    */
+    Type* getContent(int &sizeOfArray);
     ~Set();
 
 private:
@@ -70,7 +76,7 @@ void Set<Type>::setIntersection(Set<Type> &otherSet)
     array1Size = 0;
     array2Size = 0;
     Type *array1 = tree->toPresentContentInArray(array1Size);
-    Type *array2 = otherSet.tree->toPresentContentInArray(array2Size);
+    Type *array2 = otherSet.getContent(array2Size);
 
     delete tree;
     tree = new AVLTree<Type>();
@@ -108,4 +114,11 @@ void Set<Type>::setUnion(Set<Type> &otherSet)
     for (int i = 0; i < arraySize; i++)
         add(array[i]);
     delete []array;
+}
+
+
+template <typename Type>
+Type* Set<Type>::getContent(int &sizeOfArray)
+{
+    return tree->toPresentContentInArray(sizeOfArray);
 }
