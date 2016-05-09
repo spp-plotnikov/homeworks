@@ -3,6 +3,7 @@
 ArithmeticTree::ArithmeticTree(FILE *userInputFile)
 {
     input = userInputFile;
+    root = readTheNode();
 }
 
 
@@ -16,7 +17,6 @@ double ArithmeticTree::calculateTree()
 {
     if (!wasCalculated)
     {
-        root = readTheNode();
         result = root->getValue();
         wasCalculated = true;
     }
@@ -58,6 +58,9 @@ ArithmeticTree::TreeNode*  ArithmeticTree::readTheNode()
     }
     return newNode;
 }
+
+
+//--------------------------------------------------------------
 
 
 ArithmeticTree::NumberTreeNode::NumberTreeNode(double valueOfNode)
@@ -129,6 +132,6 @@ void ArithmeticTree::OperationTreeNode::print(std::ostream &out) const
 
 ArithmeticTree::OperationTreeNode::~OperationTreeNode()
 {
-    delete left;
-    delete right;
+    delete left;    //  left never be nullptr
+    delete right;   //  right never be nullptr
 }
