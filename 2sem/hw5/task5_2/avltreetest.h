@@ -24,15 +24,15 @@ private slots:
 
    void addTest()
    {
-       tree->add(&tripleSeven);
-       QVERIFY(tree->isFound(&tripleSeven));
+       tree->add(tripleSeven);
+       QVERIFY(tree->isFound(tripleSeven));
    }
 
    void removeTest()
    {
-       tree->add(&tripleSeven);
-       tree->remove(&tripleSeven);
-       QVERIFY(!tree->isFound(&tripleSeven));
+       tree->add(tripleSeven);
+       tree->remove(tripleSeven);
+       QVERIFY(!tree->isFound(tripleSeven));
    }
 
    void emptyTreeArrayTest()
@@ -49,7 +49,7 @@ private slots:
        for (int i = 0; i < 42; i++)
        {
            sevenMultiples = i * 7;
-           tree->add(&sevenMultiples);
+           tree->add(sevenMultiples);
        }
 
        int size = 0;
@@ -71,7 +71,7 @@ private slots:
        for (int i = 0; i < 42; i++)
        {
            fourMultiples = i * 4;
-           tree->add(&fourMultiples);
+           tree->add(fourMultiples);
        }
 
        int size = 0;

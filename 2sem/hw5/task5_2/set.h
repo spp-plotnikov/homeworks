@@ -49,7 +49,7 @@ Set<Type>::~Set()
 template <typename Type>
 void Set<Type>::add(Type &value)
 {
-    tree->add(&value);
+    tree->add(value);
 }
 
 
@@ -58,7 +58,7 @@ bool Set<Type>::remove(Type &value)
 {
     if (!find(value))
         return false;
-    tree->remove(&value);
+    tree->remove(value);
     return true;
 }
 
@@ -66,7 +66,7 @@ bool Set<Type>::remove(Type &value)
 template <typename Type>
 bool Set<Type>::find(Type &value) const
 {
-    return tree->isFound(&value);
+    return tree->isFound(value);
 }
 
 

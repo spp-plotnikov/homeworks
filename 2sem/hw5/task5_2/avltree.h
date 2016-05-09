@@ -10,9 +10,9 @@ template <typename Type>
 class AVLTree
 {
 public:
-    void add(const Type *newValue);
-    void remove(const Type *target);
-    bool isFound(const Type *target) const;
+    void add(const Type &newValue);
+    void remove(const Type &target);
+    bool isFound(const Type &target) const;
     /*!
      * \param sizeOfArray must be zero at the beginning because in the
      *  end it will be equal to the size of the array
@@ -31,17 +31,17 @@ private:
            Constructor creates new node with value newValue,
            height and pointers to the left and right children
         */
-        TreeNode(const Type *newValue, int newHeight, TreeNode *left, TreeNode *right);
+        TreeNode(const Type &newValue, int newHeight, TreeNode *left, TreeNode *right);
 
-        const Type *value;
+        Type value;
         int height;
         TreeNode *leftChild;
         TreeNode *rightChild;
     };
 
 
-    TreeNode* addNewElement(TreeNode *parent, const Type *newValue);
-    TreeNode* deleteElement(TreeNode *current, const Type *forRemoval);
+    TreeNode* addNewElement(TreeNode *parent, const Type &newValue);
+    TreeNode* deleteElement(TreeNode *current, const Type &forRemoval);
     TreeNode* findMinElement(TreeNode *thisNode);
     TreeNode* rotateRight(TreeNode *thisRoot);
     TreeNode* rotateLeft(TreeNode *thisRoot);
@@ -54,6 +54,7 @@ private:
 
 
     TreeNode *root = NULL;
+    int countOfValues = 0;
 };
 
 
@@ -61,30 +62,30 @@ private:
 
 
 template <typename Type>
-void AVLTree<Type>::add(const Type *newValue)
+void AVLTree<Type>::add(const Type &newValue)
 {
     root = addNewElement(root, newValue);
 }
 
 
 template <typename Type>
-void AVLTree<Type>::remove(const Type *target)
+void AVLTree<Type>::remove(const Type &target)
 {
     root = deleteElement(root, target);
 }
 
 
 template <typename Type>
-bool AVLTree<Type>::isFound(const Type *target) const
+bool AVLTree<Type>::isFound(const Type &target) const
 {
     TreeNode* current = root;
     while (current)
     {
-        if (*current->value > *target)
+        if (current->value > target)
         {
             current = current->leftChild;
         }
-        else if (*current->value < *target)
+        else if (current->value < target)
         {
             current = current->rightChild;
         }
@@ -100,10 +101,7 @@ bool AVLTree<Type>::isFound(const Type *target) const
 template <typename Type>
 Type* AVLTree<Type>::toPresentContentInArray(int &sizeOfArray) const
 {
-    long long maxSize = 1;
-    for (int i = 0; i < root->height; i++)
-        maxSize *= 2;
-    Type *array = new Type[maxSize + 1];
+    Type *array = new Type[countOfValues + 1];
     toArrayInAscendingOrder(root, sizeOfArray, array);
     return array;
 }
@@ -123,18 +121,19 @@ AVLTree<Type>::~AVLTree()
 
 
 template <typename Type>
-typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, const Type *newValue)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent, const Type &newValue)
 {
     if (parent == nullptr)
     {
         TreeNode *newNode = new TreeNode(newValue, 1, NULL, NULL);
+        countOfValues++;
         return newNode;
     }
-    else if (*newValue < *parent->value)
+    else if (newValue < parent->value)
     {
         parent->leftChild = addNewElement(parent->leftChild, newValue);
     }
-    else if (*newValue > *parent->value)
+    else if (newValue > parent->value)
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
@@ -143,15 +142,15 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
 
 
 template <typename Type>
-typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, const Type *forRemoval)
+typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current, const Type &forRemoval)
 {
     if (current)
     {
-        if (*forRemoval < *current->value)
+        if (forRemoval < current->value)
         {
             current->leftChild = deleteElement(current->leftChild, forRemoval);
         }
-        else if (*forRemoval > *current->value)
+        else if (forRemoval > current->value)
         {
             current->rightChild = deleteElement(current->rightChild, forRemoval);
         }
@@ -160,6 +159,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current
             TreeNode *left = current->leftChild;
             TreeNode *right = current->rightChild;
             delete current;
+            countOfValues--;
             if (right == NULL)
             {
                 return left;
@@ -252,7 +252,7 @@ void AVLTree<Type>::toArrayInAscendingOrder(TreeNode *current, int &sizeOfArray,
     if (current)
     {
         toArrayInAscendingOrder(current->leftChild, sizeOfArray, array);
-        array[sizeOfArray] = *current->value;
+        array[sizeOfArray] = current->value;
         sizeOfArray++;
         toArrayInAscendingOrder(current->rightChild, sizeOfArray, array);
     }
@@ -286,7 +286,7 @@ int AVLTree<Type>::height(TreeNode *node)
 
 
 template <typename Type>
-AVLTree<Type>::TreeNode::TreeNode(const Type *newValue, int newHeight, TreeNode *left, TreeNode *right)
+AVLTree<Type>::TreeNode::TreeNode(const Type &newValue, int newHeight, TreeNode *left, TreeNode *right)
 {
     value = newValue;
     height = newHeight;
