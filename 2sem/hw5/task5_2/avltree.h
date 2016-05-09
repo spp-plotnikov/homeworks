@@ -251,10 +251,10 @@ void AVLTree<Type>::toArrayInAscendingOrder(TreeNode *current, int &sizeOfArray,
 {
     if (current)
     {
-        inAscendingOrderPrint(current->leftChild);
-        array[sizeOfArray] = current->value;
+        toArrayInAscendingOrder(current->leftChild, sizeOfArray, array);
+        array[sizeOfArray] = *current->value;
         sizeOfArray++;
-        inAscendingOrderPrint(current->rightChild);
+        toArrayInAscendingOrder(current->rightChild, sizeOfArray, array);
     }
 }
 

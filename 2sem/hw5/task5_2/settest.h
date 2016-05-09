@@ -26,23 +26,23 @@ private slots:
 
    void addTest()
    {
-       set->add(2016);
-       QVERIFY(set->find(2016));
+       set->add(randomNumber);
+       QVERIFY(set->find(randomNumber));
    }
 
    void deleteTest()
    {
-       set->add(2016);
-       set->remove(2016);
-       QVERIFY(!set->find(2016));
+       set->add(randomNumber);
+       set->remove(randomNumber);
+       QVERIFY(!set->find(randomNumber));
    }
 
    void containsOneElementTest()
    {
-       set->add(42);
+       set->add(randomNumber);
        int size = 0;
        int *array = set->getContent(size);
-       bool contains = array[0] == 42;
+       bool contains = array[0] == randomNumber;
        delete []array;
        QVERIFY(contains);
    }
@@ -53,7 +53,8 @@ private slots:
        int quantity = 20 + rand() % 200;
        for (int i = quantity; i > 0 ; i--)
        {
-           set->add(i * 3);
+           threeMultiples = i * 3;
+           set->add(threeMultiples);
        }
 
        int size = 0;
@@ -70,7 +71,7 @@ private slots:
 
    void correctSizeTest()
    {
-       int expectedSize = 20 + rand() % 200;
+       int expectedSize = randomNumber;
        for (int i = 0; i < expectedSize; i++)
        {
            set->add(i);
@@ -86,13 +87,15 @@ private slots:
    {
        for (int i = 0; i < 30; i++)
        {
-           set->add(i * 2);
+           twoMultiples = i * 2;
+           set->add(twoMultiples);
        }
 
        Set<int> otherSet;
        for (int i = 0; i < 20; i++)
        {
-           otherSet.add(i * 3);
+           threeMultiples = i * 3;
+           otherSet.add(threeMultiples);
        }
 
        set->setIntersection(otherSet);
@@ -112,13 +115,15 @@ private slots:
    {
        for (int i = 0; i < 30; i++)
        {
-           set->add(i * 2);
+           twoMultiples = i * 2;
+           set->add(twoMultiples);
        }
 
        Set<int> otherSet;
        for (int i = 0; i < 20; i++)
        {
-           otherSet.add(i * 3);
+           threeMultiples = i * 3;
+           otherSet.add(threeMultiples);
        }
 
        set->setUnion(otherSet);
@@ -130,4 +135,8 @@ private slots:
 
 private:
    Set<int> *set = nullptr;
+   int randomNumber = 20 + rand() % 200;
+
+   int threeMultiples = 0;
+   int twoMultiples = 0;
 };

@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
         }
     } while (command);
 
+    delete set;
     return a.exec();
 }
 
