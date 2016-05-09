@@ -62,7 +62,7 @@ private slots:
        bool isCorrect = true;
        for (int i = 1; i <= quantity; i++)
        {
-           isCorrect &= array[i] == i * 3;
+           isCorrect &= array[i - 1] == i * 3;
        }
 
        delete []array;
@@ -130,7 +130,7 @@ private slots:
        int size = 0;
        int *array = set->getContent(size);
        delete []array;
-       QVERIFY(size == 50);
+       QVERIFY(size == 40);
    }
 
 private:
