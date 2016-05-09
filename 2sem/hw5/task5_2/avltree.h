@@ -17,6 +17,7 @@ public:
      * \param sizeOfArray must be zero at the beginning because in the
      *  end it will be equal to the size of the array
      * \return pointer to array which contains content of the tree in ascending order
+     * \warning you must delete an array (it is dynamic)
      */
     Type* toPresentContentInArray(int &sizeOfArray) const;
     ~AVLTree();

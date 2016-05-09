@@ -67,15 +67,45 @@ bool Set<Type>::find(Type &value) const
 template <typename Type>
 void Set<Type>::setIntersection(Set<Type> &otherSet)
 {
+    array1Size = 0;
+    array2Size = 0;
+    Type *array1 = tree->toPresentContentInArray(array1Size);
+    Type *array2 = otherSet.tree->toPresentContentInArray(array2Size);
 
+    delete tree;
+    tree = new AVLTree<Type>();
+
+    int i = 0;
+    int j = 0;
+    while (i < array1Size && j < array2Size)
+    {
+        if (array1[i] == array2[j])
+        {
+            add(array[i]);
+            i++;
+            j++;
+        }
+        else if (array1[i] < array2[j])
+        {
+            i++;
+        }
+        else
+        {
+            j++;
+        }
+    }
+
+    delete []array1;
+    delete []array2;
 }
 
 
 template <typename Type>
 void Set<Type>::setUnion(Set<Type> &otherSet)
 {
-
+    int arraySize = 0;
+    Type *array = otherSet.tree->toPresentContentInArray(arraySize);
+    for (int i = 0; i < arraySize; i++)
+        add(array[i]);
+    delete []array;
 }
-
-
-TODO: tests (and for AVLTree)
