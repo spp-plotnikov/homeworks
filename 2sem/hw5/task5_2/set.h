@@ -73,8 +73,8 @@ bool Set<Type>::find(Type &value) const
 template <typename Type>
 void Set<Type>::setIntersection(Set<Type> &otherSet)
 {
-    array1Size = 0;
-    array2Size = 0;
+    int array1Size = 0;
+    int array2Size = 0;
     Type *array1 = tree->toPresentContentInArray(array1Size);
     Type *array2 = otherSet.getContent(array2Size);
 
@@ -87,7 +87,7 @@ void Set<Type>::setIntersection(Set<Type> &otherSet)
     {
         if (array1[i] == array2[j])
         {
-            add(array[i]);
+            add(array1[i]);
             i++;
             j++;
         }

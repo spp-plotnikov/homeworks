@@ -138,10 +138,6 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
     }
-    else
-    {
-        throw typename SortedSet<Type>::ElementExistsException();
-    }
     return balance(parent);
 }
 

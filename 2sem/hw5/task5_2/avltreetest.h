@@ -24,15 +24,15 @@ private slots:
 
    void addTest()
    {
-       tree->add(777);
-       QVERIFY(tree->isFound(777));
+       tree->add(&tripleSeven);
+       QVERIFY(tree->isFound(&tripleSeven));
    }
 
    void removeTest()
    {
-       tree->add(777);
-       tree->remove(777);
-       QVERIFY(!tree->isFound(777));
+       tree->add(&tripleSeven);
+       tree->remove(&tripleSeven);
+       QVERIFY(!tree->isFound(&tripleSeven));
    }
 
    void emptyTreeArrayTest()
@@ -45,9 +45,11 @@ private slots:
 
    void treeToArrayTest()
    {
+       int sevenMultiples = 0;
        for (int i = 0; i < 42; i++)
        {
-           tree->add(i * 7);
+           sevenMultiples = i * 7;
+           tree->add(&sevenMultiples);
        }
 
        int size = 0;
@@ -65,9 +67,11 @@ private slots:
 
    void sizeOfArrayTest()
    {
+       int fourMultiples = 0;
        for (int i = 0; i < 42; i++)
        {
-           tree->add(i * 4);
+           fourMultiples = i * 4;
+           tree->add(&fourMultiples);
        }
 
        int size = 0;
@@ -79,4 +83,5 @@ private slots:
 
 private:
    AVLTree<int> *tree = nullptr;
+   const int tripleSeven = 777;
 };

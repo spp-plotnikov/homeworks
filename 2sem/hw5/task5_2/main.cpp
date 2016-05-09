@@ -1,7 +1,10 @@
 #include <QCoreApplication>
+#include <iostream>
 #include "avltreetest.h"
 #include "settest.h"
 #include "set.h"
+
+using namespace std;
 
 void showComments();
 Set<int>* inviteUserToCreateNewSet();

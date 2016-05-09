@@ -2,10 +2,10 @@
 
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
+#include <cstdlib>
 #include <ctime>
 #include "set.h"
 
-srand(time(0));
 
 class SetTest : public QObject
 {
@@ -49,6 +49,7 @@ private slots:
 
    void containsManyElements()
    {
+       srand(time(0));
        int quantity = 20 + rand() % 200;
        for (int i = quantity; i > 0 ; i--)
        {
@@ -88,7 +89,7 @@ private slots:
            set->add(i * 2);
        }
 
-       Set otherSet;
+       Set<int> otherSet;
        for (int i = 0; i < 20; i++)
        {
            otherSet.add(i * 3);
@@ -114,7 +115,7 @@ private slots:
            set->add(i * 2);
        }
 
-       Set otherSet;
+       Set<int> otherSet;
        for (int i = 0; i < 20; i++)
        {
            otherSet.add(i * 3);
