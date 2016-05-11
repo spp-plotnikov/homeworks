@@ -7,7 +7,9 @@
 
 class UniqueList : public List
 {
-    // exception here
+public:
+    class ElementAlreadyExistsException {};
+    class AttemptToRemoveTheNonExistentElementException {};
 };
 
 
@@ -17,13 +19,19 @@ public:
     ArrayUniqueList() : ArrayList() {}
     void add(int newValue);
     void remove(int target);
+    bool isFound(int target) const;
+    void print() const;
 };
 
 
-class PointerUniqueList : public UniqueList, public PointerList
+class PointerUniqueList : public PointerList, public UniqueList
 {
 public:
     PointerUniqueList() : PointerList() {}
     void add(int newValue);
     void remove(int target);
+    bool isFound(int target) const;
+    void print() const;
 };
+
+comments and tests

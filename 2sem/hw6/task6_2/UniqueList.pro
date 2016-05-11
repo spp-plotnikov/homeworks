@@ -16,7 +16,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    uniquelist.cpp
+    uniquelist.cpp \
+    ../../hw1/task1_1/arraylist.cpp \
+    ../../hw1/task1_1/pointerlist.cpp
 
 HEADERS += \
-    uniquelist.h
+    uniquelist.h \
+    ../../hw1/task1_1/arraylist.h \
+    ../../hw1/task1_1/list.h \
+    ../../hw1/task1_1/pointerlist.h

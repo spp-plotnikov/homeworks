@@ -13,11 +13,11 @@ class ArrayList : public List
 {
 public:
     ArrayList() {}
-    void add(int newElement);
-    bool isFound(int target) const;
-    void remove(int target);
-    void print() const;
-    ~ArrayList();
+    virtual void add(int newElement);
+    virtual bool isFound(int target) const;
+    virtual void remove(int target);
+    virtual void print() const;
+    virtual ~ArrayList();
 private:
     /*!
        \brief this method resizes the array

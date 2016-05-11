@@ -14,11 +14,11 @@ class PointerList : public List
 {
 public:
     PointerList() {}
-    void add(int value);
-    bool isFound(int target) const;
-    void remove(int target);
-    void print() const;
-    ~PointerList();
+    virtual void add(int value);
+    virtual bool isFound(int target) const;
+    virtual void remove(int target);
+    virtual void print() const;
+    virtual ~PointerList();
 private:
     /// Class for working with the nodes of list
     class ListNode
