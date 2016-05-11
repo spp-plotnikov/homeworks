@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = UniqueList
@@ -15,7 +15,7 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
+SOURCES += \
     uniquelist.cpp \
     ../../hw1/task1_1/arraylist.cpp \
     ../../hw1/task1_1/pointerlist.cpp
@@ -24,4 +24,5 @@ HEADERS += \
     uniquelist.h \
     ../../hw1/task1_1/arraylist.h \
     ../../hw1/task1_1/list.h \
-    ../../hw1/task1_1/pointerlist.h
+    ../../hw1/task1_1/pointerlist.h \
+    uniquelisttest.h
