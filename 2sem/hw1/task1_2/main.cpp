@@ -1,11 +1,18 @@
 #include <QCoreApplication>
-#include "calculator.h"
 #include <iostream>
 #include <cstring>
+#include "calculatortest.h"
+#include "calculator.h"
+#include "stacktest.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    StackTest stackTest;
+    CalculatorTest calculatorTest;
+    QTest::qExec(&stackTest);
+    QTest::qExec(&calculatorTest);
 
     cout << "This calculator was developed by company \"Sasha Plotnikov Production\", ltd." << endl;
     cout << "You can calculate any numbers, use parentheses and the signs *, +, -, /" << endl;

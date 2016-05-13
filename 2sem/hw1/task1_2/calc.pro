@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = calc
@@ -22,4 +22,6 @@ HEADERS += \
     stack.h \
     arraystack.h \
     pointerstack.h \
-    calculator.h
+    calculator.h \
+    stacktest.h \
+    calculatortest.h

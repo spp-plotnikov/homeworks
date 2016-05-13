@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = sorter
@@ -24,4 +24,5 @@ HEADERS += \
     sorter.h \
     quicksorter.h \
     heapsorter.h \
-    bubblesorter.h
+    bubblesorter.h \
+    sortertest.h

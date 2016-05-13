@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
 #include "list.h"
+#include "listtest.h"
 #include "arraylist.h"
 #include "pointerlist.h"
 
@@ -11,6 +12,9 @@ void displayComments();
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    ListTest test;
+    QTest::qExec(&test);
 
     displayComments();
 

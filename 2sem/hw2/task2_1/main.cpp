@@ -1,9 +1,12 @@
 #include <QCoreApplication>
+#include <QtCore/QObject>
+#include <QtTest/QtTest>
 #include <iostream>
 #include <ctime>
 #include "bubblesorter.h"
 #include "quicksorter.h"
 #include "heapsorter.h"
+#include "sortertest.h"
 #include "sorter.h"
 
 using namespace std;
@@ -12,6 +15,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     srand(time(NULL));
+
+    SorterTest test;
+    QTest::qExec(&test);
 
     cout << "This app is sorter" << endl;
     cout << "Please enter the size of the array of random variables" << endl;
@@ -30,7 +36,7 @@ int main(int argc, char *argv[])
     cin >> type;
 
     Sorter *sorter = NULL;
-    enum types {bubble, quick, heap};
+    enum Types {bubble, quick, heap};
     switch (type) {
     case bubble:
         sorter = new BubbleSorter();

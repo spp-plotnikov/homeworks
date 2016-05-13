@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = list
@@ -22,4 +22,5 @@ SOURCES += main.cpp \
 HEADERS += \
     list.h \
     arraylist.h \
-    pointerlist.h
+    pointerlist.h \
+    listtest.h
