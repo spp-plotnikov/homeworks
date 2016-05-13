@@ -1,22 +1,25 @@
 #pragma once
 
-/// Interface of the module for working with the sorted set.
-/*!
-    \author © Sasha Plotnikov Production, Ltd.
+#include "avltree.h"
 
-    The parent class. Does not have implementation of methods,
-    all methods are virtual and implemented in child-classes.
-*/
+/*!
+ *   \brief  Interface of the module for working with the sorted set.
+ *   \author © Sasha Plotnikov Production, Ltd.
+ */
 
 template <typename Type>
 class SortedSet
 {
 public:
-    virtual void add(const Type *newValue) = 0;
-    virtual void remove(const Type *target) = 0;
-    virtual bool isFound(const Type *target) const = 0;
-    virtual void displayContent() const = 0;
-    virtual ~SortedSet() {}
+    ///  \param newValue will be added to set
+    void add(const Type *newValue);
+    ///  \param target will be removed from set
+    void remove(const Type *target);
+    ///  \returns true if set contains target
+    bool isFound(const Type *target) const;
+    ///  \brief prints content in ascending order
+    void displayContent() const;
+    ~SortedSet();
 
     /*!
      * In the sorted set elements must appear only once.
@@ -25,4 +28,51 @@ public:
     class ElementExistsException
     {
     };
+private:
+    AVLTree<Type> *tree = new AVLTree<Type>();
 };
+
+
+//-----------------------------------------
+
+
+template <typename Type>
+SortedSet<Type>::~SortedSet()
+{
+    delete tree;
+}
+
+
+template <typename Type>
+void SortedSet<Type>::add(const Type *newValue)
+{
+    if (!isFound(newValue))
+    {
+        tree->add(newValue);
+    }
+    else
+    {
+        throw ElementExistsException();
+    }
+}
+
+
+template <typename Type>
+void SortedSet<Type>::remove(const Type *target)
+{
+    tree->remove(target);
+}
+
+
+template <typename Type>
+bool SortedSet<Type>::isFound(const Type *target) const
+{
+    return tree->isFound(target);
+}
+
+
+template <typename Type>
+void SortedSet<Type>::displayContent() const
+{
+    tree->displayContent();
+}

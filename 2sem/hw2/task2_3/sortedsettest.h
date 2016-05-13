@@ -4,7 +4,6 @@
 #include <QtTest/QtTest>
 #include "pointerlist.h"
 #include "sortedset.h"
-#include "avltree.h"
 #include "list.h"
 
 
@@ -18,7 +17,7 @@ public:
 private slots:
     void init()
     {
-        set = new AVLTree<List>();
+        set = new SortedSet<List>();
         list1 = new PointerList();
         list2 = new PointerList();
 

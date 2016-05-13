@@ -1,18 +1,15 @@
 #pragma once
-#include "sortedset.h"
 #include "comparator.h"
 
-/// Implementation of the module for working with the sorted set (on the basis of the tree).
-/*!
-    \author © Sasha Plotnikov Production, Ltd.
-    \warning You must use the data types that can be compared
 
-    The child class. Inherits from SortedSet.
-    The class uses the AVL-trees to implement SortedSet functionality
-*/
+/*!
+ *   \brief Implementation of the module for working with the AVL-tree
+ *   \author © Sasha Plotnikov Production, Ltd.
+ *   \warning You must use the data types that can be compared
+ */
 
 template <typename Type>
-class AVLTree : public SortedSet<Type>
+class AVLTree
 {
 public:
     void add(const Type *newValue);
@@ -131,10 +128,6 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
     else if (Comparator<Type>::compare(newValue, parent->value) == 1)
     {
         parent->rightChild = addNewElement(parent->rightChild, newValue);
-    }
-    else
-    {
-        throw typename SortedSet<Type>::ElementExistsException();
     }
     return balance(parent);
 }

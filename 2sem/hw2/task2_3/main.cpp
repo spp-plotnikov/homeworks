@@ -23,8 +23,7 @@ int main(int argc, char *argv[])
     SortedSetTest sortedSetTest;
     QTest::qExec(&sortedSetTest);
 
-    SortedSet<List> *set = new AVLTree<List>();
- // SortedSet<List> *set = new SomeOtherSet<List>(); (the User has great opportunities)
+    SortedSet<List> *set = new SortedSet<List>();
 
     cout << "Enter the number of lists that you want to add to SortedSet. " << endl;
     int quantityOfLists = 0;
