@@ -28,7 +28,7 @@ public:
     class NullPointerException {};
 private:
     /// \brief deletes this copy of pointer
-    deleteCopy();
+    void deleteCopy();
 
     Type *object = nullptr;
     int *count = nullptr;    ///<    number of copies

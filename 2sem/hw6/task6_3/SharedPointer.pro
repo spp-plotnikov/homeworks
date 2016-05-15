@@ -15,8 +15,13 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    ../../hw1/task1_1/pointerlist.cpp
 
 HEADERS += \
     sharedpointer.h \
-    sharedpointertest.h
+    sharedpointertest.h \
+    ../../hw1/task1_1/list.h \
+    ../../hw1/task1_1/pointerlist.h \
+    ../../hw5/task5_2/avltree.h \
+    ../../hw5/task5_2/set.h

@@ -57,30 +57,31 @@ private slots:
 
     void exceptionTest()
     {
-        SharedPointer<int> nullPoinrer();
+        SharedPointer<int> nullPoinrer(nullptr);
         QVERIFY_EXCEPTION_THROWN(*nullPoinrer, SharedPointer<int>::NullPointerException);
     }
 
     void assignmentOperatorTest()
     {
         SharedPointer<int> pointer1(new int(33));
-        SharedPointer<int> poinrer2(new int(44));
-        pointer2 = poinrer1;
+        SharedPointer<int> pointer2(new int(44));
+        pointer2 = pointer1;
         QCOMPARE(*pointer2, 33);
+        QCOMPARE(pointer1.getCount(), 2);
     }
 
     void nullPointerCountTest()
     {
-        SharedPointer<int> nullPoinrer();
+        SharedPointer<int> nullPointer(nullptr);
 
-        QCOMPARE(nullPoinrer().getCount(), 0);
+        QCOMPARE(nullPointer.getCount(), 0);
     }
 
 private:
     class ReturnerOfSeven
     {
     public:
-        void returnSeven()
+        int returnSeven()
         {
             return 7;
         }
