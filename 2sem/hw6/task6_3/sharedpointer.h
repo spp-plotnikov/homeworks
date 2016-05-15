@@ -1,18 +1,30 @@
 #pragma once
 
 
+/*!
+ * \author © Sasha Plotnikov Production, Ltd.
+ * \brief SharedPointer counts the number of references to the allocated memory
+ * \details it's an analogue of std::shared_ptr
+ */
 template <typename Type>
 class SharedPointer
 {
 public:
+    /// \brief creates a pointer to the object or null pointer
     SharedPointer(Type *thisObject = nullptr);
+    /// \brief creates a copy of this pointer
     SharedPointer(const SharedPointer &pointer);
+    /// \brief gives access to fields and methods of the object
     Type* operator->();
+    /// \returns the ref to object
     Type& operator*();
+    /// \brief the assignment operator
     SharedPointer& operator=(const SharedPointer &pointer);
+    /// \returns number of copies
     int getCount();
     ~SharedPointer();
 
+    /// \brief if you'll try to dereference a null pointer you'll catch this exception
     class NullPointerException {};
 private:
     /// \brief deletes this copy of pointer
@@ -123,6 +135,3 @@ void SharedPointer<Type>::deleteCopy()
         object = nullptr;
     }
 }
-
-
-TODO: 1) comments 2) tests
