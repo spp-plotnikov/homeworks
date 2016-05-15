@@ -13,7 +13,7 @@ public:
 
 private slots:
     void init()
-    { 
+    {
     }
 
 
