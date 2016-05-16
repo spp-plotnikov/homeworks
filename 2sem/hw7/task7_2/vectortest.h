@@ -123,6 +123,20 @@ private slots:
     void exceptionTest()
     {
         Vector<float, 19> vector;
-        QVERIFY_EXCEPTION_THROWN(vector[19], Vector::OutOfRangeException);
+        bool exception = false;
+
+        try
+        {
+            vector[19];
+        }
+        catch (Vector<float, 19>::OutOfRangeException &)
+        {
+            exception = true;
+        }
+
+        QVERIFY(exception);
     }
 };
+
+
+QTEST_MAIN(VectorTest)

@@ -19,21 +19,21 @@ public:
     /// \returns true if this vector is null vector
     bool isNull() const;
     /// \brief subtracts another vector
-    Vector& operator-(const Vector &otherVector);
+    Vector operator-(const Vector &otherVector) const;
     /// \brief adds other vector
-    Vector& operator+(const Vector &otherVector);
+    Vector operator+(const Vector &otherVector) const;
     /// \brief the assignment operator
     Vector& operator=(const Vector &otherVector);
     /// \brief scalar multiplication
-    Type operator*(const Vector &otherVector);
+    Type operator*(const Vector &otherVector) const;
     /// \returns the coordinate with that index (starts from zero)
-    Type& operator[](int index);
+    Type& operator[](int index) const;
     ~Vector();
 
     /// \brief if you'll try to get non-existent coordinate you'll catch this exception
     class OutOfRangeException {};
 private:
-    int *coordinates = new int[dimension + 1];
+    Type *coordinates = new Type[dimension + 1];
 };
 
 
@@ -45,7 +45,7 @@ Vector<Type, dimension>::Vector()
 {
     for (int i = 0; i < dimension; i++)
     {
-        coordinates[i] = 0;
+        coordinates[i] = static_cast < Type > ( 0 );
     }
 }
 
@@ -75,7 +75,7 @@ bool Vector<Type, dimension>::isNull() const
 
 
 template <typename Type, int dimension>
-Vector<Type, dimension>& Vector<Type, dimension>::operator -(const Vector &otherVector)
+Vector<Type, dimension> Vector<Type, dimension>::operator -(const Vector &otherVector) const
 {
     Vector<Type, dimension> result;
     for (int i = 0; i < dimension; i++)
@@ -88,7 +88,7 @@ Vector<Type, dimension>& Vector<Type, dimension>::operator -(const Vector &other
 
 
 template <typename Type, int dimension>
-Vector<Type, dimension>& Vector<Type, dimension>::operator +(const Vector &otherVector)
+Vector<Type, dimension> Vector<Type, dimension>::operator +(const Vector &otherVector) const
 {
     Vector<Type, dimension> result;
     for (int i = 0; i < dimension; i++)
@@ -112,7 +112,7 @@ Vector<Type, dimension>& Vector<Type, dimension>::operator =(const Vector &other
 
 
 template <typename Type, int dimension>
-Type Vector<Type, dimension>::operator *(const Vector &otherVector)
+Type Vector<Type, dimension>::operator *(const Vector &otherVector) const
 {
     Type result = static_cast < Type > ( 0 );
     for (int i = 0; i < dimension; i++)
@@ -125,11 +125,11 @@ Type Vector<Type, dimension>::operator *(const Vector &otherVector)
 
 
 template <typename Type, int dimension>
-Type& Vector<Type, dimension>::operator [](int index)
+Type& Vector<Type, dimension>::operator [](int index) const
 {
     if (index >= 0 && index < dimension)
     {
-        return coordinates[i];
+        return coordinates[index];
     }
     else
     {
