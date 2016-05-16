@@ -65,7 +65,7 @@ bool Vector<Type, dimension>::isNull() const
 {
     for (int i = 0; i < dimension; i++)
     {
-        if (coordinates[i] != 0)
+        if (coordinates[i] != static_cast < Type > ( 0 ))
         {
             return false;
         }
