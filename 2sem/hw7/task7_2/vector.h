@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 
 /*!
  * \author © Sasha Plotnikov Production, Ltd.
@@ -11,6 +13,18 @@
 template <typename Type, int dimension>
 class Vector
 {
+    static_assert(
+        std::is_same<signed char, Type>::value ||
+        std::is_same<short int, Type>::value ||
+        std::is_same<int, Type>::value ||
+        std::is_same<long int, Type>::value ||
+        std::is_same<long long int, Type>::value ||
+        std::is_same<float, Type>::value ||
+        std::is_same<double, Type>::value ||
+        std::is_same<long double, Type>::value,
+        "The type must be a number!"
+    );
+
 public:
     /// \brief creates a null vector
     Vector();
