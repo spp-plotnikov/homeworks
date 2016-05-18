@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../2sem/hw5/task5_2/set.h"
+#include "avltree.h"
 
 /*!
  *   \brief  Interface of the module for working with the multiset
@@ -14,24 +14,17 @@ public:
     /// \returns  true if value was successfully removed
     bool remove(int value);
     /// \returns true if the multiset contains the value
-    bool find(int value);
+    bool find(int value) const;
     /// \returns the number of such values
-    int getCount(int value);
+    unsigned int getCount(int value) const;
+    /*!
+    * \param arraySize is incremented by the size of the array
+    * \returns pointer to array containing content of multiset in ascending order
+    * \warning you must delete an array (it is dynamic)
+    */
+    int* getContent(int &arraySize) const;
     ~Bag();
 
 private:
-    /// \brief This is a helper class to store the value and the number of such values
-    class Pair
-    {
-    public:
-        Pair(int thisValue) : value(thisValue) {}
-
-        bool operator >(const Pair &pair) const;
-        bool operator <(const Pair &pair) const;
-
-        int value = 0;
-        int count = 0;
-    };
-
-    Set<int> *set = new Set<int>();
+    AVLTree<int> *tree = new AVLTree<int>();
 };

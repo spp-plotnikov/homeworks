@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = bag
@@ -20,5 +20,6 @@ SOURCES += main.cpp \
 
 HEADERS += \
     bag.h \
-    ../../hw5/task5_2/avltree.h \
-    ../../hw5/task5_2/set.h
+    avltree.h \
+    avltreetest.h \
+    bagtest.h
