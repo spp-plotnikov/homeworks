@@ -12,6 +12,7 @@ public:
    explicit AVLTreeTest(QObject *parent = 0) : QObject(parent) {}
 
 private slots:
+    TODO
 //   void init()
 //   {
 //        tree = new AVLTree<int>;
@@ -81,7 +82,7 @@ private slots:
 //       QCOMPARE(size, 42);
 //   }
 
-private:
-   AVLTree<int> *tree = nullptr;
-   const int tripleSeven = 777;
+//private:
+//   AVLTree<int> *tree = nullptr;
+//   const int tripleSeven = 777;
 };

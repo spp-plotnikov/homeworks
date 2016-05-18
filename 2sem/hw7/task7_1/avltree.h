@@ -37,7 +37,7 @@ private:
 
         Type value;
         int height;
-        int count = 0;
+        unsigned int count = 0;
         TreeNode *leftChild;
         TreeNode *rightChild;
     };
@@ -50,6 +50,7 @@ private:
     TreeNode* rotateLeft(TreeNode *thisRoot);
     TreeNode* balance(TreeNode *p);
     TreeNode* removeMinElement(TreeNode *current);
+    unsigned int getTheNumberOfSuchValues(TreeNode *current, Type value) const;
     void toArrayInAscendingOrder(TreeNode *current, int &sizeOfArray, Type *array) const;
     void updateHeight(TreeNode *node);
     int balanceFactor(TreeNode *node);
@@ -107,6 +108,13 @@ Type* AVLTree<Type>::toPresentContentInArray(int &sizeOfArray) const
     Type *array = new Type[countOfValues + 1];
     toArrayInAscendingOrder(root, sizeOfArray, array);
     return array;
+}
+
+
+template <typename Type>
+unsigned int AVLTree<Type>::getCount(Type value) const
+{
+    getTheNumberOfSuchValues(root, value);
 }
 
 
@@ -260,6 +268,28 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::removeMinElement(TreeNode *curr
     }
     current->leftChild = removeMinElement(current->leftChild);
     return balance(current);
+}
+
+
+template <typename Type>
+unsigned int AVLTree<Type>::getTheNumberOfSuchValues(TreeNode *current, Type value) const
+{
+    if (!current)
+    {
+        return 0;
+    }
+    else if (current->value > value)
+    {
+        getTheNumberOfSuchValues(current->leftChild, value);
+    }
+    else if (current->value < value)
+    {
+        getTheNumberOfSuchValues(current->rightChild, value);
+    }
+    else
+    {
+        return current->count;
+    }
 }
 
 
