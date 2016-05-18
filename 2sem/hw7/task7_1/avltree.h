@@ -57,7 +57,7 @@ private:
     int height(TreeNode *node);
 
 
-    TreeNode *root = NULL;
+    TreeNode *root = nullptr;
     int countOfValues = 0;
 };
 
@@ -114,7 +114,7 @@ Type* AVLTree<Type>::toPresentContentInArray(int &sizeOfArray) const
 template <typename Type>
 unsigned int AVLTree<Type>::getCount(Type value) const
 {
-    getTheNumberOfSuchValues(root, value);
+    return getTheNumberOfSuchValues(root, value);
 }
 
 
@@ -136,7 +136,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::addNewElement(TreeNode *parent,
 {
     if (parent == nullptr)
     {
-        TreeNode *newNode = new TreeNode(newValue, 1, NULL, NULL);
+        TreeNode *newNode = new TreeNode(newValue, 1, nullptr, nullptr);
         newNode->count = 1;
         countOfValues++;
         return newNode;
@@ -184,7 +184,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::deleteElement(TreeNode *current
                 TreeNode *right = current->rightChild;
                 delete current;
                 countOfValues--;
-                if (right == NULL)
+                if (right == nullptr)
                 {
                     return left;
                 }
@@ -262,7 +262,7 @@ typename AVLTree<Type>::TreeNode* AVLTree<Type>::balance(TreeNode *p)
 template <typename Type>
 typename AVLTree<Type>::TreeNode* AVLTree<Type>::removeMinElement(TreeNode *current)
 {
-    if (current->leftChild == NULL)
+    if (current->leftChild == nullptr)
     {
         return current->rightChild;
     }

@@ -25,7 +25,9 @@ private slots:
    void addTest()
    {
        bag->add(777);
-       QCOMPARE(bag->getCount(777), 1);
+
+       const unsigned int expectedCount = 1;
+       QCOMPARE(bag->getCount(777), expectedCount);
        QVERIFY(bag->find(777));
    }
 
@@ -33,7 +35,9 @@ private slots:
    {
        bag->add(666);
        bag->remove(666);
-       QCOMPARE(bag->getCount(666), 0);
+
+       const unsigned int expectedCount = 0;
+       QCOMPARE(bag->getCount(666), expectedCount);
        QVERIFY(!bag->find(666));
    }
 
@@ -43,7 +47,9 @@ private slots:
        {
            bag->add(1234);
        }
-       QCOMPARE(bag->getCount(1234), 7);
+
+       const unsigned int expectedCount = 7;
+       QCOMPARE(bag->getCount(1234), expectedCount);
        QVERIFY(bag->find(1234));
    }
 
@@ -57,7 +63,9 @@ private slots:
        {
            bag->remove(-15);
        }
-       QCOMPARE(bag->getCount(-15), 16);
+
+       const unsigned int expectedCount = 16;
+       QCOMPARE(bag->getCount(-15), expectedCount);
        QVERIFY(bag->find(-15));
    }
 
@@ -77,7 +85,7 @@ private slots:
            isCorrect &= array[i] == i * 7;
        }
 
-       delete array;
+       delete []array;
        QVERIFY(isCorrect);
    }
 
@@ -90,7 +98,7 @@ private slots:
 
        int size = 0;
        int *array = bag->getContent(size);
-       delete array;
+       delete []array;
 
        QCOMPARE(size, 42);
    }

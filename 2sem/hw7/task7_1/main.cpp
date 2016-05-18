@@ -1,8 +1,14 @@
-#include <QCoreApplication>
+#include <iostream>
+#include "bagtest.h"
+#include "avltreetest.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
+    AVLTreeTest avltreeTest;
+    QTest::qExec(&avltreeTest);
 
-    return a.exec();
+    BagTest bagTest;
+    QTest::qExec(&bagTest);
+
+    return 0;
 }

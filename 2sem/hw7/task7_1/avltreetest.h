@@ -25,7 +25,8 @@ private slots:
    void addTest()
    {
        tree->add(777);
-       QCOMPARE(tree->getCount(777), 1);
+       const unsigned int expectedCount = 1;
+       QCOMPARE(tree->getCount(777), expectedCount);
        QVERIFY(tree->isFound(777));
    }
 
@@ -33,7 +34,9 @@ private slots:
    {
        tree->add(666);
        tree->remove(666);
-       QCOMPARE(tree->getCount(666), 0);
+
+       const unsigned int expectedCount = 0;
+       QCOMPARE(tree->getCount(666), expectedCount);
        QVERIFY(!tree->isFound(666));
    }
 
@@ -43,7 +46,9 @@ private slots:
        {
            tree->add(1234);
        }
-       QCOMPARE(tree->getCount(1234), 7);
+
+       const unsigned int expectedCount = 7;
+       QCOMPARE(tree->getCount(1234), expectedCount);
        QVERIFY(tree->isFound(1234));
    }
 
@@ -57,7 +62,9 @@ private slots:
        {
            tree->remove(-15);
        }
-       QCOMPARE(tree->getCount(-15), 16);
+
+       const unsigned int expectedCount = 16;
+       QCOMPARE(tree->getCount(-15), expectedCount);
        QVERIFY(tree->isFound(-15));
    }
 
@@ -65,7 +72,7 @@ private slots:
    {
        int size = 0;
        int *array = tree->toPresentContentInArray(size);
-       delete array;
+       delete []array;
        QCOMPARE(size, 0);
    }
 
@@ -85,7 +92,7 @@ private slots:
            isCorrect &= array[i] == i * 7;
        }
 
-       delete array;
+       delete []array;
        QVERIFY(isCorrect);
    }
 
@@ -108,7 +115,7 @@ private slots:
            isCorrect &= array[i] == expectedSorted[i];
        }
 
-       delete array;
+       delete []array;
        QVERIFY(isCorrect);
    }
 
@@ -121,7 +128,7 @@ private slots:
 
        int size = 0;
        int *array = tree->toPresentContentInArray(size);
-       delete array;
+       delete []array;
 
        QCOMPARE(size, 42);
    }

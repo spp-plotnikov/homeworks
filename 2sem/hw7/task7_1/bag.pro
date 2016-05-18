@@ -15,8 +15,9 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
-    bag.cpp
+SOURCES += \
+    bag.cpp \
+    main.cpp
 
 HEADERS += \
     bag.h \
