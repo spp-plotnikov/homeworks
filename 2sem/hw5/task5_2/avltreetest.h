@@ -39,7 +39,7 @@ private slots:
    {
        int size = 0;
        int *array = tree->toPresentContentInArray(size);
-       delete array;
+       delete []array;
        QCOMPARE(size, 0);
    }
 
@@ -61,7 +61,7 @@ private slots:
            isCorrect &= array[i] == i * 7;
        }
 
-       delete array;
+       delete []array;
        QVERIFY(isCorrect);
    }
 
@@ -76,7 +76,7 @@ private slots:
 
        int size = 0;
        int *array = tree->toPresentContentInArray(size);
-       delete array;
+       delete []array;
 
        QCOMPARE(size, 42);
    }
