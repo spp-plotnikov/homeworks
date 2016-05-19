@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>414</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,48 +26,91 @@
     <item row="0" column="1">
      <widget class="QPushButton" name="bayan">
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>77</width>
+        <height>43</height>
+       </size>
       </property>
      </widget>
     </item>
     <item row="0" column="2">
      <widget class="QPushButton" name="decreaseRating">
       <property name="text">
-       <string>PushButton</string>
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset theme="2">
+        <normaloff>images/minus.png</normaloff>images/minus.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>43</width>
+        <height>43</height>
+       </size>
       </property>
      </widget>
     </item>
     <item row="0" column="4">
-     <widget class="QLineEdit" name="rating"/>
+     <widget class="QLineEdit" name="rating">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item row="0" column="3">
      <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Rating</string>
+       <string>Rating:</string>
       </property>
      </widget>
     </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="increaseRating">
       <property name="text">
-       <string>PushButton</string>
+       <string/>
       </property>
       <property name="icon">
        <iconset theme="1">
-        <normaloff>logoSPP.ico</normaloff>logoSPP.ico</iconset>
+        <normaloff>images/plus.png</normaloff>images/plus.png</iconset>
       </property>
       <property name="iconSize">
        <size>
-        <width>40</width>
-        <height>40</height>
+        <width>43</width>
+        <height>43</height>
        </size>
       </property>
      </widget>
     </item>
     <item row="2" column="2" colspan="3">
      <widget class="QPushButton" name="next">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Next</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>43</width>
+        <height>43</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -76,8 +119,21 @@
     </item>
     <item row="2" column="0" colspan="2">
      <widget class="QPushButton" name="load">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Load</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>43</width>
+        <height>43</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -88,7 +144,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>414</width>
      <height>20</height>
     </rect>
    </property>

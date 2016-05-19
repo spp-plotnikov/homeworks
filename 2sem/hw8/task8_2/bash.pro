@@ -20,3 +20,6 @@ HEADERS  += bashquotes.h
 FORMS    += bashquotes.ui
 
 RC_FILE = logoSPP.rc
+
+RESOURCES += \
+    images.qrc
