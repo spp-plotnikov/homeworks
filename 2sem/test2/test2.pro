@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT       += testlib
 QT       -= gui
 
 TARGET = test2
@@ -20,4 +20,5 @@ SOURCES += main.cpp
 HEADERS += \
     bubblesorter.h \
     comparator.h \
-    intsinabsolutevaluecomparator.h
+    intsinabsolutevaluecomparator.h \
+    bubblesortertest.h

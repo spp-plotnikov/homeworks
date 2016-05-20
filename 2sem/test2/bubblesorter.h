@@ -1,7 +1,9 @@
 #pragma once
 
 #include <QList>
+#include <cstdlib>
 #include "comparator.h"
+#include "intsinabsolutevaluecomparator.h"
 
 
 /*!
@@ -13,7 +15,7 @@ class BubbleSorter
 {
 public:
     /// \brief sorts objects in the list using comparator
-    static QList<Type>& sort(QList<Type> &list, const Comparator<Type> &comparator);
+    static void sort(QList<Type> &list, const Comparator<Type> &comparator);
 };
 
 
@@ -21,16 +23,16 @@ public:
 
 
 template <typename Type>
-QList<Type>& BubbleSorter<Type>::sort(QList<Type> &list, const Comparator<Type> &comparator)
+void BubbleSorter<Type>::sort(QList<Type> &list, const Comparator<Type> &comparator)
 {
     for (int i = 0; i < list.size() - 1; i++)
     {
         bool swapped = false;
         for (int j = 0; j < list.size() - i - 1; j++)
         {
-            if (comparator.compare(&list[j], &list[j + 1]) == 1)
+            if (comparator.compare(list[j], list[j + 1]) == 1)
             {
-                swap(list[i], list[i + 1]);
+                std::swap(list[j], list[j + 1]);
                 swapped = true;
             }
         }

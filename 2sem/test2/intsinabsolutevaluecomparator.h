@@ -9,7 +9,7 @@
  * \returns similarly as a parent-class Comparator
  */
 template <typename Type>
-class IntsInAbsoluteValueComparator : public Comparator
+class IntsInAbsoluteValueComparator : public Comparator<Type>
 {
     static_assert(
             std::is_same<signed char, Type>::value ||
@@ -28,7 +28,7 @@ public:
 
 
 template <typename Type>
-int IntsInAbsoluteValueComparator<type>::compare(const type &element1, const type &element2) const
+int IntsInAbsoluteValueComparator<Type>::compare(const Type &element1, const Type &element2) const
 {
     if (abs(element1) > abs(element2))
     {
