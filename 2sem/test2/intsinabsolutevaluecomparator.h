@@ -14,8 +14,10 @@ class IntsInAbsoluteValueComparator : public Comparator<Type>
     static_assert(
             std::is_same<signed char, Type>::value ||
             std::is_same<short int, Type>::value ||
+            std::is_same<char, Type>::value ||
             std::is_same<int, Type>::value ||
             std::is_same<long int, Type>::value ||
+            std::is_same<unsigned int, Type>::value ||
             std::is_same<long long int, Type>::value,
             "The type must be a integer!"
         );

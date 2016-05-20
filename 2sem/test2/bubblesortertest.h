@@ -52,6 +52,3 @@ private slots:
         QVERIFY(isRightOrder);
     }
 };
-
-
-QTEST_MAIN(SorterTest)

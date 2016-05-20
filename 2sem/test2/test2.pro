@@ -15,10 +15,12 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES +=
+SOURCES += \
+    main.cpp
 
 HEADERS += \
     bubblesorter.h \
     comparator.h \
     intsinabsolutevaluecomparator.h \
-    bubblesortertest.h
+    bubblesortertest.h \
+    comparatortest.h
