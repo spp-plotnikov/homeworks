@@ -96,6 +96,9 @@
     </item>
     <item row="2" column="2" colspan="3">
      <widget class="QPushButton" name="next">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -127,7 +130,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Load</string>
+       <string>Reload</string>
       </property>
       <property name="iconSize">
        <size>
@@ -145,7 +148,7 @@
      <x>0</x>
      <y>0</y>
      <width>414</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
