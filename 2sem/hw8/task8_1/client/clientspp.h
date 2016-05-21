@@ -16,7 +16,7 @@ public:
     ~ClientSPP();
 
 private slots:
-//    void connectToServer();
+    void connectToServer();
 //    void incomingData();
 //    void sendMessage();
 //    void sessionOpened();
@@ -25,4 +25,6 @@ private slots:
 
 private:
     Ui::ClientSPP *ui;
+
+    QTcpSocket *tcpSocket = new QTcpSocket(this);
 };
