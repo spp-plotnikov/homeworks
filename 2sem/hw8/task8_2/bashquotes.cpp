@@ -31,7 +31,6 @@ BashQuotes::BashQuotes(QWidget *parent) :
 BashQuotes::~BashQuotes()
 {
     delete webView;
-
     delete ui;
 }
 
@@ -91,7 +90,7 @@ void BashQuotes::rateUp()
 
     QString addressOfQuote = quoteIterator->findFirst("a[class=up]").attribute("href");
     QNetworkAccessManager manager;
-    manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
+    manager.get(QNetworkRequest(QUrl("http://bash.im" + addressOfQuote)));
 
     updateRating(1);
     ui->bayan->setEnabled(false);
