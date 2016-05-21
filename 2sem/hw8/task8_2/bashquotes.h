@@ -22,11 +22,16 @@ private slots:
     void nextQuote();
     void loadQuotes();
     void reloadQuotes();
-//    void rateUp();
-//    void rateDown();
-//    void rateBayan();
+    void rateUp();
+    void rateDown();
+    void rateBayan();
 
 private:
+    /// \brief makes all buttons enabled
+    void makeEnabled();
+    /// \param shift will be added to the current value in the app
+    void updateRating(const int shift);
+
     Ui::BashQuotes *ui;
 
     QWebView *webView = new QWebView();

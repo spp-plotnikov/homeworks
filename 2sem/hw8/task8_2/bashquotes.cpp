@@ -1,3 +1,6 @@
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QtNetwork>
 #include "bashquotes.h"
 #include "ui_bashquotes.h"
 
@@ -17,9 +20,12 @@ BashQuotes::BashQuotes(QWidget *parent) :
 
     webView->load(QUrl("http://bash.im/"));
 
-    connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(loadQuotes()));
     connect(ui->next, SIGNAL(clicked()), this, SLOT(nextQuote()));
     connect(ui->load, SIGNAL(clicked()), this, SLOT(reloadQuotes()));
+    connect(webView, SIGNAL(loadFinished(bool)), this, SLOT(loadQuotes()));
+    connect(ui->increaseRating, SIGNAL(clicked()), this, SLOT(rateUp()));
+    connect(ui->decreaseRating, SIGNAL(clicked()), this, SLOT(rateDown()));
+    connect(ui->bayan, SIGNAL(clicked()), this, SLOT(rateBayan()));
 }
 
 BashQuotes::~BashQuotes()
@@ -40,13 +46,15 @@ void BashQuotes::loadQuotes()
         quotesBlocks = webView->page()->mainFrame()->findAllElements("div[class=quote]").toList();
         quoteIterator = --quotesBlocks.end();
         nextQuote();
-        ui->next->setEnabled(true);
+        makeEnabled();
     }
 }
 
 
 void BashQuotes::nextQuote()
 {
+    makeEnabled();
+
     QString textOfQuote;
     do
     {
@@ -73,4 +81,69 @@ void BashQuotes::reloadQuotes()
     quoteIterator = quotesBlocks.begin();
     quoteIterator += (i % quotesBlocks.size());
     ui->rating->setText(quoteIterator->findFirst("span[class=rating-o]").toPlainText());
+}
+
+
+void BashQuotes::rateUp()
+{
+    if (!ui->decreaseRating->isEnabled())
+        return;
+
+    QString addressOfQuote = quoteIterator->findFirst("a[class=up]").attribute("href");
+    QNetworkAccessManager manager;
+    manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
+
+    updateRating(1);
+    ui->bayan->setEnabled(false);
+    ui->decreaseRating->setEnabled(false);
+}
+
+
+void BashQuotes::rateDown()
+{
+    if (!ui->bayan->isEnabled())
+        return;
+
+    QString addressOfQuote = quoteIterator->findFirst("a[class=down]").attribute("href");
+    QNetworkAccessManager manager;
+    manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
+
+    updateRating(-1);
+    ui->bayan->setEnabled(false);
+    ui->increaseRating->setEnabled(false);
+}
+
+
+void BashQuotes::rateBayan()
+{
+    if (!ui->decreaseRating->isEnabled())
+        return;
+
+    QString addressOfQuote = quoteIterator->findFirst("a[class=bayan]").attribute("href");
+    QNetworkAccessManager manager;
+    manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
+
+    ui->increaseRating->setEnabled(false);
+    ui->decreaseRating->setEnabled(false);
+}
+
+
+//----------------------------------------------------------
+
+
+void BashQuotes::makeEnabled()
+{
+    ui->next->setEnabled(true);
+    ui->load->setEnabled(true);
+    ui->increaseRating->setEnabled(true);
+    ui->decreaseRating->setEnabled(true);
+    ui->bayan->setEnabled(true);
+}
+
+
+void BashQuotes::updateRating(const int shift)
+{
+    int currentValue = ui->rating->text().toInt();
+    currentValue += shift;
+    ui->rating->setText(QString::number(currentValue));
 }

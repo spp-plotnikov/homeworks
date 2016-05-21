@@ -25,6 +25,9 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="1">
      <widget class="QPushButton" name="bayan">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -38,6 +41,9 @@
     </item>
     <item row="0" column="2">
      <widget class="QPushButton" name="decreaseRating">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -79,6 +85,9 @@
     </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="increaseRating">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -122,6 +131,9 @@
     </item>
     <item row="2" column="0" colspan="2">
      <widget class="QPushButton" name="load">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
