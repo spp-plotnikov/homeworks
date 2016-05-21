@@ -36,5 +36,5 @@ private:
 
     QWebView *webView = new QWebView();
     QList<QWebElement> quotesBlocks;
-    QList<QWebElement>::iterator quoteIterator;
+    int quoteIterator = -1;
 };

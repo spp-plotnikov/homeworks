@@ -43,7 +43,6 @@ void BashQuotes::loadQuotes()
     if (!ui->next->isEnabled())
     {
         quotesBlocks = webView->page()->mainFrame()->findAllElements("div[class=quote]").toList();
-        quoteIterator = --quotesBlocks.end();
         nextQuote();
         makeEnabled();
     }
@@ -58,28 +57,26 @@ void BashQuotes::nextQuote()
     do
     {
         quoteIterator++;
-        if (quoteIterator == quotesBlocks.end())
+        if (quoteIterator == quotesBlocks.size())
         {
-            quoteIterator = quotesBlocks.begin();
+            quoteIterator = 0;
         }
-        textOfQuote = quoteIterator->findFirst("div[class=text]").toPlainText();
+        textOfQuote = quotesBlocks[quoteIterator].findFirst("div[class=text]").toPlainText();
     }
     while (textOfQuote.isEmpty());
 
     ui->quote->clear();
     ui->quote->insertPlainText(textOfQuote);
-    ui->rating->setText(quoteIterator->findFirst("span[class=rating-o]").toPlainText());
+    ui->rating->setText(quotesBlocks[quoteIterator].findFirst("span[class=rating-o]").toPlainText());
 }
 
 
 void BashQuotes::reloadQuotes()
 {
-    int i = quotesBlocks.indexOf(*quoteIterator);
+    ui->next->setEnabled(false);
+    ui->load->setEnabled(false);
+    quoteIterator--;
     webView->reload();
-    quotesBlocks = webView->page()->mainFrame()->findAllElements("div[class=quote]").toList();
-    quoteIterator = quotesBlocks.begin();
-    quoteIterator += (i % quotesBlocks.size());
-    ui->rating->setText(quoteIterator->findFirst("span[class=rating-o]").toPlainText());
 }
 
 
@@ -88,7 +85,7 @@ void BashQuotes::rateUp()
     if (!ui->decreaseRating->isEnabled())
         return;
 
-    QString addressOfQuote = quoteIterator->findFirst("a[class=up]").attribute("href");
+    QString addressOfQuote = quotesBlocks[quoteIterator].findFirst("a[class=up]").attribute("href");
     QNetworkAccessManager manager;
     manager.get(QNetworkRequest(QUrl("http://bash.im" + addressOfQuote)));
 
@@ -103,7 +100,7 @@ void BashQuotes::rateDown()
     if (!ui->bayan->isEnabled())
         return;
 
-    QString addressOfQuote = quoteIterator->findFirst("a[class=down]").attribute("href");
+    QString addressOfQuote = quotesBlocks[quoteIterator].findFirst("a[class=down]").attribute("href");
     QNetworkAccessManager manager;
     manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
 
@@ -118,7 +115,7 @@ void BashQuotes::rateBayan()
     if (!ui->decreaseRating->isEnabled())
         return;
 
-    QString addressOfQuote = quoteIterator->findFirst("a[class=bayan]").attribute("href");
+    QString addressOfQuote = quotesBlocks[quoteIterator].findFirst("a[class=bayan]").attribute("href");
     QNetworkAccessManager manager;
     manager.get(QNetworkRequest(QUrl("bash.im" + addressOfQuote)));
 
