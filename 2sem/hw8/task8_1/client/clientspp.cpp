@@ -20,6 +20,7 @@ ClientSPP::ClientSPP(QWidget *parent) :
     connect(tcpSocket, SIGNAL(connected()), this, SLOT(sessionOpened()));
     connect(tcpSocket, SIGNAL(disconnected()), this, SLOT(sessionClosed()));
     connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(acceptMessage()));
+    connect(ui->newMessage, SIGNAL(textChanged()), this, SLOT(sendButtonAbility()));
 }
 
 ClientSPP::~ClientSPP()
@@ -77,4 +78,10 @@ void ClientSPP::acceptMessage()
     QString message;
     in >> message;
     ui->chatText->append("Server: " + message);
+}
+
+
+void ClientSPP::sendButtonAbility()
+{
+    ui->sendButton->setEnabled(!ui->newMessage->toPlainText().isEmpty());
 }

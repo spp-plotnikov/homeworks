@@ -21,6 +21,8 @@ private slots:
     void sendMessage();
     void sessionOpened();
     void sessionClosed();
+    /// \brief this slot makes button disabled if newMessage is empty
+    void sendButtonAbility();
 
 private:
     Ui::ClientSPP *ui;
