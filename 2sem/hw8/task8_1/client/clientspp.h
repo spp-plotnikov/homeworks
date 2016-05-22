@@ -18,9 +18,9 @@ public:
 private slots:
     void connectToServer();
 //    void incomingData();
-//    void sendMessage();
-//    void sessionOpened();
-//    void disconnected();
+    void sendMessage();
+    void sessionOpened();
+    void sessionClosed();
 //    void displayError(QAbstractSocket::SocketError socketError);
 
 private:

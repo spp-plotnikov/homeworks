@@ -16,6 +16,9 @@ ClientSPP::ClientSPP(QWidget *parent) :
     statusBar()->showMessage("© Sasha Plotnikov Production, Ltd.");
 
     connect(ui->tryToConnectButton, SIGNAL(clicked()), this, SLOT(connectToServer()));
+    connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(sendMessage()));
+    connect(tcpSocket, SIGNAL(connected()), this, SLOT(sessionOpened()));
+    connect(tcpSocket, SIGNAL(disconnected()), this, SLOT(sessionClosed()));
 }
 
 ClientSPP::~ClientSPP()
@@ -35,6 +38,36 @@ void ClientSPP::connectToServer()
     QByteArray data = port.readAll();
     port.remove();
 
-    tcpSocket->abort();
     tcpSocket->connectToHost("localhost", data.toInt());
+}
+
+
+void ClientSPP::sessionOpened()
+{
+    ui->sendButton->setEnabled(true);
+    ui->tryToConnectButton->setEnabled(false);
+    ui->chatText->append("Hurray!!! Connected! :-) \n");
+}
+
+
+void ClientSPP::sessionClosed()
+{
+    ui->sendButton->setEnabled(false);
+    ui->tryToConnectButton->setEnabled(true);
+    ui->chatText->append("Disconnected :-( \n");
+}
+
+
+void ClientSPP::sendMessage()
+{
+    QByteArray outBuffer;
+    QDataStream outStream(&outBuffer, QIODevice::WriteOnly);
+    outStream << (quint16)0;
+    outStream << ui->newMessage->toPlainText();
+    outStream.device()->seek(0);
+    outStream << (quint16)(outBuffer.size() - sizeof(quint16));
+    tcpSocket->write(outBuffer);
+
+    ui->chatText->append("Me: " + ui->newMessage->toPlainText());
+    ui->newMessage->clear();
 }
