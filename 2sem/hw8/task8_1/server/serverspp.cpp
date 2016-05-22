@@ -36,11 +36,8 @@ ServerSPP::~ServerSPP()
 {
     if (networkSession)
         delete networkSession;
-
     if (tcpServer)
         delete tcpServer;
-
-    delete tcpSocket;
     delete ui;
 }
 

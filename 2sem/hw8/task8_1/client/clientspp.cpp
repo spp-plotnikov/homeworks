@@ -83,5 +83,7 @@ void ClientSPP::acceptMessage()
 
 void ClientSPP::sendButtonAbility()
 {
+    if (ui->tryToConnectButton->isEnabled())
+        return;
     ui->sendButton->setEnabled(!ui->newMessage->toPlainText().isEmpty());
 }
