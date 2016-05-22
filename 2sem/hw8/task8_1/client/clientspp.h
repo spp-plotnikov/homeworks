@@ -17,11 +17,10 @@ public:
 
 private slots:
     void connectToServer();
-//    void incomingData();
+    void acceptMessage();
     void sendMessage();
     void sessionOpened();
     void sessionClosed();
-//    void displayError(QAbstractSocket::SocketError socketError);
 
 private:
     Ui::ClientSPP *ui;

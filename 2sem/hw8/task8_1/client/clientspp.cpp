@@ -19,6 +19,7 @@ ClientSPP::ClientSPP(QWidget *parent) :
     connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(sendMessage()));
     connect(tcpSocket, SIGNAL(connected()), this, SLOT(sessionOpened()));
     connect(tcpSocket, SIGNAL(disconnected()), this, SLOT(sessionClosed()));
+    connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(acceptMessage()));
 }
 
 ClientSPP::~ClientSPP()
@@ -62,12 +63,18 @@ void ClientSPP::sendMessage()
 {
     QByteArray outBuffer;
     QDataStream outStream(&outBuffer, QIODevice::WriteOnly);
-    outStream << (quint16)0;
     outStream << ui->newMessage->toPlainText();
-    outStream.device()->seek(0);
-    outStream << (quint16)(outBuffer.size() - sizeof(quint16));
     tcpSocket->write(outBuffer);
 
     ui->chatText->append("Me: " + ui->newMessage->toPlainText());
     ui->newMessage->clear();
+}
+
+
+void ClientSPP::acceptMessage()
+{
+    QDataStream in(tcpSocket);
+    QString message;
+    in >> message;
+    ui->chatText->append("Server: " + message);
 }
