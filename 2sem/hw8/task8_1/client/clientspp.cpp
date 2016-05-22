@@ -3,6 +3,8 @@
 #include <QByteArray>
 #include "clientspp.h"
 #include "ui_clientspp.h"
+#include "../helper/messengerhelper.h"
+
 
 ClientSPP::ClientSPP(QWidget *parent) :
     QMainWindow(parent),
@@ -62,11 +64,7 @@ void ClientSPP::sessionClosed()
 
 void ClientSPP::sendMessage()
 {
-    QByteArray outBuffer;
-    QDataStream outStream(&outBuffer, QIODevice::WriteOnly);
-    outStream << ui->newMessage->toPlainText();
-    tcpSocket->write(outBuffer);
-
+    MessengerHelper::sendMessage(tcpSocket, ui->newMessage->toPlainText());
     ui->chatText->append("Me: " + ui->newMessage->toPlainText());
     ui->newMessage->clear();
 }
@@ -74,9 +72,7 @@ void ClientSPP::sendMessage()
 
 void ClientSPP::acceptMessage()
 {
-    QDataStream in(tcpSocket);
-    QString message;
-    in >> message;
+    QString message = MessengerHelper::acceptMessage(tcpSocket);
     ui->chatText->append("Server: " + message);
 }
 

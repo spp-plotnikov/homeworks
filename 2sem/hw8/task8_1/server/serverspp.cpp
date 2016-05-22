@@ -4,6 +4,8 @@
 #include <QTcpSocket>
 #include "serverspp.h"
 #include "ui_serverspp.h"
+#include "../helper/messengerhelper.h"
+
 
 ServerSPP::ServerSPP(QWidget *parent) :
     QMainWindow(parent),
@@ -69,9 +71,7 @@ void ServerSPP::connectToClient()
 
 void ServerSPP::acceptMessage()
 {
-    QDataStream in(tcpSocket);
-    QString message;
-    in >> message;
+    QString message = MessengerHelper::acceptMessage(tcpSocket);
     ui->chatText->append("Client: " + message);
 }
 
@@ -85,11 +85,7 @@ void ServerSPP::sessionClosed()
 
 void ServerSPP::sendMessage()
 {
-    QByteArray outBuffer;
-    QDataStream outStream(&outBuffer, QIODevice::WriteOnly);
-    outStream << ui->newMessage->toPlainText();
-    tcpSocket->write(outBuffer);
-
+    MessengerHelper::sendMessage(tcpSocket, ui->newMessage->toPlainText());
     ui->chatText->append("Me: " + ui->newMessage->toPlainText());
     ui->newMessage->clear();
 }

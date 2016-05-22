@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        clientspp.cpp
+        clientspp.cpp \
+    ../helper/messengerhelper.cpp
 
-HEADERS  += clientspp.h
+HEADERS  += clientspp.h \
+    ../helper/messengerhelper.h
 
 FORMS    += clientspp.ui
 
