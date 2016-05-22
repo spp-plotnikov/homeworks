@@ -19,13 +19,13 @@ public:
     ~ServerSPP();
 
 private slots:
-//    void connectToClient();
-//    void acceptMessage();
-//    void sendMessage();
+    void connectToClient();
+    void acceptMessage();
+    void sendMessage();
     void sessionOpened();
-//    void sessionClosed();
-//    /// \brief this slot makes button disabled if newMessage is empty
-//    void sendButtonAbility();
+    void sessionClosed();
+    /// \brief this slot makes button disabled if newMessage is empty
+    void sendButtonAbility();
 
 private:
     Ui::ServerSPP *ui;
