@@ -13,7 +13,6 @@ TicTacToe::TicTacToe(QWidget *parent) :
     ui->increaseField->setIcon(QIcon(":new/prefix1/images/plus.png"));
     generateField(sizeOfField);
 
-    int d = 8;
     connect(ui->increaseField, SIGNAL(clicked()), this, SLOT(increaseField()));
     connect(ui->decreaseField, SIGNAL(clicked()), this, SLOT(decreaseField()));
 }
@@ -36,6 +35,7 @@ void TicTacToe::generateField(const int &size)
     deleteField();
     sizeOfField = size;
     field = new QPushButton**[size];
+    signalMapper = new QSignalMapper();
     const int sizeOfButton = 73 - 5 * (size - 3);
     for (int i = 0; i < size; i++)
     {
@@ -46,20 +46,10 @@ void TicTacToe::generateField(const int &size)
             field[i][j]->setFixedSize(sizeOfButton, sizeOfButton);
             field[i][j]->setIconSize(QSize(sizeOfButton - 2, sizeOfButton - 2));
             ui->fieldLayout->addWidget(field[i][j], i, j);
+            signalMapper->setMapping(field[i][j], i * 10 + j);
+            connect(,,,);
         }
     }
-}
-
-
-void TicTacToe::increaseField()
-{
-    generateField(sizeOfField + 1);
-}
-
-
-void TicTacToe::decreaseField()
-{
-    generateField(sizeOfField - 1);
 }
 
 
@@ -77,4 +67,23 @@ void TicTacToe::deleteField()
         delete []field[i];
     }
     delete []field;
+    delete signalMapper;
 }
+
+
+//-------------------------------------------------------
+
+
+void TicTacToe::increaseField()
+{
+    generateField(sizeOfField + 1);
+}
+
+
+void TicTacToe::decreaseField()
+{
+    generateField(sizeOfField - 1);
+}
+
+
+

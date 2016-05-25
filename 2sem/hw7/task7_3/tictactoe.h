@@ -1,5 +1,6 @@
 #pragma once
 
+#include<QSignalMapper>
 #include <QMainWindow>
 #include <QPushButton>
 
@@ -30,4 +31,5 @@ private:
 
     int sizeOfField = 3;    ///<    starting value
     QPushButton ***field = nullptr;
+    QSignalMapper *signalMapper = nullptr;
 };
