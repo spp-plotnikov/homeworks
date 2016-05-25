@@ -21,6 +21,8 @@ private slots:
     void increaseField();
     /// \brief decreases field by 1 (decrement)
     void decreaseField();
+    /// \brief sets the button icon and checks for the win
+    void markCell(const int &position);
 
 private:
     /// \brief creates a field of size n x n
@@ -30,6 +32,7 @@ private:
     Ui::TicTacToe *ui;
 
     int sizeOfField = 3;    ///<    starting value
+    bool whoseTurn = true;  ///<    true if the move of the 1st player, false if the move of the 2nd
     QPushButton ***field = nullptr;
     QSignalMapper *signalMapper = nullptr;
 };

@@ -44,12 +44,13 @@ void TicTacToe::generateField(const int &size)
         {
             field[i][j] = new QPushButton();
             field[i][j]->setFixedSize(sizeOfButton, sizeOfButton);
-            field[i][j]->setIconSize(QSize(sizeOfButton - 2, sizeOfButton - 2));
+            field[i][j]->setIconSize(QSize(sizeOfButton - 6, sizeOfButton - 6));
             ui->fieldLayout->addWidget(field[i][j], i, j);
             signalMapper->setMapping(field[i][j], i * 10 + j);
-            connect(,,,);
+            connect(field[i][j], SIGNAL(clicked()), signalMapper, SLOT(map()));
         }
     }
+    connect(signalMapper, SIGNAL(mapped(int)), this, SLOT(markCell(int)));
 }
 
 
@@ -86,4 +87,26 @@ void TicTacToe::decreaseField()
 }
 
 
+void TicTacToe::markCell(const int &position)
+{
+    const int x = position / 10;
+    const int y = position % 10;
+    if (!field[x][y]->icon().isNull())
+        return;
+
+    if (whoseTurn)
+    {
+        field[x][y]->setIcon(QIcon(":new/prefix1/images/x1.png"));
+    }
+    else
+    {
+        field[x][y]->setIcon(QIcon(":new/prefix1/images/o1.png"));
+    }
+
+    ui->player1icon->setEnabled(!whoseTurn);
+    ui->player1label->setEnabled(!whoseTurn);
+    ui->player2icon->setEnabled(whoseTurn);
+    ui->player2label->setEnabled(whoseTurn);
+    whoseTurn = !whoseTurn;
+}
 
