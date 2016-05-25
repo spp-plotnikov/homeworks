@@ -11,5 +11,7 @@
         <file>images/x3.png</file>
         <file>images/x4.png</file>
         <file>images/x5.png</file>
+        <file>images/minus.png</file>
+        <file>images/plus.png</file>
     </qresource>
 </RCC>
