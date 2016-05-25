@@ -97,10 +97,12 @@ void TicTacToe::markCell(const int &position)
     if (whoseTurn)
     {
         field[x][y]->setIcon(QIcon(":new/prefix1/images/x1.png"));
+        field[x][y]->setToolTip("X");
     }
     else
     {
         field[x][y]->setIcon(QIcon(":new/prefix1/images/o1.png"));
+        field[x][y]->setToolTip("O");
     }
 
     ui->player1icon->setEnabled(!whoseTurn);
@@ -108,5 +110,56 @@ void TicTacToe::markCell(const int &position)
     ui->player2icon->setEnabled(whoseTurn);
     ui->player2label->setEnabled(whoseTurn);
     whoseTurn = !whoseTurn;
+
+    checkForWin(x, y);
 }
 
+
+void TicTacToe::checkForWin(int x, int y)
+{
+    int countX = 0;
+    int countY = 0;
+    for (int i = 1; i < sizeOfField; i++)
+    {
+        if (field[i - 1][y]->toolTip() == field[i][y]->toolTip() && !field[i][y]->toolTip().isEmpty())
+        {
+            countX++;
+        }
+        else
+        {
+            countX = 0;
+        }
+
+        if (field[x][i - 1]->toolTip() == field[x][i]->toolTip() && !field[x][i]->toolTip().isEmpty())
+        {
+            countY++;
+        }
+        else
+        {
+            countY = 0;
+        }
+
+        if (countX == 2)
+        {
+            field[i - 2][y]->setEnabled(false);
+            field[i - 1][y]->setEnabled(false);
+            field[i][y]->setEnabled(false);
+            announceTheVictory();
+            break;
+        }
+        if (countY == 2)
+        {
+            field[x][i - 2]->setEnabled(false);
+            field[x][i - 1]->setEnabled(false);
+            field[x][i]->setEnabled(false);
+            announceTheVictory();
+            break;
+        }
+    }
+}
+
+
+void TicTacToe::announceTheVictory()
+{
+
+}

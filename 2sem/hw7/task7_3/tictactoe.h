@@ -1,6 +1,6 @@
 #pragma once
 
-#include<QSignalMapper>
+#include <QSignalMapper>
 #include <QMainWindow>
 #include <QPushButton>
 
@@ -28,6 +28,8 @@ private:
     /// \brief creates a field of size n x n
     void generateField(const int &size);
     void deleteField();
+    void checkForWin(int x, int y);
+    void announceTheVictory();
 
     Ui::TicTacToe *ui;
 
