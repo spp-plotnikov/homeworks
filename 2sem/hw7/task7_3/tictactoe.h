@@ -1,7 +1,7 @@
-#ifndef TICTACTOE_H
-#define TICTACTOE_H
+#pragma once
 
 #include <QMainWindow>
+#include <QPushButton>
 
 namespace Ui {
 class TicTacToe;
@@ -15,8 +15,13 @@ public:
     explicit TicTacToe(QWidget *parent = 0);
     ~TicTacToe();
 
+private slots:
+    /// \brief creates a field of size n x n
+    void generateField(const int &size);
+
 private:
     Ui::TicTacToe *ui;
-};
 
-#endif // TICTACTOE_H
+    int sizeOfField = 3;    ///<    starting value
+    QPushButton ***field = nullptr;
+};
