@@ -1,5 +1,6 @@
 #include "tictactoe.h"
 #include "ui_tictactoe.h"
+#include "tictactoehelper.h"
 
 TicTacToe::TicTacToe(QWidget *parent) :
     QMainWindow(parent),
@@ -126,14 +127,10 @@ void TicTacToe::deleteField()
 
 void TicTacToe::checkForWin(int x, int y)
 {
-    if (checkLineForChain(x, y, 1, 1))
-        return;
-    if (checkLineForChain(x, y, 1, -1))
-        return;
-    if (checkLineForChain(x, y, 1, 0))
-        return;
-    if (checkLineForChain(x, y, 0, 1))
-        return;
+    if (TicTacToeHelper::isVictory(field, sizeOfField, x, y))
+    {
+        announceTheVictory();
+    }
 }
 
 
@@ -158,45 +155,6 @@ void TicTacToe::announceTheVictory()
     }
     ui->exit->setVisible(true);
     ui->restart->setVisible(true);
-}
-
-
-bool TicTacToe::checkLineForChain(int x, int y, int shiftX, int shiftY)
-{
-    while (x >= 0 && x < sizeOfField && y >= 0 && y < sizeOfField)
-    {
-        x -= shiftX;
-        y -= shiftY;
-    }
-
-    int count = 0;
-    x += shiftX;
-    y += shiftY;
-    do
-    {
-        x += shiftX;
-        y += shiftY;
-        if (x < 0 || x > sizeOfField - 1 || y < 0 || y > sizeOfField - 1)
-            break;
-        if (field[x - shiftX][y - shiftY]->toolTip() == field[x][y]->toolTip() && !field[x][y]->toolTip().isEmpty())
-        {
-            count++;
-        }
-        else
-        {
-            count = 0;
-        }
-
-        if (count == 2)
-        {
-            field[x - 2 * shiftX][y - 2 * shiftY]->setEnabled(false);
-            field[x - shiftX][y - shiftY]->setEnabled(false);
-            field[x][y]->setEnabled(false);
-            announceTheVictory();
-            return true;
-        }
-    } while (x >= 0 && x < sizeOfField && y >= 0 && y < sizeOfField);
-    return false;
 }
 
 
