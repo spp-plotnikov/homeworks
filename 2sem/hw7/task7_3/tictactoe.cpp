@@ -104,13 +104,7 @@ void TicTacToe::markCell(const int &position)
         field[x][y]->setIcon(QIcon(":new/prefix1/images/o1.png"));
         field[x][y]->setToolTip("O");
     }
-
-    ui->player1icon->setEnabled(!whoseTurn);
-    ui->player1label->setEnabled(!whoseTurn);
-    ui->player2icon->setEnabled(whoseTurn);
-    ui->player2label->setEnabled(whoseTurn);
-    whoseTurn = !whoseTurn;
-
+    changePlayer();
     checkForWin(x, y);
 }
 
@@ -130,7 +124,14 @@ void TicTacToe::checkForWin(int x, int y)
 
 void TicTacToe::announceTheVictory()
 {
-
+    for (int i = 0; i < sizeOfField; i++)
+    {
+        for (int j = 0; j < sizeOfField; j++)
+        {
+            field[i][j]->setEnabled(!field[i][j]->isEnabled());
+        }
+    }
+    changePlayer();
 }
 
 
@@ -170,4 +171,14 @@ bool TicTacToe::checkLineForChain(int x, int y, int shiftX, int shiftY)
         }
     } while (x >= 0 && x < sizeOfField && y >= 0 && y < sizeOfField);
     return false;
+}
+
+
+void TicTacToe::changePlayer()
+{
+    ui->player1icon->setEnabled(!whoseTurn);
+    ui->player1label->setEnabled(!whoseTurn);
+    ui->player2icon->setEnabled(whoseTurn);
+    ui->player2label->setEnabled(whoseTurn);
+    whoseTurn = !whoseTurn;
 }
