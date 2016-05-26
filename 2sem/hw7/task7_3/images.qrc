@@ -13,5 +13,7 @@
         <file>images/x5.png</file>
         <file>images/minus.png</file>
         <file>images/plus.png</file>
+        <file>images/exit1.png</file>
+        <file>images/restart1.png</file>
     </qresource>
 </RCC>

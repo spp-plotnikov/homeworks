@@ -11,10 +11,14 @@ TicTacToe::TicTacToe(QWidget *parent) :
     ui->player2icon->setPixmap(QPixmap(":new/prefix1/images/player2.png"));
     ui->decreaseField->setIcon(QIcon(":new/prefix1/images/minus.png"));
     ui->increaseField->setIcon(QIcon(":new/prefix1/images/plus.png"));
+    ui->restart->setIcon(QIcon(":new/prefix1/images/restart1.png"));
+    ui->exit->setIcon(QIcon(":new/prefix1/images/exit1.png"));
     generateField(sizeOfField);
 
     connect(ui->increaseField, SIGNAL(clicked()), this, SLOT(increaseField()));
     connect(ui->decreaseField, SIGNAL(clicked()), this, SLOT(decreaseField()));
+    connect(ui->exit, SIGNAL(clicked()), this, SLOT(close()));
+    connect(ui->restart, SIGNAL(clicked()), this, SLOT(replay()));
 }
 
 TicTacToe::~TicTacToe()
@@ -27,10 +31,58 @@ TicTacToe::~TicTacToe()
 //-------------------------------------------------------
 
 
+void TicTacToe::increaseField()
+{
+    generateField(sizeOfField + 1);
+}
+
+
+void TicTacToe::decreaseField()
+{
+    generateField(sizeOfField - 1);
+}
+
+
+void TicTacToe::markCell(const int &position)
+{
+    const int x = position / 10;
+    const int y = position % 10;
+    if (!field[x][y]->icon().isNull())
+        return;
+
+    if (whoseTurn)
+    {
+        field[x][y]->setIcon(QIcon(":new/prefix1/images/x1.png"));
+        field[x][y]->setToolTip("X");
+    }
+    else
+    {
+        field[x][y]->setIcon(QIcon(":new/prefix1/images/o1.png"));
+        field[x][y]->setToolTip("O");
+    }
+    changePlayer();
+    checkForWin(x, y);
+}
+
+
+void TicTacToe::replay()
+{
+    generateField(sizeOfField);
+}
+
+
+//-------------------------------------------------------
+
+
 void TicTacToe::generateField(const int &size)
 {
     if (size < 3 || size > 9)
         return;
+
+    ui->player1label->setText("Player 1");
+    ui->player2label->setText("Player 2");
+    ui->exit->setVisible(false);
+    ui->restart->setVisible(false);
 
     deleteField();
     sizeOfField = size;
@@ -72,43 +124,6 @@ void TicTacToe::deleteField()
 }
 
 
-//-------------------------------------------------------
-
-
-void TicTacToe::increaseField()
-{
-    generateField(sizeOfField + 1);
-}
-
-
-void TicTacToe::decreaseField()
-{
-    generateField(sizeOfField - 1);
-}
-
-
-void TicTacToe::markCell(const int &position)
-{
-    const int x = position / 10;
-    const int y = position % 10;
-    if (!field[x][y]->icon().isNull())
-        return;
-
-    if (whoseTurn)
-    {
-        field[x][y]->setIcon(QIcon(":new/prefix1/images/x1.png"));
-        field[x][y]->setToolTip("X");
-    }
-    else
-    {
-        field[x][y]->setIcon(QIcon(":new/prefix1/images/o1.png"));
-        field[x][y]->setToolTip("O");
-    }
-    changePlayer();
-    checkForWin(x, y);
-}
-
-
 void TicTacToe::checkForWin(int x, int y)
 {
     if (checkLineForChain(x, y, 1, 1))
@@ -131,7 +146,18 @@ void TicTacToe::announceTheVictory()
             field[i][j]->setEnabled(!field[i][j]->isEnabled());
         }
     }
+
     changePlayer();
+    if (whoseTurn)
+    {
+        ui->player1label->setText("Winner!");
+    }
+    else
+    {
+        ui->player2label->setText("Winner!");
+    }
+    ui->exit->setVisible(true);
+    ui->restart->setVisible(true);
 }
 
 

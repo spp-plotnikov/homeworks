@@ -23,6 +23,8 @@ private slots:
     void decreaseField();
     /// \brief sets the button icon and checks for the win
     void markCell(const int &position);
+    /// \brief starts the game again
+    void replay();
 
 private:
     /// \brief creates a field of size n x n
