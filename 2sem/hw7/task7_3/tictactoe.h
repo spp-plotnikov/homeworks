@@ -29,6 +29,7 @@ private:
     void generateField(const int &size);
     void deleteField();
     void checkForWin(int x, int y);
+    bool checkLineForChain(int x, int y, int shiftX, int shiftY);
     void announceTheVictory();
 
     Ui::TicTacToe *ui;

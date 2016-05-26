@@ -117,49 +117,57 @@ void TicTacToe::markCell(const int &position)
 
 void TicTacToe::checkForWin(int x, int y)
 {
-    int countX = 0;
-    int countY = 0;
-    for (int i = 1; i < sizeOfField; i++)
-    {
-        if (field[i - 1][y]->toolTip() == field[i][y]->toolTip() && !field[i][y]->toolTip().isEmpty())
-        {
-            countX++;
-        }
-        else
-        {
-            countX = 0;
-        }
-
-        if (field[x][i - 1]->toolTip() == field[x][i]->toolTip() && !field[x][i]->toolTip().isEmpty())
-        {
-            countY++;
-        }
-        else
-        {
-            countY = 0;
-        }
-
-        if (countX == 2)
-        {
-            field[i - 2][y]->setEnabled(false);
-            field[i - 1][y]->setEnabled(false);
-            field[i][y]->setEnabled(false);
-            announceTheVictory();
-            break;
-        }
-        if (countY == 2)
-        {
-            field[x][i - 2]->setEnabled(false);
-            field[x][i - 1]->setEnabled(false);
-            field[x][i]->setEnabled(false);
-            announceTheVictory();
-            break;
-        }
-    }
+    if (checkLineForChain(x, y, 1, 1))
+        return;
+    if (checkLineForChain(x, y, 1, -1))
+        return;
+    if (checkLineForChain(x, y, 1, 0))
+        return;
+    if (checkLineForChain(x, y, 0, 1))
+        return;
 }
 
 
 void TicTacToe::announceTheVictory()
 {
 
+}
+
+
+bool TicTacToe::checkLineForChain(int x, int y, int shiftX, int shiftY)
+{
+    while (x >= 0 && x < sizeOfField && y >= 0 && y < sizeOfField)
+    {
+        x -= shiftX;
+        y -= shiftY;
+    }
+
+    int count = 0;
+    x += shiftX;
+    y += shiftY;
+    do
+    {
+        x += shiftX;
+        y += shiftY;
+        if (x < 0 || x > sizeOfField - 1 || y < 0 || y > sizeOfField - 1)
+            break;
+        if (field[x - shiftX][y - shiftY]->toolTip() == field[x][y]->toolTip() && !field[x][y]->toolTip().isEmpty())
+        {
+            count++;
+        }
+        else
+        {
+            count = 0;
+        }
+
+        if (count == 2)
+        {
+            field[x - 2 * shiftX][y - 2 * shiftY]->setEnabled(false);
+            field[x - shiftX][y - shiftY]->setEnabled(false);
+            field[x][y]->setEnabled(false);
+            announceTheVictory();
+            return true;
+        }
+    } while (x >= 0 && x < sizeOfField && y >= 0 && y < sizeOfField);
+    return false;
 }
