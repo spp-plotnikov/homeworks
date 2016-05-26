@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,7 +18,8 @@ SOURCES += main.cpp\
     tictactoehelper.cpp
 
 HEADERS  += tictactoe.h \
-    tictactoehelper.h
+    tictactoehelper.h \
+    tictactoehelpertest.h
 
 FORMS    += tictactoe.ui
 
