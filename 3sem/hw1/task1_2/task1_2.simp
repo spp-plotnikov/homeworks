@@ -21,13 +21,13 @@
       </counter>
       <counter>
         <item-type type-id="state" type="UmlState" />
-        <value>1</value>
+        <value>3</value>
       </counter>
     </entity-names>
     <entity-ids>
       <counter>
         <item-type type-id="" type="AbstractElementGroup" />
-        <value>119</value>
+        <value>248</value>
       </counter>
       <counter>
         <item-type type-id="text" type="AbstractTextItem" />
@@ -47,11 +47,11 @@
       </counter>
       <counter>
         <item-type type-id="state" type="UmlState" />
-        <value>2</value>
+        <value>4</value>
       </counter>
       <counter>
         <item-type type-id="general-transition" type="UmlTransition" />
-        <value>14</value>
+        <value>26</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -104,7 +104,7 @@
       </meta>
       <abstract-items />
       <sub-models />
-      <diagram type="uml-statechart" id="p1f580913e44140e4ba89bb901653b35d_910108372" name="StateMachineDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-35,-1">
+      <diagram type="uml-statechart" id="p1f580913e44140e4ba89bb901653b35d_910108372" name="StateMachineDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-special-indicators="false" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false" view-location="-24,-6">
         <style>
           <background-color index="1" color="#FFFFFFFF" />
           <background-color index="2" color="#FFFFFFFF" />
@@ -116,7 +116,7 @@
           </authors>
           <description />
           <creation-date>09/21/2016 23:34:16</creation-date>
-          <change-date>09/22/2016 00:01:33</change-date>
+          <change-date>09/22/2016 01:01:13</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
@@ -148,6 +148,52 @@
             <style class="default" />
             <transition guard="the door is open" behaviourExpression="">
               <trigger>Pressed Stop || Pressed Start</trigger>
+            </transition>
+          </item>
+          <item id="di484561922108428005" cid="ST002" type="state" name="Heating mode" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:24:58">
+            <style class="default" />
+            <state-invariant />
+            <actions />
+          </item>
+          <item id="di156052397603254516" cid="ELEM014" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:32:58" from="di229834887969879889" to="di484561922108428005">
+            <style class="default" />
+            <transition guard="the door is closed" behaviourExpression="">
+              <trigger>Pressed Start</trigger>
+            </transition>
+          </item>
+          <item id="di936346703612845201" cid="ELEM015" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:39:19" from="di484561922108428005" to="di229834887969879889">
+            <style class="default" />
+            <transition guard="" behaviourExpression=" beep">
+              <trigger>Time is up</trigger>
+            </transition>
+          </item>
+          <item id="di583495729818393382" cid="ST003" type="state" name="Pause" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:45:04">
+            <style class="default" />
+            <state-invariant />
+            <actions />
+          </item>
+          <item id="di981393896879739567" cid="ELEM021" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:46:50" from="di484561922108428005" to="di583495729818393382">
+            <style class="default" />
+            <transition guard="" behaviourExpression="">
+              <trigger>Pressed Stop || The door opened</trigger>
+            </transition>
+          </item>
+          <item id="di153286430754392932" cid="ELEM022" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:54:44" from="di583495729818393382" to="di229834887969879889">
+            <style class="default" />
+            <transition guard="" behaviourExpression="">
+              <trigger>Pressed Stop</trigger>
+            </transition>
+          </item>
+          <item id="di357844839890086679" cid="ELEM024" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 00:57:52" from="di583495729818393382" to="di484561922108428005">
+            <style class="default" />
+            <transition guard="" behaviourExpression="">
+              <trigger>The door closed</trigger>
+            </transition>
+          </item>
+          <item id="di715725191146792158" cid="ELEM025" type="general-transition" name="" style-class="" visibility="package" change-tracking-state="added" creator="P95128dc258014d3892fb2d5184adea5a" creation-date="09/22/2016 01:01:13" from="di583495729818393382" to="di583495729818393382">
+            <style class="default" />
+            <transition guard="the door is open" behaviourExpression="">
+              <trigger>Pressed  Start</trigger>
             </transition>
           </item>
         </abstract-items>
@@ -229,7 +275,7 @@
             </style>
           </item>
           <item id="di239393364266877213" iid="5650a57836a3487881923bc4c6c16396" name="Element4" creation-date="09/21/2016 23:49:38" order-index="3" type="drawing-text">
-            <layout ax="-16.5" ay="452" awidth="281" aheight="47" x="-16.5" y="452" width="281" height="47" />
+            <layout ax="-16.5" ay="464" awidth="281" aheight="47" x="-16.5" y="464" width="281" height="47" />
             <drawing-text>
               <text>© Sasha Plotnikov Production, 2016</text>
             </drawing-text>
@@ -272,6 +318,74 @@
               </points>
             </layout>
             <relation from="di229834887969879889" from-iid="3efa0a72a3354003af0d8736c3b1488d" to="di229834887969879889" to-iid="3efa0a72a3354003af0d8736c3b1488d" />
+          </item>
+          <item id="di484561922108428005" iid="af30f1e36d6a4a8f96baef8dc57014e0" creation-date="09/22/2016 00:24:58" order-index="12" type="entity">
+            <layout ax="391" ay="136" awidth="117" aheight="49.5" x="391" y="136" width="117" height="49.5" />
+          </item>
+          <item id="di156052397603254516" iid="6ff888d978a243fa8259df932fa7bf61" creation-date="09/22/2016 00:32:58" order-index="13" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="176" y1="210" x2="391" y2="161" start-border-pos="0.19451871657754" end-border-pos="0.873737373737374" name-position="13,-18" name-width="219">
+              <points>
+                <point x="176" y="210" />
+                <point x="175" y="161" />
+                <point x="391" y="161" />
+              </points>
+            </layout>
+            <relation from="di229834887969879889" from-iid="3efa0a72a3354003af0d8736c3b1488d" to="di484561922108428005" to-iid="af30f1e36d6a4a8f96baef8dc57014e0" />
+          </item>
+          <item id="di936346703612845201" iid="48740b28d1874b9d874914dc4602f67b" creation-date="09/22/2016 00:39:19" order-index="14" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="450" y1="186" x2="218" y2="223" start-border-pos="0.623931623931624" end-border-pos="0.315" name-position="-35,-15" name-width="146">
+              <points>
+                <point x="450" y="186" />
+                <point x="450" y="223" />
+                <point x="218" y="223" />
+              </points>
+            </layout>
+            <relation from="di484561922108428005" from-iid="af30f1e36d6a4a8f96baef8dc57014e0" to="di229834887969879889" to-iid="3efa0a72a3354003af0d8736c3b1488d" />
+          </item>
+          <item id="di583495729818393382" iid="0de3db42b125418a98f15b40f46e1da4" creation-date="09/22/2016 00:45:04" order-index="15" type="entity">
+            <layout ax="391" ay="318.5" awidth="117" aheight="50" x="391" y="318.5" width="117" height="50" />
+          </item>
+          <item id="di981393896879739567" iid="7fb4886d4ff84a439a3e664d51dd31c1" creation-date="09/22/2016 00:46:50" order-index="16" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="508" y1="161" x2="508" y2="344" start-border-pos="0.376262626262626" end-border-pos="0.375" name-position="43,5" name-width="79">
+              <points>
+                <point x="508" y="161" />
+                <point x="560" y="162" />
+                <point x="560" y="343.5" />
+                <point x="508" y="344" />
+              </points>
+            </layout>
+            <relation from="di484561922108428005" from-iid="af30f1e36d6a4a8f96baef8dc57014e0" to="di583495729818393382" to-iid="0de3db42b125418a98f15b40f46e1da4" />
+          </item>
+          <item id="di153286430754392932" iid="c8df675e1cb642b19f52b85499833cba" creation-date="09/22/2016 00:54:44" order-index="17" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="391" y1="344" x2="218" y2="245" start-border-pos="0.8725" end-border-pos="0.424999997019768" name-position="75,-14">
+              <points>
+                <point x="391" y="344" />
+                <point x="258" y="344" />
+                <point x="258" y="245" />
+                <point x="218" y="245" />
+              </points>
+            </layout>
+            <relation from="di583495729818393382" from-iid="0de3db42b125418a98f15b40f46e1da4" to="di229834887969879889" to-iid="3efa0a72a3354003af0d8736c3b1488d" />
+          </item>
+          <item id="di357844839890086679" iid="a0fa9f97aa1549018be55fb0dfa92c0e" creation-date="09/22/2016 00:57:52" order-index="18" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="478" y1="318" x2="478" y2="186" start-border-pos="0.185897439718246" end-border-pos="0.564102567732334" name-position="-30,24">
+              <points>
+                <point x="478" y="318" />
+                <point x="478" y="186" />
+              </points>
+            </layout>
+            <relation from="di583495729818393382" from-iid="0de3db42b125418a98f15b40f46e1da4" to="di484561922108428005" to-iid="af30f1e36d6a4a8f96baef8dc57014e0" />
+          </item>
+          <item id="di715725191146792158" iid="e1120577579f431ba3ffc1534f27d9eb" creation-date="09/22/2016 01:01:13" order-index="19" type="relation">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="487" y1="368" x2="409" y2="368" start-border-pos="0.544871794871795" end-border-pos="0.711538463830948" name-position="0,34">
+              <points>
+                <point x="487" y="368" />
+                <point x="487" y="419" />
+                <point x="409" y="419" />
+                <point x="409" y="368" />
+              </points>
+            </layout>
+            <relation from="di583495729818393382" from-iid="0de3db42b125418a98f15b40f46e1da4" to="di583495729818393382" to-iid="0de3db42b125418a98f15b40f46e1da4" />
           </item>
         </layer>
       </diagram>
