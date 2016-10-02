@@ -13,7 +13,7 @@
       </counter>
       <counter>
         <item-type type-id="class" type="UmlClass" />
-        <value>4</value>
+        <value>5</value>
       </counter>
       <counter>
         <item-type stereotype="enumeration" type-id="enumeration" type="UmlEnumeration" />
@@ -23,7 +23,7 @@
     <entity-ids>
       <counter>
         <item-type type-id="class" type="UmlClass" />
-        <value>6</value>
+        <value>7</value>
       </counter>
       <counter>
         <item-type type-id="realization" type="UmlRealization" />
@@ -50,12 +50,12 @@
         <value>14</value>
       </counter>
       <counter>
-        <item-type type-id="" type="AbstractElementGroup" />
-        <value>117</value>
+        <item-type type-id="relationship" type="UmlAssociation" />
+        <value>4</value>
       </counter>
       <counter>
-        <item-type type-id="relationship" type="UmlAssociation" />
-        <value>2</value>
+        <item-type type-id="" type="AbstractElementGroup" />
+        <value>32</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -67,11 +67,11 @@
     <fields>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
-        <value>14</value>
+        <value>16</value>
       </counter>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
-        <value>20</value>
+        <value>22</value>
       </counter>
       <counter>
         <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.EnumerationItemField</type>
@@ -111,6 +111,7 @@
       <type id="int" tid="" name="int" description="" nullable="false" />
       <type id="void" tid="" name="void" description="" nullable="false" />
       <type id="Class:di326940055810102664" tid="" name="Game" description="" nullable="false" class-ref="di326940055810102664" />
+      <type id="RulesCheck" tid="" name="RulesCheck" description="" nullable="false" />
     </custom-types>
   </types>
   <filters />
@@ -142,7 +143,7 @@
           </authors>
           <description />
           <creation-date>09/22/2016 23:02:55</creation-date>
-          <change-date>09/26/2016 02:23:00</change-date>
+          <change-date>10/02/2016 23:59:36</change-date>
           <revision-count>0</revision-count>
           <version />
         </meta>
@@ -201,10 +202,10 @@
           <item id="di607826594367350624" cid="C002" type="class" name="HardLevelBot" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/22/2016 23:48:22">
             <style class="default" />
           </item>
-          <item id="di916799928839108473" cid="REA010" type="realization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:09:07" from="di345236341737389476" to="di768627708419380288">
+          <item id="di916799928839108473" cid="REA010" type="realization" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:09:07" from="di112972100543806222" to="di768627708419380288">
             <style class="default" />
           </item>
-          <item id="di995926837994105059" cid="ELEM002" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:09:56" from="di160706264908453666" to="di345236341737389476">
+          <item id="di995926837994105059" cid="ELEM002" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:09:56" from="di160706264908453666" to="di112972100543806222">
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
               <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -228,7 +229,7 @@
               </alternate-styles>
             </style>
           </item>
-          <item id="di292353054994302509" cid="ELEM003" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:13:56" from="di462048824726204971" to="di345236341737389476">
+          <item id="di292353054994302509" cid="ELEM003" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:13:56" from="di462048824726204971" to="di112972100543806222">
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
               <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -252,7 +253,7 @@
               </alternate-styles>
             </style>
           </item>
-          <item id="di441451277948021725" cid="ELEM004" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:15:06" from="di607826594367350624" to="di345236341737389476">
+          <item id="di441451277948021725" cid="ELEM004" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:15:06" from="di607826594367350624" to="di112972100543806222">
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
               <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -300,7 +301,7 @@
               </alternate-styles>
             </style>
           </item>
-          <item id="di104973098396966470" cid="ELEM005" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:16:34" from="di863942169516380995" to="di345236341737389476">
+          <item id="di104973098396966470" cid="ELEM005" type="universal-connector" name="" style-class="" visibility="package" change-tracking-state="added" creator="Pe33c48757f21402f86cae99d9a72edef" creation-date="09/23/2016 00:16:34" from="di863942169516380995" to="di112972100543806222">
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
               <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
@@ -396,7 +397,7 @@
             </style>
           </item>
           <item id="di326940055810102664" cid="C004" type="class" name="Game" style-class="" visibility="package" change-tracking-state="added" creation-date="09/26/2016 00:21:12">
-            <style style-name="Default" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
               <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
               <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
@@ -426,6 +427,9 @@
                 <style class="default" />
               </attribute>
               <attribute id="ae089d4c721794b758eb49fe5db9a988c398" cid="ELEM009" name="isWhiteToMove" type="bool" type-id="bool" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="ae2d65842c28c4c0a8fcd8792de8ade7e843" cid="ELEM015" name="checker" type="RulesCheck" type-id="RulesCheck" visibility="private">
                 <style class="default" />
               </attribute>
             </attributes>
@@ -514,12 +518,93 @@
           <item id="di425572590325231833" cid="DEP012" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/26/2016 01:57:12" from="di326940055810102664" to="di835587329738257994">
             <style class="default" />
           </item>
-          <item id="di177528520908435732" cid="DEP013" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/26/2016 02:23:00" from="di160706264908453666" to="di835587329738257994">
+          <item id="di177528520908435732" cid="DEP013" type="dependency" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="09/26/2016 02:23:00" from="di835587329738257994" to="di160706264908453666">
             <style class="default" />
+          </item>
+          <item id="di790200931849845357" cid="ELEM008" type="formatted-text" name="Element3" style-class="" visibility="package" creation-date="10/02/2016 23:32:31">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FF000000" accuracy="0.9">
+              <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;10;" horizontal-alignment="left" vertical-alignment="top" shadow="false" />
+              <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <background type="solid" color="#00FFFFFF" color2="#00FFFFFF" />
+              <border color="#FF000000" width="0" dash-style="Solid" />
+              <label-connector color="#80000000" width="1" dash-style="Dash" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                  <label-connector color="#FF000000" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+          </item>
+          <item id="di740124253834211742" cid="ELEM009" type="text" name="Element4" style-class="" visibility="package" creation-date="10/02/2016 23:32:32">
+            <style class="default" />
+          </item>
+          <item id="di112972100543806222" cid="ELEM010" type="shape" name="Element1" style-class="" visibility="package" creation-date="10/02/2016 23:32:32">
+            <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+              <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+              <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+              <background type="forward-diagonal" color="#FFFFFFFF" color2="#FFEBEBEB" />
+              <border color="#FF000000" width="1" dash-style="DashLongSpace" />
+              <label-connector color="#80000000" width="1" dash-style="Dash" />
+              <alternate-styles>
+                <alternate-style style-name="Alternate" shadow-type="smooth" shadow-offset="1,1" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
+                  <text-style type="name" use-defaults="false" color="#FF000000" font="Verdana;10;B" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="part-header" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="text" use-defaults="false" color="#FF000000" font="Verdana;9;" horizontal-alignment="left" vertical-alignment="center" shadow="false" />
+                  <text-style type="tagged-value" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <text-style type="stereotype" use-defaults="false" color="#FF1E1E1E" font="Verdana;9;I" horizontal-alignment="center" vertical-alignment="center" shadow="false" />
+                  <background type="vertical-linear" color="#FF1E90FF" color2="#FF87CEFA" />
+                  <border color="#FF00008B" width="1" dash-style="Solid" />
+                  <label-connector color="#FF000000" width="1" dash-style="Solid" />
+                </alternate-style>
+              </alternate-styles>
+            </style>
+          </item>
+          <item id="di530977090128006472" cid="C006" type="class" name="RulesСheck" style-class="" visibility="package" change-tracking-state="added" creation-date="10/02/2016 23:47:41">
+            <style class="default" />
+            <operations>
+              <operation id="o5acb386885ca4cc7bc7ccb89e3cc744c778" cid="ELEM020" name="checkNextMove" type="bool" type-id="bool" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="p89cccf89d9ca497dbbf373816d3d18fd" name="position" type="Pair" type-id="Pair" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="o053108bfc9bc4c05b92b4c056dd8f0ed326" cid="ELEM021" name="defineWinner" type="Colour" type-id="Colour" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di576263626246009674" cid="REL002" type="relationship" name="" style-class="" visibility="package" change-tracking-state="added" creation-date="10/02/2016 23:59:18" from="di326940055810102664" to="di530977090128006472">
+            <style class="default" />
+            <relation from="di326940055810102664" to="di530977090128006472">
+              <start-role id="" name="" multiplicity="1" navigability="" association-type="composition" visibility="private" />
+              <end-role id="" name="" multiplicity="1" navigability="" association-type="association" visibility="private" />
+            </relation>
           </item>
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
-          <item id="di103494772721383490" iid="0042c6e5c4564520b23e9cadf98f4283" name="Element3" creation-date="09/21/2016 23:37:32" order-index="2" type="drawing-formatted-text">
+          <item id="di790200931849845357" iid="0042c6e5c4564520b23e9cadf98f4283" name="Element3" creation-date="09/21/2016 23:37:32" order-index="2" type="drawing-formatted-text">
             <layout ax="32" ay="20" awidth="610" aheight="49" x="32" y="20" width="610" height="49" />
             <formatted-text>
               <text>
@@ -590,7 +675,7 @@
               </alternate-styles>
             </style>
           </item>
-          <item id="di239393364266877213" iid="ff2661cf2d414720b2dff0e4125aade0" name="Element4" creation-date="09/21/2016 23:49:38" order-index="3" type="drawing-text">
+          <item id="di740124253834211742" iid="ff2661cf2d414720b2dff0e4125aade0" name="Element4" creation-date="09/21/2016 23:49:38" order-index="3" type="drawing-text">
             <layout ax="12.5" ay="461" awidth="281" aheight="47" x="12.5" y="461" width="281" height="47" />
             <drawing-text>
               <text>© Sasha Plotnikov Production, 2016</text>
@@ -623,14 +708,14 @@
             <class />
           </item>
           <item id="di177528520908435732" iid="2ccaf6e6b7644c6f9dec4de91c7f7333" creation-date="09/26/2016 02:23:00" order-index="19" type="relation">
-            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="163" y1="390" x2="58" y2="340" start-border-pos="0.875" end-border-pos="0.625892857142857" name-position="-66,55">
+            <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="58" y1="340" x2="163" y2="390" start-border-pos="0.625892857142857" end-border-pos="0.875" name-position="-66,55">
               <points>
-                <point x="163" y="390" />
-                <point x="58" y="390" />
                 <point x="58" y="340" />
+                <point x="58" y="390" />
+                <point x="163" y="390" />
               </points>
             </layout>
-            <relation from="di160706264908453666" from-iid="2f3db0187dad4b92ac4220cc56b86306" to="di835587329738257994" to-iid="f85c39aa065b444184e9102f5876591c" />
+            <relation from="di835587329738257994" from-iid="f85c39aa065b444184e9102f5876591c" to="di160706264908453666" to-iid="2f3db0187dad4b92ac4220cc56b86306" />
           </item>
           <item id="di372165487978201532" iid="537bef554245423aacb18e349908434e" creation-date="09/23/2016 00:24:32" order-index="12" type="entity">
             <layout ax="639" ay="114.5" awidth="140" aheight="99" x="639" y="114.5" width="140" height="99" />
@@ -653,7 +738,7 @@
             <layout ax="709" ay="357" awidth="140" aheight="66" x="709" y="357" width="140" height="66" />
             <class />
           </item>
-          <item id="di345236341737389476" iid="a1f2361e36184e4b9c197be783d6862d" name="Element1" creation-date="09/23/2016 00:07:23" order-index="6" type="drawing-line">
+          <item id="di112972100543806222" iid="a1f2361e36184e4b9c197be783d6862d" name="Element1" creation-date="09/23/2016 00:07:23" order-index="6" type="drawing-line">
             <layout ax="441" ay="314" awidth="119" aheight="1" x="441" y="314" width="119" height="1" />
             <drawing-line start-point="441,314" end-point="559,314" />
             <style style-name="Custom Style" shadow-type="smooth" shadow-offset="1,1" shadow-visible="true" shadow-color="#32000000" gloss-effect="true" wrap-name-text="true" wrap-other-text="true" padding="1" margin="1" glow-color="#FFFFFFFF" accuracy="0.9">
@@ -690,7 +775,7 @@
                 <point x="500" y="232" />
               </points>
             </layout>
-            <relation from="di345236341737389476" from-iid="a1f2361e36184e4b9c197be783d6862d" to="di768627708419380288" to-iid="62016ceafb8f4838b36d322ee223b576" />
+            <relation from="di112972100543806222" from-iid="a1f2361e36184e4b9c197be783d6862d" to="di768627708419380288" to-iid="62016ceafb8f4838b36d322ee223b576" />
           </item>
           <item id="di722981901857880670" iid="f71baed4c59247519b98ad70d1c762fc" creation-date="09/26/2016 00:37:08" order-index="15" type="relation">
             <layout start-role-position="25,15" end-role-position="24,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="334" y1="176" x2="415" y2="176" start-border-pos="0.375" end-border-pos="0.852941177785397" name-position="0,0">
@@ -709,7 +794,7 @@
                 <point x="441" y="314" />
               </points>
             </layout>
-            <relation from="di160706264908453666" from-iid="2f3db0187dad4b92ac4220cc56b86306" to="di345236341737389476" to-iid="a1f2361e36184e4b9c197be783d6862d" />
+            <relation from="di160706264908453666" from-iid="2f3db0187dad4b92ac4220cc56b86306" to="di112972100543806222" to-iid="a1f2361e36184e4b9c197be783d6862d" />
           </item>
           <item id="di292353054994302509" iid="d1da652fe5d54d91b43efea785be31bd" creation-date="09/23/2016 00:13:56" order-index="9" type="relation">
             <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="460" y1="357" x2="460" y2="315" start-border-pos="0.205357142857143" end-border-pos="0.710084035992622" name-position="0,0">
@@ -718,7 +803,7 @@
                 <point x="460" y="315" />
               </points>
             </layout>
-            <relation from="di462048824726204971" from-iid="370b1420b202450a9150393ee932bbd6" to="di345236341737389476" to-iid="a1f2361e36184e4b9c197be783d6862d" />
+            <relation from="di462048824726204971" from-iid="370b1420b202450a9150393ee932bbd6" to="di112972100543806222" to-iid="a1f2361e36184e4b9c197be783d6862d" />
           </item>
           <item id="di117193968549135424" iid="3a7b7830a32547eda8b52863889deda7" creation-date="09/26/2016 00:44:30" order-index="16" type="relation">
             <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="709" y1="214" x2="254" y2="256" start-border-pos="0.625" end-border-pos="0.625" name-position="0,0">
@@ -741,7 +826,7 @@
                 <point x="560" y="314" />
               </points>
             </layout>
-            <relation from="di607826594367350624" from-iid="e95d60abc4bb42fdbaed57d9a0760b59" to="di345236341737389476" to-iid="a1f2361e36184e4b9c197be783d6862d" />
+            <relation from="di607826594367350624" from-iid="e95d60abc4bb42fdbaed57d9a0760b59" to="di112972100543806222" to-iid="a1f2361e36184e4b9c197be783d6862d" />
           </item>
           <item id="di256765801383639082" iid="8efc6a7c86bc4a959e7b2ae0d8769f65" creation-date="09/23/2016 00:13:56" order-index="9" type="relation">
             <layout line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="460" y1="357" x2="460" y2="315" start-border-pos="0.205357142857143" end-border-pos="0.710084035992622" name-position="73,5">
@@ -759,7 +844,22 @@
                 <point x="551" y="314" />
               </points>
             </layout>
-            <relation from="di863942169516380995" from-iid="f7a3f485343a44c288faa8f392fb2018" to="di345236341737389476" to-iid="a1f2361e36184e4b9c197be783d6862d" />
+            <relation from="di863942169516380995" from-iid="f7a3f485343a44c288faa8f392fb2018" to="di112972100543806222" to-iid="a1f2361e36184e4b9c197be783d6862d" />
+          </item>
+          <item id="di530977090128006472" iid="3533cb732ae3419088a0c86e3d2b1033" creation-date="10/02/2016 23:47:41" order-index="20" type="entity">
+            <layout ax="818" ay="114.5" awidth="140" aheight="160" x="818" y="114.5" width="140" height="160" />
+            <class />
+          </item>
+          <item id="di576263626246009674" iid="626a0f77e9204ff7805ab7b7045f4690" creation-date="10/02/2016 23:59:18" order-index="21" type="relation">
+            <layout start-role-position="25,15" end-role-position="25,-15" start-multiplicity-position="25,-15" end-multiplicity-position="25,15" line-style="oblique" lock-start-point="true" lock-end-point="true" lock-to-fields="false" auto-path="" x1="334" y1="110" x2="888" y2="114" start-border-pos="0.271875" end-border-pos="0.125" name-position="0,0">
+              <points>
+                <point x="334" y="110" />
+                <point x="405" y="69" />
+                <point x="888" y="69" />
+                <point x="888" y="114" />
+              </points>
+            </layout>
+            <relation from="di326940055810102664" from-iid="ad79b20ac7104fe797b2e37f1dd2f2de" to="di530977090128006472" to-iid="3533cb732ae3419088a0c86e3d2b1033" />
           </item>
         </layer>
       </diagram>
