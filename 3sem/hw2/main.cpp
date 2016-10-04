@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "configurationwizard.h"
-#include "intropage.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -9,13 +8,11 @@ int main(int argc, char *argv[])
 
     ConfigurationWizard cw;
 
-    IntroPage page1;
-    cw.addPage(&page1);
-
+//    cw.sett
     cw.show();
 
-    MainWindow w;
-    w.show();
+//    MainWindow w;
+//    w.show();
 
     return a.exec();
 }

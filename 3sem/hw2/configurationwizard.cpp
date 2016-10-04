@@ -5,7 +5,7 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
     QWizard(parent),
     ui(new Ui::ConfigurationWizard)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    
 }
 
 ConfigurationWizard::~ConfigurationWizard()
