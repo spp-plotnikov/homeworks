@@ -1,5 +1,6 @@
 #pragma once
 
+#include "numberofcomputerspage.h"
 #include <QWizard>
 
 namespace Ui {
@@ -15,6 +16,8 @@ public:
     ~ConfigurationWizard();
 
 private:
+    QWizardPage *numberOfComputersPage = new NumberOfComputersPage();
+
     Ui::ConfigurationWizard *ui;
 };
 

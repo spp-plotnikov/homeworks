@@ -65,7 +65,11 @@ S P P  Simulator of LAN is the latest product of the «Sasha Plotnikov Productio
     </item>
    </layout>
   </widget>
-  <widget class="QWizardPage" name="wizardPage2"/>
+  <widget class="QWizardPage" name="wizardPage2">
+   <attribute name="pageId">
+    <string notr="true">2</string>
+   </attribute>
+  </widget>
  </widget>
  <resources/>
  <connections/>

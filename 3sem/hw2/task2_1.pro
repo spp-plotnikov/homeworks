@@ -14,10 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    configurationwizard.cpp
+    configurationwizard.cpp \
+    numberofcomputerspage.cpp
 
 HEADERS  += mainwindow.h \
-    configurationwizard.h
+    configurationwizard.h \
+    numberofcomputerspage.h
 
 FORMS    += mainwindow.ui \
-    configurationwizard.ui
+    configurationwizard.ui \
+    numberofcomputerspage.ui
