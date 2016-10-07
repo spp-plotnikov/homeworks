@@ -15,12 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     configurationwizard.cpp \
-    numberofcomputerspage.cpp
+    numberofcomputerspage.cpp \
+    setospage.cpp
 
 HEADERS  += mainwindow.h \
     configurationwizard.h \
-    numberofcomputerspage.h
+    numberofcomputerspage.h \
+    setospage.h
 
 FORMS    += mainwindow.ui \
     configurationwizard.ui \
-    numberofcomputerspage.ui
+    numberofcomputerspage.ui \
+    setospage.ui

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "numberofcomputerspage.h"
+#include "setospage.h"
 #include <QWizard>
 
 namespace Ui {
@@ -17,6 +18,7 @@ public:
 
 private:
     QWizardPage *numberOfComputersPage = new NumberOfComputersPage();
+    QWizardPage *setOSPage = new SetOSPage();
 
     Ui::ConfigurationWizard *ui;
 };

@@ -7,8 +7,15 @@ NumberOfComputersPage::NumberOfComputersPage(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //connect((ui->comboBox, QComboBox:))
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changeNumberOfComputers()));
 }
+
+
+void NumberOfComputersPage::changeNumberOfComputers()
+{
+    numberOfComputers = ui->comboBox->currentIndex() + 3;
+}
+
 
 NumberOfComputersPage::~NumberOfComputersPage()
 {

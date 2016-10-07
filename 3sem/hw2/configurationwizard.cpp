@@ -8,10 +8,12 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
     ui->setupUi(this);
 
     setPage(1, numberOfComputersPage);
+    setPage(2, setOSPage);
 }
 
 ConfigurationWizard::~ConfigurationWizard()
 {
     delete numberOfComputersPage;
+    delete setOSPage;
     delete ui;
 }

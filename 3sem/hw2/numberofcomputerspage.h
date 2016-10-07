@@ -24,4 +24,7 @@ private:
     Ui::NumberOfComputersPage *ui;
 
     int numberOfComputers = 3;  //  starting value
+
+private slots:
+    void changeNumberOfComputers();
 };
