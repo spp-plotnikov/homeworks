@@ -13,7 +13,7 @@ class NumberOfComputersPage : public QWizardPage
 public:
     explicit NumberOfComputersPage(QWidget *parent = 0);
 
-    int getNumberOfComputrs() const
+    int getNumberOfComputers() const
     {
         return numberOfComputers;
     }

@@ -9,6 +9,7 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
 
     setPage(1, numberOfComputersPage);
     setPage(2, setOSPage);
+    setPage(3, tablePage);
 
     connect(this, SIGNAL(currentIdChanged(int)),
             this, SLOT(changeCurrentForm()));
@@ -17,10 +18,9 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
 
 void ConfigurationWizard::changeCurrentForm()
 {
-    if (currentId() == 2)
-    {
-        setOSPage->changeNumberOfComputers(numberOfComputersPage->getNumberOfComputrs());
-    }
+    const int numberOfComputers = numberOfComputersPage->getNumberOfComputers();
+    setOSPage->changeNumberOfComputers(numberOfComputers);
+    tablePage->generateTable(numberOfComputers);
 }
 
 
@@ -28,5 +28,6 @@ ConfigurationWizard::~ConfigurationWizard()
 {
     delete numberOfComputersPage;
     delete setOSPage;
+    delete tablePage;
     delete ui;
 }

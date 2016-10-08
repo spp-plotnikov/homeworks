@@ -25,9 +25,14 @@ void SetOSPage::changeNumberOfComputers(const int newNumber)
     QString temp;
     for (int i = 0; i < numberOfComputers; i++)
     {
-        QComboBox *newCombo = new QComboBox();
         temp.setNum(i + 1);
         temp = QString("Computer №") + temp;
+
+        QComboBox *newCombo = new QComboBox();
+        newCombo->addItem("Windows");
+        newCombo->addItem("Linux");
+        newCombo->addItem("Mac OS");
+
         ui->formLayout->addRow(temp, newCombo);
     }
 }

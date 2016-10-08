@@ -2,6 +2,7 @@
 
 #include "numberofcomputerspage.h"
 #include "setospage.h"
+#include "tablepage.h"
 #include <QWizard>
 
 namespace Ui {
@@ -23,6 +24,7 @@ private slots:
 private:
     NumberOfComputersPage *numberOfComputersPage = new NumberOfComputersPage();
     SetOSPage *setOSPage = new SetOSPage();
+    TablePage *tablePage = new TablePage();
 
     Ui::ConfigurationWizard *ui;
 };

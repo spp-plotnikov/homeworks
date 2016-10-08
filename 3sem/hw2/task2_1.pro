@@ -16,14 +16,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     configurationwizard.cpp \
     numberofcomputerspage.cpp \
-    setospage.cpp
+    setospage.cpp \
+    tablepage.cpp
 
 HEADERS  += mainwindow.h \
     configurationwizard.h \
     numberofcomputerspage.h \
-    setospage.h
+    setospage.h \
+    tablepage.h
 
 FORMS    += mainwindow.ui \
     configurationwizard.ui \
     numberofcomputerspage.ui \
-    setospage.ui
+    setospage.ui \
+    tablepage.ui
