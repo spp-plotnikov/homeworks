@@ -11,6 +11,8 @@ TablePage::TablePage(QWidget *parent) :
 
 void TablePage::generateTable(const int numberOfComputers)
 {
+    isCorrectTableFilling = false;
+
     ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(numberOfComputers);
     ui->tableWidget->setRowCount(numberOfComputers);
@@ -34,6 +36,8 @@ void TablePage::generateTable(const int numberOfComputers)
 
     connect(ui->tableWidget, SIGNAL(cellClicked(int,int)),
             this, SLOT(changeCheckStateOfTransposeCell(int, int)));
+    connect(ui->tableWidget, SIGNAL(cellClicked(int,int)),
+            this, SLOT(updateNextButton()));
 }
 
 
@@ -49,6 +53,36 @@ void TablePage::changeCheckStateOfTransposeCell(int row, int column)
     {
         ui->tableWidget->item(column, row)->setCheckState(Qt::Checked);
     }
+}
+
+
+void TablePage::updateNextButton()
+{
+    for (int i = 0; i < ui->tableWidget->columnCount(); i++)
+    {
+        bool computerIsConnected = false;
+        for (int j = 0; j < ui->tableWidget->columnCount(); j++)
+        {
+            if (i != j && ui->tableWidget->item(i, j)->checkState() == Qt::Checked)
+            {
+                computerIsConnected = true;
+                break;
+            }
+        }
+        if (!computerIsConnected)
+        {
+            isCorrectTableFilling = false;
+            return;
+        }
+    }
+
+    isCorrectTableFilling = true;
+}
+
+
+bool TablePage::validatePage()
+{
+    return isCorrectTableFilling;
 }
 
 

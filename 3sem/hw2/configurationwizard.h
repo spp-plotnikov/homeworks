@@ -26,6 +26,8 @@ private:
     SetOSPage *setOSPage = new SetOSPage();
     TablePage *tablePage = new TablePage();
 
+    int previousId = 0;
+
     Ui::ConfigurationWizard *ui;
 };
 

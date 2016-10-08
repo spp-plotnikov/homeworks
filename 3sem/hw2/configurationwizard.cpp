@@ -19,8 +19,12 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
 void ConfigurationWizard::changeCurrentForm()
 {
     const int numberOfComputers = numberOfComputersPage->getNumberOfComputers();
-    setOSPage->changeNumberOfComputers(numberOfComputers);
-    tablePage->generateTable(numberOfComputers);
+    if (previousId == 1)
+    {
+        setOSPage->changeNumberOfComputers(numberOfComputers);
+        tablePage->generateTable(numberOfComputers);
+    }
+    previousId = currentId();
 }
 
 
