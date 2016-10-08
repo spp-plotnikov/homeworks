@@ -30,3 +30,6 @@ FORMS    += mainwindow.ui \
     numberofcomputerspage.ui \
     setospage.ui \
     tablepage.ui
+
+RESOURCES += \
+    logospp.qrc

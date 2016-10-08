@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Configuration Wizard for  S P P  Simulator of LAN</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>logoSPP.ico</normaloff>logoSPP.ico</iconset>
+  </property>
   <property name="wizardStyle">
    <enum>QWizard::ClassicStyle</enum>
   </property>

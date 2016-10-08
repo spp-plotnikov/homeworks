@@ -6,6 +6,7 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
     ui(new Ui::ConfigurationWizard)
 {
     ui->setupUi(this);
+    setWindowIcon(QIcon(":/new/prefix1/logoSPP.ico"));
 
     setPage(1, numberOfComputersPage);
     setPage(2, setOSPage);
