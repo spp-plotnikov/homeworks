@@ -31,6 +31,24 @@ void TablePage::generateTable(const int numberOfComputers)
 
     ui->tableWidget->setShowGrid(true);
     ui->tableWidget->resizeColumnsToContents();
+
+    connect(ui->tableWidget, SIGNAL(cellClicked(int,int)),
+            this, SLOT(changeCheckStateOfTransposeCell(int, int)));
+}
+
+
+void TablePage::changeCheckStateOfTransposeCell(int row, int column)
+{
+    if (row == column)
+        return;
+    if (ui->tableWidget->item(row, column)->checkState() == Qt::Unchecked)
+    {
+        ui->tableWidget->item(column, row)->setCheckState(Qt::Unchecked);
+    }
+    else
+    {
+        ui->tableWidget->item(column, row)->setCheckState(Qt::Checked);
+    }
 }
 
 

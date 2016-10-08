@@ -17,6 +17,9 @@ public:
 
     ~TablePage();
 
+private slots:
+    void changeCheckStateOfTransposeCell(int row, int column);
+
 private:
     Ui::TablePage *ui;
 };
