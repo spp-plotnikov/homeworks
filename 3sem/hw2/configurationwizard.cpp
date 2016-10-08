@@ -9,7 +9,20 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
 
     setPage(1, numberOfComputersPage);
     setPage(2, setOSPage);
+
+    connect(this, SIGNAL(currentIdChanged(int)),
+            this, SLOT(changeCurrentForm()));
 }
+
+
+void ConfigurationWizard::changeCurrentForm()
+{
+    if (currentId() == 2)
+    {
+        setOSPage->changeNumberOfComputers(numberOfComputersPage->getNumberOfComputrs());
+    }
+}
+
 
 ConfigurationWizard::~ConfigurationWizard()
 {

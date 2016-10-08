@@ -11,17 +11,24 @@ SetOSPage::SetOSPage(QWidget *parent) :
 
 void SetOSPage::changeNumberOfComputers(const int newNumber)
 {
-    numberOfComputers = newNumber;
-    foreach (QObject *thisItem, ui->formLayout->children())
+    while(QLayoutItem *item = ui->formLayout->itemAt(0))
     {
-        delete thisItem;
+        ui->formLayout->removeItem(item);
+        ui->formLayout->removeWidget(item->widget());
+        delete item->widget();
+        delete item;
+        ui->formLayout->update();
     }
 
+    numberOfComputers = newNumber;
+
+    QString temp;
     for (int i = 0; i < numberOfComputers; i++)
     {
-        //QLabel *newLabel = new QLabel("ololo");
         QComboBox *newCombo = new QComboBox();
-        ui->formLayout->addRow("Computer №" + QString::setNum(i + 1), newCombo);
+        temp.setNum(i + 1);
+        temp = QString("Computer №") + temp;
+        ui->formLayout->addRow(temp, newCombo);
     }
 }
 

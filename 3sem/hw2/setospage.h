@@ -2,7 +2,6 @@
 
 #include <QWizardPage>
 #include <QComboBox>
-#include <QLabel>
 
 namespace Ui {
 class SetOSPage;

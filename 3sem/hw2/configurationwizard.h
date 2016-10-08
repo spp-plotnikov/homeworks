@@ -16,9 +16,13 @@ public:
     explicit ConfigurationWizard(QWidget *parent = 0);
     ~ConfigurationWizard();
 
+private slots:
+    // TODO: give this method name which is better
+    void changeCurrentForm();
+
 private:
-    QWizardPage *numberOfComputersPage = new NumberOfComputersPage();
-    QWizardPage *setOSPage = new SetOSPage();
+    NumberOfComputersPage *numberOfComputersPage = new NumberOfComputersPage();
+    SetOSPage *setOSPage = new SetOSPage();
 
     Ui::ConfigurationWizard *ui;
 };
