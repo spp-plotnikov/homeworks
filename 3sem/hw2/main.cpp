@@ -1,18 +1,15 @@
-#include "mainwindow.h"
 #include "configurationwizard.h"
+#include "sppsimulatorlan.h"
 #include <QApplication>
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    ConfigurationWizard cw;
-
-//    cw.sett
+    SPPSimulatorLAN simulator;
+    ConfigurationWizard cw(simulator);
     cw.show();
-
-//    MainWindow w;
-//    w.show();
 
     return a.exec();
 }

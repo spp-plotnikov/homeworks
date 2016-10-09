@@ -2,7 +2,8 @@
 #include "ui_configurationwizard.h"
 
 
-ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
+ConfigurationWizard::ConfigurationWizard(SPPSimulatorLAN &owner, QWidget *parent) :
+    simulator(owner),
     QWizard(parent),
     ui(new Ui::ConfigurationWizard)
 {
@@ -37,7 +38,7 @@ void ConfigurationWizard::runSPPSimulatorLAN()
     LocalNetwork *network = new LocalNetwork(numberOfComputersPage->getNumberOfComputers(),
                                              setOSPage->getListOfOperatingSystems(),
                                              tablePage->getAdjacencyMatrix());
-
+    simulator.setNetworkAndRun(network);
 }
 
 

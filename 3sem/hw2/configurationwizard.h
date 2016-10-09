@@ -1,6 +1,7 @@
 #pragma once
 
 #include "numberofcomputerspage.h"
+#include "sppsimulatorlan.h"
 #include "localnetwork.h"
 #include "setospage.h"
 #include "tablepage.h"
@@ -15,7 +16,7 @@ class ConfigurationWizard : public QWizard
     Q_OBJECT
 
 public:
-    explicit ConfigurationWizard(QWidget *parent = 0);
+    explicit ConfigurationWizard(SPPSimulatorLAN &owner, QWidget *parent = 0);
     ~ConfigurationWizard();
 
 private slots:
@@ -29,6 +30,7 @@ private:
     TablePage *tablePage = new TablePage();
 
     int previousId = 0;
+    SPPSimulatorLAN &simulator;
 
     Ui::ConfigurationWizard *ui;
 };

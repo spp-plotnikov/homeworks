@@ -15,25 +15,27 @@ TEMPLATE = app
 CONFIG += debug
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     configurationwizard.cpp \
     numberofcomputerspage.cpp \
     setospage.cpp \
     tablepage.cpp \
-    localnetwork.cpp
+    localnetwork.cpp \
+    sppsimulatorlan.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     configurationwizard.h \
     numberofcomputerspage.h \
     setospage.h \
     tablepage.h \
-    localnetwork.h
+    localnetwork.h \
+    sppsimulatorlan.h
 
-FORMS    += mainwindow.ui \
+FORMS    += \
     configurationwizard.ui \
     numberofcomputerspage.ui \
     setospage.ui \
-    tablepage.ui
+    tablepage.ui \
+    sppsimulatorlan.ui
 
 RESOURCES += \
     logospp.qrc
