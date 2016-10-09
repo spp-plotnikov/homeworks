@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/new/prefix1">
-        <file>logoSPP.ico</file>
+        <file>images/exit1.png</file>
+        <file>images/logoSPP.ico</file>
+        <file>images/nextMove.png</file>
     </qresource>
 </RCC>

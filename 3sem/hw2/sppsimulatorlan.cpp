@@ -7,6 +7,14 @@ SPPSimulatorLAN::SPPSimulatorLAN(QWidget *parent) :
     ui(new Ui::SPPSimulatorLAN)
 {
     ui->setupUi(this);
+    statusBar()->showMessage("© Sasha Plotnikov Production, Ltd.");
+    statusBar()->setEnabled(false);
+    setWindowIcon(QIcon(":/new/prefix1/images/logoSPP.ico"));
+    setWindowTitle("S P P  Simulator of LAN");
+    ui->pushButton->setIcon(QIcon(":/new/prefix1/images/nextMove.png"));
+    ui->pushButton_2->setIcon(QIcon(":/new/prefix1/images/exit1.png"));
+
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 
