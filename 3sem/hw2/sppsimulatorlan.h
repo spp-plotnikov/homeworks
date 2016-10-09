@@ -18,6 +18,8 @@ public:
     ~SPPSimulatorLAN();
 
 private:
+    void fillTable();
+
     LocalNetwork *network = nullptr;
 
     Ui::SPPSimulatorLAN *ui;

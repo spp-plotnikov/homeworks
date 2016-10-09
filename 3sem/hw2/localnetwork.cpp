@@ -21,6 +21,12 @@ int LocalNetwork::getNetworkSize() const
 }
 
 
+int LocalNetwork::getOSByIndex(const int index) const
+{
+    return operatingSystems->at(index);
+}
+
+
 LocalNetwork::~LocalNetwork()
 {
     delete operatingSystems;
