@@ -80,6 +80,27 @@ void TablePage::updateNextButton()
 }
 
 
+QList<QList<int>>* TablePage::getAdjacencyMatrix() const
+{
+    QList<QList<int>> *adjacencyMatrix = new QList<QList<int>>();
+
+    for (int i = 0; i < ui->tableWidget->columnCount(); i++)
+    {
+        QList<int> computerWithThisIndex;
+        for (int j = 0; j  < ui->tableWidget->columnCount(); j++)
+        {
+            if (i != j && ui->tableWidget->item(i, j)->checkState() == Qt::Checked)
+            {
+                computerWithThisIndex.append(j);
+            }
+        }
+        *adjacencyMatrix[i] = computerWithThisIndex;
+    }
+
+    return adjacencyMatrix;
+}
+
+
 bool TablePage::validatePage()
 {
     return isCorrectTableFilling;

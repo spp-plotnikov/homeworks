@@ -2,6 +2,7 @@
 
 #include <QWizardPage>
 #include <QComboBox>
+#include <QList>
 
 namespace Ui {
 class SetOSPage;
@@ -15,6 +16,7 @@ public:
     explicit SetOSPage(QWidget *parent = 0);
 
     void changeNumberOfComputers(const int newNumber);
+    QList<int>* getListOfOperatingSystems() const;
 
     ~SetOSPage();
 

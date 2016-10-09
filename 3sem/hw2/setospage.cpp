@@ -38,6 +38,18 @@ void SetOSPage::changeNumberOfComputers(const int newNumber)
 }
 
 
+QList<int>* SetOSPage::getListOfOperatingSystems() const
+{
+    QList<int> *os = new QList<int>();
+    for (int i = 0; i < numberOfComputers; i++)
+    {
+        QComboBox *combo = ui->formLayout->itemAt(i, QFormLayout::FieldRole)->widget();
+        os[i] = combo->currentIndex();
+    }
+    return os;
+}
+
+
 SetOSPage::~SetOSPage()
 {
     changeNumberOfComputers(0);

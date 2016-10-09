@@ -1,6 +1,7 @@
 #pragma once
 
 #include "numberofcomputerspage.h"
+#include "localnetwork.h"
 #include "setospage.h"
 #include "tablepage.h"
 #include <QWizard>
@@ -20,6 +21,7 @@ public:
 private slots:
     // TODO: give this method name which is better
     void changeCurrentForm();
+    void runSPPSimulatorLAN();
 
 private:
     NumberOfComputersPage *numberOfComputersPage = new NumberOfComputersPage();

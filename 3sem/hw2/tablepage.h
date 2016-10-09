@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWizardPage>
+#include <QList>
 
 namespace Ui {
 class TablePage;
@@ -14,6 +15,7 @@ public:
     explicit TablePage(QWidget *parent = 0);
 
     void generateTable(const int numberOfComputers);
+    QList<QList<int> > *getAdjacencyMatrix() const;
     bool validatePage();
 
     ~TablePage();

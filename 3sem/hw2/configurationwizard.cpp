@@ -14,6 +14,8 @@ ConfigurationWizard::ConfigurationWizard(QWidget *parent) :
 
     connect(this, SIGNAL(currentIdChanged(int)),
             this, SLOT(changeCurrentForm()));
+    connect(this, SIGNAL(finished(int)),
+            this, SLOT(runSPPSimulatorLAN()));
 }
 
 
@@ -26,6 +28,15 @@ void ConfigurationWizard::changeCurrentForm()
         tablePage->generateTable(numberOfComputers);
     }
     previousId = currentId();
+}
+
+
+void ConfigurationWizard::runSPPSimulatorLAN()
+{
+    LocalNetwork *network = new LocalNetwork(numberOfComputersPage->getNumberOfComputers(),
+                                             setOSPage->getListOfOperatingSystems(),
+                                             tablePage->getAdjacencyMatrix());
+
 }
 
 

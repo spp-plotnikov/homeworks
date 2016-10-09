@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     configurationwizard.cpp \
     numberofcomputerspage.cpp \
     setospage.cpp \
-    tablepage.cpp
+    tablepage.cpp \
+    localnetwork.cpp
 
 HEADERS  += mainwindow.h \
     configurationwizard.h \
     numberofcomputerspage.h \
     setospage.h \
-    tablepage.h
+    tablepage.h \
+    localnetwork.h
 
 FORMS    += mainwindow.ui \
     configurationwizard.ui \
