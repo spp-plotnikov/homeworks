@@ -12,6 +12,8 @@ TARGET = task2_1
 TEMPLATE = app
 
 
+CONFIG += debug
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     configurationwizard.cpp \

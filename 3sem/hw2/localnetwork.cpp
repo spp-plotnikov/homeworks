@@ -7,10 +7,10 @@ LocalNetwork::LocalNetwork(const int numberOfComputers,
     operatingSystems(operatingSystems),
     adjacencyMatrix(adjacencyMatrix)
 {
-    isInfected[0] = true;
+    isInfected.append(true);
     for (int i = 1; i < numberOfComputers; i++)
     {
-        isInfected[i] = false;
+        isInfected.append(false);
     }
 }
 
@@ -25,5 +25,4 @@ LocalNetwork::~LocalNetwork()
 {
     delete operatingSystems;
     delete adjacencyMatrix;
-    delete isInfected;
 }

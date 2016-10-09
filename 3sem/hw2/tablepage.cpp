@@ -94,7 +94,7 @@ QList<QList<int>>* TablePage::getAdjacencyMatrix() const
                 computerWithThisIndex.append(j);
             }
         }
-        *adjacencyMatrix[i] = computerWithThisIndex;
+        adjacencyMatrix->append(computerWithThisIndex);
     }
 
     return adjacencyMatrix;

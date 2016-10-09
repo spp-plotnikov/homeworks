@@ -1,6 +1,7 @@
 #include "setospage.h"
 #include "ui_setospage.h"
 
+
 SetOSPage::SetOSPage(QWidget *parent) :
     QWizardPage(parent),
     ui(new Ui::SetOSPage)
@@ -43,8 +44,8 @@ QList<int>* SetOSPage::getListOfOperatingSystems() const
     QList<int> *os = new QList<int>();
     for (int i = 0; i < numberOfComputers; i++)
     {
-        QComboBox *combo = ui->formLayout->itemAt(i, QFormLayout::FieldRole)->widget();
-        os[i] = combo->currentIndex();
+        QComboBox *combo = static_cast <QComboBox*>(ui->formLayout->itemAt(i, QFormLayout::FieldRole)->widget());
+        os->append(combo->currentIndex());
     }
     return os;
 }
