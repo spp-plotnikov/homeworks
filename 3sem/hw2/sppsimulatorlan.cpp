@@ -70,7 +70,26 @@ void SPPSimulatorLAN::fillTable()
         }
         ui->tableWidget->setItem(i, 1, item);
         ui->tableWidget->setIconSize(QSize(23, 23));
+
+        QString connections;
+        QString temp;
+        QList<int> connectedComputers(network->getConnectionsByIndex(i - 1));
+        for (int j = 0; j < connectedComputers.size(); j++)
+        {
+            temp.setNum(connectedComputers[j] + 1);
+            if (j != 0)
+            {
+                connections = connections + ", ";
+            }
+            connections = connections + temp;
+        }
+        ui->tableWidget->setCellWidget(i, 3, new QLabel(connections));
+
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem());
     }
+    ui->tableWidget->item(1, 2)->setIcon(QIcon(":/new/prefix1/images/virus.png"));
+
+    ui->tableWidget->resizeColumnsToContents();
 }
 
 

@@ -21,9 +21,15 @@ int LocalNetwork::getNetworkSize() const
 }
 
 
-int LocalNetwork::getOSByIndex(const int index) const
+int LocalNetwork::getOSByIndex(int index) const
 {
     return operatingSystems->at(index);
+}
+
+
+QList<int> LocalNetwork::getConnectionsByIndex(int index) const
+{
+    return adjacencyMatrix->at(index);
 }
 
 

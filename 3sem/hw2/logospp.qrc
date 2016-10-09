@@ -6,5 +6,6 @@
         <file>images/linux.png</file>
         <file>images/macos.png</file>
         <file>images/windows.png</file>
+        <file>images/virus.png</file>
     </qresource>
 </RCC>

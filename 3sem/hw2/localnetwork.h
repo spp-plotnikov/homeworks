@@ -9,7 +9,8 @@ public:
                  QList<QList<int> > *adjacencyMatrix);
 
     int getNetworkSize() const;
-    int getOSByIndex(const int index) const;
+    int getOSByIndex(int index) const;
+    QList<int> getConnectionsByIndex(int index) const;
 
     ~LocalNetwork();
 private:
