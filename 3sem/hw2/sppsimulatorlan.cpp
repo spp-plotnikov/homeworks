@@ -1,11 +1,14 @@
 #include "sppsimulatorlan.h"
 #include "ui_sppsimulatorlan.h"
+#include <ctime>
 
 
 SPPSimulatorLAN::SPPSimulatorLAN(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SPPSimulatorLAN)
 {
+    srand(time(0));
+
     ui->setupUi(this);
     statusBar()->showMessage("© Sasha Plotnikov Production, Ltd.");
     statusBar()->setEnabled(false);
@@ -49,7 +52,6 @@ void SPPSimulatorLAN::fillTable()
         ui->tableWidget->setCellWidget(i, 0, new QLabel(temp));
 
         QTableWidgetItem *item = new QTableWidgetItem();
-        enum {Windows, Linux, MacOS};
         switch (network->getOSByIndex(i - 1))
         {
         case Windows:
@@ -114,7 +116,57 @@ void SPPSimulatorLAN::makeMove()
 
 void SPPSimulatorLAN::nextStep()
 {
+    QList<int> listOfNewInfectedComputers;
+    for (int i = 0; i < network->getNetworkSize(); i++)
+    {
+        if (network->getStatusOfInfestationByIndex(i))
+        {
+            QList<int> connections(network->getConnectionsByIndex(i));
+            for (int j = 0; j < connections.size(); j++)
+            {
+                if (tryToInfect(connections[j]))
+                    listOfNewInfectedComputers.append(connections[j]);
+            }
+        }
+    }
 
+    for (int i = 0; i < listOfNewInfectedComputers.size(); i++)
+    {
+        network->setInfection(listOfNewInfectedComputers[i]);
+    }
+}
+
+
+bool SPPSimulatorLAN::tryToInfect(int index)
+{
+    if (network->getStatusOfInfestationByIndex(index))
+        return true;
+
+    const int randomNumber = 1 + rand() % 101;
+    bool infected = false;
+    switch (network->getOSByIndex(index))
+    {
+    case Windows:
+    {
+        if (randomNumber < 60)  //  60% is the likelihood of Contracting the virus for Windows
+            infected = true;
+        break;
+    }
+    case Linux:
+    {
+        if (randomNumber < 40)  //  40% is the likelihood of Contracting the virus for Linux
+            infected = true;
+        break;
+    }
+    case MacOS:
+    {
+        if (randomNumber < 20)  //  20% is the likelihood of Contracting the virus for OS X
+            infected = true;
+        break;
+    }
+    }
+
+    return infected;
 }
 
 

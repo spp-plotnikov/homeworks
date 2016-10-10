@@ -12,6 +12,7 @@ public:
     int getOSByIndex(int index) const;
     QList<int> getConnectionsByIndex(int index) const;
     bool getStatusOfInfestationByIndex(int index) const;
+    void setInfection(int index);
 
     ~LocalNetwork();
 private:

@@ -22,10 +22,13 @@ private slots:
     void makeMove();
 
 private:
+    bool tryToInfect(int index);
     void fillTable();
     void updateTable();
 
     LocalNetwork *network = nullptr;
 
     Ui::SPPSimulatorLAN *ui;
+
+    enum {Windows, Linux, MacOS};
 };

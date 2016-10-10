@@ -39,6 +39,12 @@ bool LocalNetwork::getStatusOfInfestationByIndex(int index) const
 }
 
 
+void LocalNetwork::setInfection(int index)
+{
+    isInfected[index] = true;
+}
+
+
 LocalNetwork::~LocalNetwork()
 {
     delete operatingSystems;
