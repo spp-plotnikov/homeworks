@@ -25,6 +25,7 @@ private slots:
     void updateNextButton();
 
 private:
+    void traversal(int index, QList<bool> &isUsed);
     Ui::TablePage *ui;
     bool isCorrectTableFilling = false;
 };

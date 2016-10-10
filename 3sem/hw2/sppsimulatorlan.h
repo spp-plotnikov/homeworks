@@ -14,11 +14,16 @@ class SPPSimulatorLAN : public QMainWindow
 
 public:
     explicit SPPSimulatorLAN(QWidget *parent = 0);
-    void setNetworkAndRun(LocalNetwork *thisNetwork);
+    void setNetwork(LocalNetwork *thisNetwork);
+    void nextStep();
     ~SPPSimulatorLAN();
+
+private slots:
+    void makeMove();
 
 private:
     void fillTable();
+    void updateTable();
 
     LocalNetwork *network = nullptr;
 

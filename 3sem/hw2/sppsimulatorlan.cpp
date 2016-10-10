@@ -14,11 +14,12 @@ SPPSimulatorLAN::SPPSimulatorLAN(QWidget *parent) :
     ui->pushButton->setIcon(QIcon(":/new/prefix1/images/nextMove.png"));
     ui->pushButton_2->setIcon(QIcon(":/new/prefix1/images/exit1.png"));
 
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(makeMove()));
     connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 
-void SPPSimulatorLAN::setNetworkAndRun(LocalNetwork *thisNetwork)
+void SPPSimulatorLAN::setNetwork(LocalNetwork *thisNetwork)
 {
     if (network != nullptr)
     {
@@ -27,7 +28,6 @@ void SPPSimulatorLAN::setNetworkAndRun(LocalNetwork *thisNetwork)
 
     network = thisNetwork;
     fillTable();
-    this->show();
 }
 
 
@@ -87,9 +87,34 @@ void SPPSimulatorLAN::fillTable()
 
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem());
     }
-    ui->tableWidget->item(1, 2)->setIcon(QIcon(":/new/prefix1/images/virus.png"));
+    updateTable();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
 
+
+void SPPSimulatorLAN::updateTable()
+{
+    for (int i = 0; i < network->getNetworkSize(); i++)
+    {
+        if (network->getStatusOfInfestationByIndex(i))
+        {
+            ui->tableWidget->item(i + 1, 2)->setIcon(QIcon(":/new/prefix1/images/virus.png"));
+        }
+    }
     ui->tableWidget->resizeColumnsToContents();
+}
+
+
+void SPPSimulatorLAN::makeMove()
+{
+    nextStep();
+    updateTable();
+}
+
+
+void SPPSimulatorLAN::nextStep()
+{
+
 }
 
 

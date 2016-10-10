@@ -58,25 +58,34 @@ void TablePage::changeCheckStateOfTransposeCell(int row, int column)
 
 void TablePage::updateNextButton()
 {
-    for (int i = 0; i < ui->tableWidget->columnCount(); i++)
+    const int countOfVertex = ui->tableWidget->columnCount();
+
+    QList<bool> isUsed;
+    for (int i = 0; i < countOfVertex; i++)
     {
-        bool computerIsConnected = false;
-        for (int j = 0; j < ui->tableWidget->columnCount(); j++)
-        {
-            if (i != j && ui->tableWidget->item(i, j)->checkState() == Qt::Checked)
-            {
-                computerIsConnected = true;
-                break;
-            }
-        }
-        if (!computerIsConnected)
-        {
-            isCorrectTableFilling = false;
-            return;
-        }
+        isUsed.append(false);
     }
+    traversal(0, isUsed);
 
     isCorrectTableFilling = true;
+    for (int i = 0; i < countOfVertex; i++)
+    {
+        isCorrectTableFilling &= isUsed[i];
+    }
+}
+
+
+void TablePage::traversal(int index, QList<bool> &isUsed)
+{
+    isUsed[index] = true;
+    for (int i = 0; i < ui->tableWidget->columnCount(); i++)
+    {
+        if (i != index && !isUsed[i]
+            && ui->tableWidget->item(index, i)->checkState() == Qt::Checked)
+        {
+            traversal(i, isUsed);
+        }
+    }
 }
 
 

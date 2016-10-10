@@ -38,7 +38,8 @@ void ConfigurationWizard::runSPPSimulatorLAN()
     LocalNetwork *network = new LocalNetwork(numberOfComputersPage->getNumberOfComputers(),
                                              setOSPage->getListOfOperatingSystems(),
                                              tablePage->getAdjacencyMatrix());
-    simulator.setNetworkAndRun(network);
+    simulator.setNetwork(network);
+    simulator.show();
 }
 
 

@@ -33,6 +33,12 @@ QList<int> LocalNetwork::getConnectionsByIndex(int index) const
 }
 
 
+bool LocalNetwork::getStatusOfInfestationByIndex(int index) const
+{
+    return isInfected[index];
+}
+
+
 LocalNetwork::~LocalNetwork()
 {
     delete operatingSystems;
