@@ -8,13 +8,22 @@ namespace Ui {
 class SPPSimulatorLAN;
 }
 
+/*!
+ * \author © Sasha Plotnikov Production, Ltd.
+ * \brief this class provides the opportunity to simulate
+ * the process of virus infection in the local network
+ * \warning before simulating the network,
+ * specify this network using the method setNetwork()
+ */
 class SPPSimulatorLAN : public QMainWindow
 {
     Q_OBJECT
 
 public:
     explicit SPPSimulatorLAN(QWidget *parent = 0);
+    /// \brief before using, set the network using this method
     void setNetwork(LocalNetwork *thisNetwork);
+    /// \brief infection occurs discretely, by steps
     void nextStep();
     ~SPPSimulatorLAN();
 

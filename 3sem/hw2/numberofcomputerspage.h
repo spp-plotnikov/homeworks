@@ -6,6 +6,7 @@ namespace Ui {
 class NumberOfComputersPage;
 }
 
+/// \brief this page allows to choose quantity of computers in your LAN
 class NumberOfComputersPage : public QWizardPage
 {
     Q_OBJECT
