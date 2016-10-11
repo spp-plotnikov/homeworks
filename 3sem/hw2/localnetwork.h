@@ -14,7 +14,7 @@ class LocalNetwork
 {
 public:
     LocalNetwork(const int numberOfComputers, QList<int> *operatingSystems,
-                 QList<QList<int> > *adjacencyMatrix);
+                 QList<QList<int>> *adjacencyMatrix);
 
     /// \returns quantity of computers in this network
     int getNetworkSize() const;

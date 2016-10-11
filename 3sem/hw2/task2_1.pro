@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += testlib
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,7 +29,8 @@ HEADERS  += \
     setospage.h \
     tablepage.h \
     localnetwork.h \
-    sppsimulatorlan.h
+    sppsimulatorlan.h \
+    sppsimulatorlantest.h
 
 FORMS    += \
     configurationwizard.ui \
