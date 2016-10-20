@@ -29,14 +29,14 @@ RESOURCES += \
 
 HEADERS += \
     Logic_component/localnetwork.h \
-    Logic_component/sppsimulatorlantest.h \
     GUI_component/configurationwizard.h \
     GUI_component/numberofcomputerspage.h \
     GUI_component/setospage.h \
     GUI_component/sppsimulatorlan.h \
     GUI_component/tablepage.h \
     Logic_component/sppsimulatorlanhelper.h \
-    Logic_component/operatingsystemsenumeration.h
+    Logic_component/operatingsystemsenumeration.h \
+    Logic_component/sppsimulatorlanhelpertest.h
 
 FORMS += \
     GUI_component/configurationwizard.ui \
