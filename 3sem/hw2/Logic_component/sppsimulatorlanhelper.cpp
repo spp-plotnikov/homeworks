@@ -31,7 +31,7 @@ bool SPPSimulatorLANHelper::tryToInfect(int index, LocalNetwork *network)
     if (network->getStatusOfInfestationByIndex(index))
         return true;
 
-    srand(time(0));
+    srand(rand());
     const int randomNumber = 1 + rand() % 101;
     bool infected = false;
     switch (network->getOSByIndex(index))
@@ -52,6 +52,11 @@ bool SPPSimulatorLANHelper::tryToInfect(int index, LocalNetwork *network)
     {
         if (randomNumber < 20)  //  20% is the likelihood of Contracting the virus for OS X
             infected = true;
+        break;
+    }
+    default:
+    {
+        infected = true;
         break;
     }
     }

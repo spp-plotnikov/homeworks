@@ -128,7 +128,101 @@ private slots:
      */
     void nonTrivialNetwork()
     {
+        const int sizeOfNetwork = 7;
 
+        QList<int> *operatingSystems = new QList<int>;
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            operatingSystems->append(OS::OnlyForTestsOS);
+        }
+
+        QList<QList<int>> *matrix = new QList<QList<int>>;
+        QList<int> connections[sizeOfNetwork];
+
+        connections[0].append(1);
+        connections[1].append(0);
+        connections[1].append(2);
+        connections[1].append(3);
+        connections[2].append(1);
+        connections[2].append(3);
+        connections[3].append(1);
+        connections[3].append(4);
+        connections[3].append(5);
+        connections[4].append(3);
+        connections[5].append(3);
+        connections[5].append(6);
+        connections[6].append(5);
+
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            matrix->append(connections[i]);
+        }
+        network = new LocalNetwork(sizeOfNetwork, operatingSystems, matrix);
+
+
+        /*  Step 1:
+         *
+         *        3   5
+         *       / \ /
+         *      i———4
+         *     /     \
+         *    i       6——7
+         */
+        SPPSimulatorLANHelper::nextStep(network);
+        QVERIFY(network->getStatusOfInfestationByIndex(1));
+        for (int i = 2; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(!(network->getStatusOfInfestationByIndex(i)));
+        }
+
+
+        /*  Step 2:
+         *
+         *        i   5
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       6——7
+         */
+        SPPSimulatorLANHelper::nextStep(network);
+        QVERIFY(network->getStatusOfInfestationByIndex(1));
+        QVERIFY(network->getStatusOfInfestationByIndex(2));
+        QVERIFY(network->getStatusOfInfestationByIndex(3));
+        for (int i = 4; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(!(network->getStatusOfInfestationByIndex(i)));
+        }
+
+
+        /*  Step 3:
+         *
+         *        i   i
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       i——7
+         */
+        SPPSimulatorLANHelper::nextStep(network);
+        QVERIFY(!(network->getStatusOfInfestationByIndex(6)));
+        for (int i = 0; i < sizeOfNetwork - 1; i++)
+        {
+            QVERIFY(network->getStatusOfInfestationByIndex(i));
+        }
+
+
+        /*  Step 4:
+         *
+         *        i   i
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       i——i
+         */
+        SPPSimulatorLANHelper::nextStep(network);
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(network->getStatusOfInfestationByIndex(i));
+        }
     }
 
 private:
