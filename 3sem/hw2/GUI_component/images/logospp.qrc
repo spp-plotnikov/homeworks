@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>exit1.png</file>
+        <file>linux.png</file>
+        <file>logoSPP.ico</file>
+        <file>macos.png</file>
+        <file>nextMove.png</file>
+        <file>virus.png</file>
+        <file>windows.png</file>
+    </qresource>
+</RCC>

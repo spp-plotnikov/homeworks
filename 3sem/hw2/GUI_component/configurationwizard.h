@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Logic_component/localnetwork.h"
 #include "numberofcomputerspage.h"
 #include "sppsimulatorlan.h"
-#include "localnetwork.h"
 #include "setospage.h"
 #include "tablepage.h"
 #include <QWizard>

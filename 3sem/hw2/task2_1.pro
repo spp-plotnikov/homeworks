@@ -15,29 +15,32 @@ TEMPLATE = app
 
 CONFIG += debug
 
-SOURCES += main.cpp\
-    configurationwizard.cpp \
-    numberofcomputerspage.cpp \
-    setospage.cpp \
-    tablepage.cpp \
-    localnetwork.cpp \
-    sppsimulatorlan.cpp
-
-HEADERS  += \
-    configurationwizard.h \
-    numberofcomputerspage.h \
-    setospage.h \
-    tablepage.h \
-    localnetwork.h \
-    sppsimulatorlan.h \
-    sppsimulatorlantest.h
-
-FORMS    += \
-    configurationwizard.ui \
-    numberofcomputerspage.ui \
-    setospage.ui \
-    tablepage.ui \
-    sppsimulatorlan.ui
+SOURCES += main.cpp \
+    Logic_component/localnetwork.cpp \
+    GUI_component/configurationwizard.cpp \
+    GUI_component/numberofcomputerspage.cpp \
+    GUI_component/setospage.cpp \
+    GUI_component/sppsimulatorlan.cpp \
+    GUI_component/tablepage.cpp \
+    Logic_component/sppsimulatorlanhelper.cpp
 
 RESOURCES += \
-    logospp.qrc
+    GUI_component/images/logospp.qrc
+
+HEADERS += \
+    Logic_component/localnetwork.h \
+    Logic_component/sppsimulatorlantest.h \
+    GUI_component/configurationwizard.h \
+    GUI_component/numberofcomputerspage.h \
+    GUI_component/setospage.h \
+    GUI_component/sppsimulatorlan.h \
+    GUI_component/tablepage.h \
+    Logic_component/sppsimulatorlanhelper.h \
+    Logic_component/operatingsystemsenumeration.h
+
+FORMS += \
+    GUI_component/configurationwizard.ui \
+    GUI_component/numberofcomputerspage.ui \
+    GUI_component/setospage.ui \
+    GUI_component/sppsimulatorlan.ui \
+    GUI_component/tablepage.ui

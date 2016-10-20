@@ -1,6 +1,6 @@
 #pragma once
 
-#include "localnetwork.h"
+#include "Logic_component/localnetwork.h"
 #include <QMainWindow>
 
 
@@ -23,21 +23,16 @@ public:
     explicit SPPSimulatorLAN(QWidget *parent = 0);
     /// \brief before using, set the network using this method
     void setNetwork(LocalNetwork *thisNetwork);
-    /// \brief infection occurs discretely, by steps
-    void nextStep();
     ~SPPSimulatorLAN();
 
 private slots:
     void makeMove();
 
 private:
-    bool tryToInfect(int index);
     void fillTable();
     void updateTable();
 
     LocalNetwork *network = nullptr;
 
     Ui::SPPSimulatorLAN *ui;
-
-    enum {Windows, Linux, MacOS};
 };
