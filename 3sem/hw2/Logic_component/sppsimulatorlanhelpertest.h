@@ -59,6 +59,7 @@ private slots:
         }
 
         QVERIFY(areAllInfected);
+        delete network;
     }
 
     // this test checks there are no auto-infections
@@ -81,6 +82,7 @@ private slots:
         }
 
         QVERIFY(!(network->getStatusOfInfestationByIndex(1)));
+        delete network;
     }
 
     void correctOrderOfInfection()
@@ -115,6 +117,7 @@ private slots:
         }
 
         QVERIFY(network->getStatusOfInfestationByIndex(1));
+        delete network;
     }
 
 
@@ -126,38 +129,10 @@ private slots:
      *     /     \
      *    1       6——7
      */
-    void nonTrivialNetwork()
+    void nonTrivialNetworkGuaranteedInfectionTest()
     {
+        generateNonTrivialNetworkWithCertainOS(OS::OnlyForTestsGuaranteedInfectionOS);
         const int sizeOfNetwork = 7;
-
-        QList<int> *operatingSystems = new QList<int>;
-        for (int i = 0; i < sizeOfNetwork; i++)
-        {
-            operatingSystems->append(OS::OnlyForTestsOS);
-        }
-
-        QList<QList<int>> *matrix = new QList<QList<int>>;
-        QList<int> connections[sizeOfNetwork];
-
-        connections[0].append(1);
-        connections[1].append(0);
-        connections[1].append(2);
-        connections[1].append(3);
-        connections[2].append(1);
-        connections[2].append(3);
-        connections[3].append(1);
-        connections[3].append(4);
-        connections[3].append(5);
-        connections[4].append(3);
-        connections[5].append(3);
-        connections[5].append(6);
-        connections[6].append(5);
-
-        for (int i = 0; i < sizeOfNetwork; i++)
-        {
-            matrix->append(connections[i]);
-        }
-        network = new LocalNetwork(sizeOfNetwork, operatingSystems, matrix);
 
 
         /*  Step 1:
@@ -223,8 +198,143 @@ private slots:
         {
             QVERIFY(network->getStatusOfInfestationByIndex(i));
         }
+        delete network;
+    }
+
+
+    //  The network in this test is the same as in nonTrivialNetworkGuaranteedInfectionTest
+    //  This is the "complex test"
+    void nonTrivialNetworkWithRandomOS()
+    {
+        generateNonTrivialNetworkWithCertainOS(OS::OnlyForTestsRandomOS);
+        const int sizeOfNetwork = 7;
+
+        /*  Step 1:
+         *
+         *        3   5
+         *       / \ /
+         *      i———4
+         *     /     \
+         *    i       6——7
+         */
+        while (!(network->getStatusOfInfestationByIndex(1)))
+        {
+            SPPSimulatorLANHelper::nextStep(network);
+        }
+        for (int i = 2; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(!(network->getStatusOfInfestationByIndex(i)));
+        }
+
+
+        /*  Step 2:
+         *
+         *        ?   5
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       6——7
+         *  The question mark means that no matter computer is infected or not
+         */
+        while(!(network->getStatusOfInfestationByIndex(3)))
+        {
+            SPPSimulatorLANHelper::nextStep(network);
+        }
+        QVERIFY(network->getStatusOfInfestationByIndex(1));
+        for (int i = 4; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(!(network->getStatusOfInfestationByIndex(i)));
+        }
+
+
+        /*  Step 3:
+         *
+         *        ?   ?
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       i——7
+         */
+        while(!(network->getStatusOfInfestationByIndex(5)))
+        {
+            SPPSimulatorLANHelper::nextStep(network);
+        }
+        QVERIFY(!(network->getStatusOfInfestationByIndex(6)));
+        QVERIFY(network->getStatusOfInfestationByIndex(0));
+        QVERIFY(network->getStatusOfInfestationByIndex(1));
+        QVERIFY(network->getStatusOfInfestationByIndex(3));
+
+
+        /*  Step 4:
+         *
+         *        i   i
+         *       / \ /
+         *      i———i
+         *     /     \
+         *    i       i——i
+         */
+        for (int i = 0; i < 1000; i++)
+        {
+            SPPSimulatorLANHelper::nextStep(network);
+        }
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            QVERIFY(network->getStatusOfInfestationByIndex(i));
+        }
+        delete network;
     }
 
 private:
     LocalNetwork *network = nullptr;
+
+
+    /*  This function generates this network:
+     *
+     *        3   5
+     *       / \ /
+     *      2———4
+     *     /     \
+     *    1       6——7
+     */
+    void generateNonTrivialNetworkWithCertainOS(OS::OSType typeOfOS)
+    {
+        const int sizeOfNetwork = 7;
+
+        QList<int> *operatingSystems = new QList<int>;
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            if (typeOfOS == OS::OnlyForTestsRandomOS)
+            {
+                operatingSystems->append(rand() % 3);
+            }
+            else
+            {
+                operatingSystems->append(typeOfOS);
+            }
+
+        }
+
+        QList<QList<int>> *matrix = new QList<QList<int>>;
+        QList<int> connections[sizeOfNetwork];
+
+        connections[0].append(1);
+        connections[1].append(0);
+        connections[1].append(2);
+        connections[1].append(3);
+        connections[2].append(1);
+        connections[2].append(3);
+        connections[3].append(1);
+        connections[3].append(4);
+        connections[3].append(5);
+        connections[4].append(3);
+        connections[5].append(3);
+        connections[5].append(6);
+        connections[6].append(5);
+
+        for (int i = 0; i < sizeOfNetwork; i++)
+        {
+            matrix->append(connections[i]);
+        }
+        network = new LocalNetwork(sizeOfNetwork, operatingSystems, matrix);
+    }
 };
