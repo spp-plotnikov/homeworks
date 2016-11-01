@@ -1,7 +1,8 @@
 #include "gamegui.h"
 #include "ui_gamegui.h"
 
-#include <QGraphicsEllipseItem>
+#include <QPolygon>
+
 
 GameGUI::GameGUI(QWidget *parent) :
     QMainWindow(parent),
@@ -14,13 +15,38 @@ GameGUI::GameGUI(QWidget *parent) :
     setWindowIcon(QIcon(":/new/prefix1/logoSPP.ico"));
 
     ui->gameField->setScene(scene);
-
-    //
-
-    QGraphicsItem *ellips = new QGraphicsEllipseItem(0, 0, 20, 70);
-
-    scene->addItem(ellips);
+    setLandscape();
 }
+
+
+void GameGUI::setLandscape()
+{
+    // hard coded
+
+    const int realWidth = ui->gameField->width() - 3;
+    const int realHeight = ui->gameField->height() - 3;
+    scene->setSceneRect(QRect(0, 0, realWidth, realHeight));
+
+    QPolygon landscape;
+    landscape << QPoint(0, realHeight)
+              << QPoint(20, realHeight - 20)
+              << QPoint(40, realHeight - 15)
+              << QPoint(60, realHeight - 22)
+              << QPoint(80, realHeight - 44)
+              << QPoint(100, realHeight - 69)
+              << QPoint(120, realHeight - 100)
+              << QPoint(140, realHeight - 105)
+              << QPoint(160, realHeight - 95)
+              << QPoint(180, realHeight - 73)
+              << QPoint(200, realHeight - 53)
+              << QPoint(220, realHeight - 31)
+              << QPoint(240, realHeight - 16)
+              << QPoint(260, realHeight - 13)
+              << QPoint(280, realHeight - 17);
+
+    scene->addPolygon(landscape, QPen(), QBrush(Qt::green));
+}
+
 
 GameGUI::~GameGUI()
 {

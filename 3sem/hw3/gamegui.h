@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 
+
 namespace Ui {
 class GameGUI;
 }
@@ -16,6 +17,9 @@ public:
     ~GameGUI();
 
 private:
+    /// \attention This method contains hardcode
+    void setLandscape();
+
     Ui::GameGUI *ui;
 
     QGraphicsScene *scene = new QGraphicsScene();
