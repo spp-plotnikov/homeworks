@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gamegui.cpp \
-    game.cpp
+    game.cpp \
+    cannon.cpp
 
 HEADERS  += gamegui.h \
-    game.h
+    game.h \
+    cannon.h
 
 FORMS    += gamegui.ui
 

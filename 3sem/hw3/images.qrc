@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>logoSPP.ico</file>
+        <file>cannons/black-cannon.png</file>
+        <file>cannons/blue-cannon.png</file>
+        <file>cannons/gray-cannon.png</file>
+        <file>cannons/orange-cannon.png</file>
+        <file>cannons/purple-cannon.png</file>
+        <file>cannons/red-cannon.png</file>
     </qresource>
 </RCC>

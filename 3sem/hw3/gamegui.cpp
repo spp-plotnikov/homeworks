@@ -1,7 +1,9 @@
 #include "gamegui.h"
 #include "ui_gamegui.h"
+#include "cannon.h"
 
 #include <QPolygon>
+
 
 
 GameGUI::GameGUI(QWidget *parent) :
@@ -45,6 +47,14 @@ void GameGUI::setLandscape()
               << QPoint(280, realHeight - 17);
 
     scene->addPolygon(landscape, QPen(), QBrush(Qt::green));
+
+
+    Cannon *blackCannon = new Cannon();
+    blackCannon->setPosition(100, 100);
+    scene->addItem(blackCannon->getPointer());
+    blackCannon->setPosition(100, 250);
+
+    //delete blackCannon
 }
 
 
