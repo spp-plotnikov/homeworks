@@ -1,7 +1,8 @@
 #pragma once
 
+#include "game.h"
+
 #include <QMainWindow>
-#include <QGraphicsScene>
 
 
 namespace Ui {
@@ -17,10 +18,7 @@ public:
     ~GameGUI();
 
 private:
-    /// \attention This method contains hardcode
-    void setLandscape();
-
     Ui::GameGUI *ui;
 
-    QGraphicsScene *scene = new QGraphicsScene();
+    Game game;
 };
