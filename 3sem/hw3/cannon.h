@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 
 
 class Cannon
@@ -9,7 +10,7 @@ public:
     enum CannonColour {Black, Blue, Gray, Orange, Purple, Red};
 
     Cannon(Cannon::CannonColour colour = Cannon::Black);
-    QGraphicsPixmapItem* getPointer() const;
+    void addToScene(QGraphicsScene *scene) const;
     void setPosition(int x, int y);
     ~Cannon();
 

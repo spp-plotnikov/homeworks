@@ -50,9 +50,9 @@ void GameGUI::setLandscape()
 
 
     Cannon *blackCannon = new Cannon();
-    blackCannon->setPosition(100, 100);
-    scene->addItem(blackCannon->getPointer());
-    blackCannon->setPosition(100, 250);
+//    blackCannon->setPosition(100, 100);
+    blackCannon->addToScene(scene);
+//    blackCannon->setPosition(100, 250);
 
     //delete blackCannon
 }

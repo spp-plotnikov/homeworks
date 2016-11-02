@@ -42,9 +42,9 @@ Cannon::Cannon(CannonColour colour)
 }
 
 
-QGraphicsPixmapItem* Cannon::getPointer() const
+void Cannon::addToScene(QGraphicsScene *scene) const
 {
-    return itemInScene;
+    scene->addItem(itemInScene);
 }
 
 
