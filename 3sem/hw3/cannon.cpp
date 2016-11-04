@@ -63,7 +63,7 @@ void Cannon::rotateUp()
     if (itemInScene->rotation() < minAngle)
         return;
 
-    itemInScene->setRotation(itemInScene->rotation() - 4);
+    itemInScene->setRotation(itemInScene->rotation() - 3);
 }
 
 
@@ -73,7 +73,19 @@ void Cannon::rotateDown()
     if (itemInScene->rotation() > maxAngle)
         return;
 
-    itemInScene->setRotation(itemInScene->rotation() + 4);
+    itemInScene->setRotation(itemInScene->rotation() + 3);
+}
+
+
+void Cannon::moveLeft()
+{
+
+}
+
+
+void Cannon::moveRight()
+{
+
 }
 
 

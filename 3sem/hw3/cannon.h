@@ -14,6 +14,8 @@ public:
     void setPosition(int x, int y);
     void rotateUp();
     void rotateDown();
+    void moveRight();
+    void moveLeft();
     ~Cannon();
 
 private:

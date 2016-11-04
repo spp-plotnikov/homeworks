@@ -23,6 +23,8 @@ private:
 
     QShortcut *keyUp = new QShortcut(this);
     QShortcut *keyDown = new QShortcut(this);
+    QShortcut *keyLeft = new QShortcut(this);
+    QShortcut *keyRight = new QShortcut(this);
 
     Game game;
 };

@@ -18,6 +18,8 @@ public:
 private slots:
     void rotateCurrentCannonUp();
     void rotateCurrentCannonDown();
+    void moveCurrentCannonRight();
+    void moveCurrentCannonLeft();
 
 private:
     /// \attention This method contains hardcode
@@ -26,7 +28,5 @@ private:
     QGraphicsScene *scene = new QGraphicsScene();
     QList<Cannon> listOfCannons;
     QList<Cannon>::iterator currentCannon;
-
-    //
-    Cannon ololo;
+    Cannon blackCannon;
 };

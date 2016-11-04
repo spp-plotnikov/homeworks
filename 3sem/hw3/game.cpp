@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <QPixmap>
 #include <QPolygon>
 
 
@@ -41,6 +42,10 @@ void Game::setLandscape()
               << QPoint(280, realHeight - 17);
 
     scene->addPolygon(landscape, QPen(), QBrush(Qt::green));
+
+    QPixmap sun;
+    sun.convertFromImage(QImage(":/new/prefix1/sun.png").scaled(100, 100).mirrored(true, false));
+    scene->addPixmap(sun);
 ////
 ////
 ////
@@ -59,8 +64,8 @@ void Game::setLandscape()
 //    //delete blackCannon
 
 
-    ololo.addToScene(scene);
-    listOfCannons.append(ololo);
+    blackCannon.addToScene(scene);
+    listOfCannons.append(blackCannon);
     currentCannon = listOfCannons.begin();
 }
 
@@ -74,6 +79,18 @@ void Game::rotateCurrentCannonUp()
 void Game::rotateCurrentCannonDown()
 {
     currentCannon->rotateDown();
+}
+
+
+void Game::moveCurrentCannonLeft()
+{
+    currentCannon->moveLeft();
+}
+
+
+void Game::moveCurrentCannonRight()
+{
+    currentCannon->moveRight();
 }
 
 
