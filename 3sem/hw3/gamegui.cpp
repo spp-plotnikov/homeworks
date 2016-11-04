@@ -13,10 +13,17 @@ GameGUI::GameGUI(QWidget *parent) :
     setWindowIcon(QIcon(":/new/prefix1/logoSPP.ico"));
 
     ui->gameField->setScene(game.getScene());
+
+    keyUp->setKey(Qt::Key_Up);
+    keyDown->setKey(Qt::Key_Down);
+    connect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
+    connect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
 }
 
 
 GameGUI::~GameGUI()
 {
+    delete keyDown;
+    delete keyUp;
     delete ui;
 }

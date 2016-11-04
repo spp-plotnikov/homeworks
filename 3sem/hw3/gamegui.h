@@ -3,6 +3,7 @@
 #include "game.h"
 
 #include <QMainWindow>
+#include <QShortcut>
 
 
 namespace Ui {
@@ -19,6 +20,9 @@ public:
 
 private:
     Ui::GameGUI *ui;
+
+    QShortcut *keyUp = new QShortcut(this);
+    QShortcut *keyDown = new QShortcut(this);
 
     Game game;
 };

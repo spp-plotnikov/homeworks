@@ -12,6 +12,8 @@ public:
     Cannon(Cannon::CannonColour colour = Cannon::Black);
     void addToScene(QGraphicsScene *scene) const;
     void setPosition(int x, int y);
+    void rotateUp();
+    void rotateDown();
     ~Cannon();
 
 private:

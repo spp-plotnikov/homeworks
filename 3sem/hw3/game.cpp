@@ -1,10 +1,9 @@
 #include "game.h"
-#include "cannon.h"
 
 #include <QPolygon>
 
 
-Game::Game()
+Game::Game(QObject *parent) : QObject(parent)
 {
     setLandscape();
 }
@@ -42,21 +41,39 @@ void Game::setLandscape()
               << QPoint(280, realHeight - 17);
 
     scene->addPolygon(landscape, QPen(), QBrush(Qt::green));
-//
-//
-//
+////
+////
+////
 
-    Cannon *blackCannon = new Cannon();
+//    Cannon *blackCannon = new Cannon();
+////    blackCannon->setPosition(100, 100);
+//    blackCannon->addToScene(scene);
 //    blackCannon->setPosition(100, 100);
-    blackCannon->addToScene(scene);
 
-    Cannon *redCannon = new Cannon(Cannon::Red);
-    redCannon->addToScene(scene);
-    redCannon->setPosition(100, 200);
-    //delete redCannon
-//    blackCannon->setPosition(100, 250);
+//    Cannon *redCannon = new Cannon(Cannon::Red);
+//    redCannon->addToScene(scene);
+//    redCannon->setPosition(100, 100);
+//    //delete redCannon
+////    blackCannon->setPosition(100, 250);
 
-    //delete blackCannon
+//    //delete blackCannon
+
+
+    ololo.addToScene(scene);
+    listOfCannons.append(ololo);
+    currentCannon = listOfCannons.begin();
+}
+
+
+void Game::rotateCurrentCannonUp()
+{
+    currentCannon->rotateUp();
+}
+
+
+void Game::rotateCurrentCannonDown()
+{
+    currentCannon->rotateDown();
 }
 
 

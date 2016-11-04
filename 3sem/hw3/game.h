@@ -1,18 +1,32 @@
 #pragma once
 
+#include "cannon.h"
+
 #include <QGraphicsScene>
+#include <QObject>
+#include <QList>
 
 
-class Game
+class Game : public QObject
 {
+    Q_OBJECT
 public:
-    Game();
+    explicit Game(QObject *parent = 0);
     QGraphicsScene* getScene() const;
     ~Game();
+
+private slots:
+    void rotateCurrentCannonUp();
+    void rotateCurrentCannonDown();
 
 private:
     /// \attention This method contains hardcode
     void setLandscape();
 
     QGraphicsScene *scene = new QGraphicsScene();
+    QList<Cannon> listOfCannons;
+    QList<Cannon>::iterator currentCannon;
+
+    //
+    Cannon ololo;
 };

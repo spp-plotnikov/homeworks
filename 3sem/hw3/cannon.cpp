@@ -39,6 +39,9 @@ Cannon::Cannon(CannonColour colour)
     }
     }
     itemInScene = new QGraphicsPixmapItem(cannon);
+
+    // (30, 50) is a pivot point (the centre of the wheel)
+    itemInScene->setTransformOriginPoint(30, 50);
 }
 
 
@@ -51,6 +54,26 @@ void Cannon::addToScene(QGraphicsScene *scene) const
 void Cannon::setPosition(int x, int y)
 {
     itemInScene->setPos(x, y);
+}
+
+
+void Cannon::rotateUp()
+{
+    const int minAngle = -50;
+    if (itemInScene->rotation() < minAngle)
+        return;
+
+    itemInScene->setRotation(itemInScene->rotation() - 4);
+}
+
+
+void Cannon::rotateDown()
+{
+    const int maxAngle = 0;
+    if (itemInScene->rotation() > maxAngle)
+        return;
+
+    itemInScene->setRotation(itemInScene->rotation() + 4);
 }
 
 
