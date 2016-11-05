@@ -20,6 +20,8 @@ public:
 
 private:
     void findVerticalPositionOnLandscape();
+    void reflect();
 
     QGraphicsPixmapItem *itemInScene = nullptr;
+    bool isRightOrientation = true;
 };

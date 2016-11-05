@@ -1,6 +1,7 @@
 #include "cannon.h"
 
 #include <QPixmap>
+#include <QTransform>
 
 
 Cannon::Cannon(CannonColour colour)
@@ -85,12 +86,24 @@ void Cannon::rotateDown()
 
 void Cannon::moveLeft()
 {
+    if (isRightOrientation)
+    {
+        isRightOrientation = false;
+        reflect();
+    }
 
+    setPosition(itemInScene->x() - 3);
 }
 
 
 void Cannon::moveRight()
 {
+    if (!isRightOrientation)
+    {
+        isRightOrientation = true;
+        reflect();
+    }
+
     setPosition(itemInScene->x() + 3);
 }
 
@@ -120,6 +133,15 @@ void Cannon::findVerticalPositionOnLandscape()
             itemInScene->setY(y);
         }
     }
+}
+
+
+void Cannon::reflect()
+{
+    QTransform mirroring;
+    mirroring.scale(-1, 1);
+    mirroring.translate(-(itemInScene->boundingRect().width()), 0);
+    itemInScene->setTransform(mirroring, true);
 }
 
 

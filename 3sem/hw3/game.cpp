@@ -7,6 +7,10 @@
 Game::Game(QObject *parent) : QObject(parent)
 {
     setLandscape();
+
+    blackCannon.addToScene(scene);
+    listOfCannons.append(blackCannon);
+    currentCannon = listOfCannons.begin();
 }
 
 
@@ -71,27 +75,6 @@ void Game::setLandscape()
     QPixmap sun;
     sun.convertFromImage(QImage(":/new/prefix1/sun.png").scaled(100, 100).mirrored(true, false));
     scene->addPixmap(sun);
-////
-////
-////
-
-//    Cannon *blackCannon = new Cannon();
-////    blackCannon->setPosition(100, 100);
-//    blackCannon->addToScene(scene);
-//    blackCannon->setPosition(100, 100);
-
-//    Cannon *redCannon = new Cannon(Cannon::Red);
-//    redCannon->addToScene(scene);
-//    redCannon->setPosition(100, 100);
-//    //delete redCannon
-////    blackCannon->setPosition(100, 250);
-
-//    //delete blackCannon
-
-
-    blackCannon.addToScene(scene);
-    listOfCannons.append(blackCannon);
-    currentCannon = listOfCannons.begin();
 }
 
 
