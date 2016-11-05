@@ -1,10 +1,12 @@
 #include "cannon.h"
+#include "grenadeshot.h"
+#include "littlebulletshot.h"
 
 #include <QPixmap>
 #include <QTransform>
 
 
-Cannon::Cannon(CannonColour colour)
+Cannon::Cannon(Cannon::CannonColour colour, Cannon::ShotType shotType)
 {
     QPixmap cannon;
     switch (colour)
@@ -43,6 +45,15 @@ Cannon::Cannon(CannonColour colour)
 
     // (30, 50) is a pivot point (the centre of the wheel)
     itemInScene->setTransformOriginPoint(30, 50);
+
+    if (shotType == LittleBullet)
+    {
+        shotMaker = new LittleBulletShot();
+    }
+    else
+    {
+        shotMaker = new GrenadeShot();
+    }
 }
 
 
@@ -145,7 +156,14 @@ void Cannon::reflect()
 }
 
 
+void Cannon::shot()
+{
+    shotMaker->makeShot();
+}
+
+
 Cannon::~Cannon()
 {
+    delete shotMaker;
     delete itemInScene;
 }

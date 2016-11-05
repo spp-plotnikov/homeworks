@@ -20,6 +20,7 @@ private slots:
     void rotateCurrentCannonDown();
     void moveCurrentCannonRight();
     void moveCurrentCannonLeft();
+    void shotCurrentCannon();
 
 private:
     /// \attention This method contains hardcode

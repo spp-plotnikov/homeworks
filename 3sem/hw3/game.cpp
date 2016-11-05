@@ -102,6 +102,12 @@ void Game::moveCurrentCannonRight()
 }
 
 
+void Game::shotCurrentCannon()
+{
+    currentCannon->shot();
+}
+
+
 Game::~Game()
 {
     delete scene;

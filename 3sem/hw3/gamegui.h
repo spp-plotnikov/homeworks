@@ -25,6 +25,7 @@ private:
     QShortcut *keyDown = new QShortcut(this);
     QShortcut *keyLeft = new QShortcut(this);
     QShortcut *keyRight = new QShortcut(this);
+    QShortcut *keyEnter = new QShortcut(this);
 
     Game game;
 };

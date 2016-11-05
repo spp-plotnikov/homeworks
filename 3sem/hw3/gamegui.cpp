@@ -18,16 +18,19 @@ GameGUI::GameGUI(QWidget *parent) :
     keyDown->setKey(Qt::Key_Down);
     keyLeft->setKey(Qt::Key_Left);
     keyRight->setKey(Qt::Key_Right);
+    keyEnter->setKey(Qt::Key_Enter);
 
     connect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
     connect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
     connect(keyLeft, SIGNAL(activated()), &game, SLOT(moveCurrentCannonLeft()));
     connect(keyRight, SIGNAL(activated()), &game, SLOT(moveCurrentCannonRight()));
+    connect(keyEnter, SIGNAL(activated()), &game, SLOT(shotCurrentCannon()));
 }
 
 
 GameGUI::~GameGUI()
 {
+    delete keyEnter;
     delete keyRight;
     delete keyLeft;
     delete keyDown;
