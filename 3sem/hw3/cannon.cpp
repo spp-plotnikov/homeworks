@@ -45,15 +45,21 @@ Cannon::Cannon(CannonColour colour)
 }
 
 
-void Cannon::addToScene(QGraphicsScene *scene) const
+void Cannon::addToScene(QGraphicsScene *scene)
 {
     scene->addItem(itemInScene);
+    setPosition(0);
 }
 
 
-void Cannon::setPosition(int x, int y)
+void Cannon::setPosition(int x)
 {
-    itemInScene->setPos(x, y);
+    const int realMaxWidth = itemInScene->scene()->width() - itemInScene->boundingRect().width();
+    if (x < 0 || x > realMaxWidth)
+        return;
+
+    itemInScene->setX(x);
+    findVerticalPositionOnLandscape();
 }
 
 
@@ -85,7 +91,35 @@ void Cannon::moveLeft()
 
 void Cannon::moveRight()
 {
+    setPosition(itemInScene->x() + 3);
+}
 
+
+void Cannon::findVerticalPositionOnLandscape()
+{
+    qreal y = itemInScene->y();
+    if (y == 0)
+    {
+        y = (itemInScene->scene()->height()) / 2;
+        itemInScene->setY(y);
+    }
+
+    if (itemInScene->collidingItems().size() > 0)
+    {
+        while (itemInScene->collidingItems().size() > 0)
+        {
+            y--;
+            itemInScene->setY(y);
+        }
+    }
+    else
+    {
+        while (itemInScene->collidingItems().size() == 0)
+        {
+            y++;
+            itemInScene->setY(y);
+        }
+    }
 }
 
 

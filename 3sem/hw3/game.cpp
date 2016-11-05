@@ -39,7 +39,32 @@ void Game::setLandscape()
               << QPoint(220, realHeight - 31)
               << QPoint(240, realHeight - 16)
               << QPoint(260, realHeight - 13)
-              << QPoint(280, realHeight - 17);
+              << QPoint(280, realHeight - 17)
+              << QPoint(300, realHeight - 15)
+              << QPoint(320, realHeight - 17)
+              << QPoint(340, realHeight - 19)
+              << QPoint(360, realHeight - 23)
+              << QPoint(380, realHeight - 28)
+              << QPoint(400, realHeight - 34)
+              << QPoint(420, realHeight - 44)
+              << QPoint(440, realHeight - 64)
+              << QPoint(460, realHeight - 94)
+              << QPoint(480, realHeight - 115)
+              << QPoint(500, realHeight - 130)
+              << QPoint(520, realHeight - 133)
+              << QPoint(540, realHeight - 131)
+              << QPoint(560, realHeight - 108)
+              << QPoint(580, realHeight - 90)
+              << QPoint(600, realHeight - 60)
+              << QPoint(620, realHeight - 40)
+              << QPoint(640, realHeight - 36)
+              << QPoint(660, realHeight - 32)
+              << QPoint(680, realHeight - 27)
+              << QPoint(700, realHeight - 25)
+              << QPoint(720, realHeight - 24)
+              << QPoint(realWidth, realHeight - 22)
+              << QPoint(realWidth, realHeight);
+
 
     scene->addPolygon(landscape, QPen(), QBrush(Qt::green));
 

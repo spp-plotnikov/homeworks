@@ -10,8 +10,8 @@ public:
     enum CannonColour {Black, Blue, Gray, Orange, Purple, Red};
 
     Cannon(Cannon::CannonColour colour = Cannon::Black);
-    void addToScene(QGraphicsScene *scene) const;
-    void setPosition(int x, int y);
+    void addToScene(QGraphicsScene *scene);
+    void setPosition(int x);
     void rotateUp();
     void rotateDown();
     void moveRight();
@@ -19,5 +19,7 @@ public:
     ~Cannon();
 
 private:
+    void findVerticalPositionOnLandscape();
+
     QGraphicsPixmapItem *itemInScene = nullptr;
 };
