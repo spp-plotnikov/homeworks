@@ -1,4 +1,4 @@
-#include "gamegui.h"
+#include "GUI_Component/gamegui.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

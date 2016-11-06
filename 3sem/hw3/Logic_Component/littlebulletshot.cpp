@@ -45,10 +45,11 @@ void LittleBulletShot::makeShot(bool rightSide)
     bullet.convertFromImage(QImage(":/new/prefix1/bang.png").scaled(30, 30));
     bulletInScene = new QGraphicsPixmapItem(bullet);
     sourceOfShot->scene()->addItem(bulletInScene);
-    updatePos();
 
     connect(&timer, SIGNAL(timeout()), this, SLOT(updatePos()));
     timer.start(20);
+
+    updatePos();
 }
 
 
@@ -57,7 +58,7 @@ void LittleBulletShot::updatePos()
     t += 0.1f;
 
     const int shift = 20;   //  correction for GUI
-    bulletInScene->setPos(x + t * vx * direction - shift, y - (t * vy - (g / 2) * t * t) - shift);
+    bulletInScene->setPos(x + t * vx * direction - shift, y - (vy - (g / 2) * t) * t - shift);
 
     if ((!(bulletInScene->collidesWithItem(sourceOfShot)))
             && bulletInScene->collidingItems().size() > 0

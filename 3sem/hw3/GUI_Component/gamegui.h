@@ -1,6 +1,6 @@
 #pragma once
 
-#include "game.h"
+#include "./Logic_Component/game.h"
 
 #include <QMainWindow>
 #include <QShortcut>

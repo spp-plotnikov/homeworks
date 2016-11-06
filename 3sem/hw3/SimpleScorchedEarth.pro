@@ -15,20 +15,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        gamegui.cpp \
-    game.cpp \
-    cannon.cpp \
-    littlebulletshot.cpp \
-    grenadeshot.cpp
+        GUI_Component\gamegui.cpp \
+    Logic_Component\game.cpp \
+    Logic_Component\cannon.cpp \
+    Logic_Component\littlebulletshot.cpp \
+    Logic_Component\grenadeshot.cpp
 
-HEADERS  += gamegui.h \
-    game.h \
-    cannon.h \
-    shot.h \
-    littlebulletshot.h \
-    grenadeshot.h
+HEADERS  += GUI_Component\gamegui.h \
+    Logic_Component\game.h \
+    Logic_Component\cannon.h \
+    Logic_Component\shot.h \
+    Logic_Component\littlebulletshot.h \
+    Logic_Component\grenadeshot.h
 
-FORMS    += gamegui.ui
+FORMS    += GUI_Component\gamegui.ui
 
 RESOURCES += \
-    images.qrc
+    GUI_Component\images\images.qrc
