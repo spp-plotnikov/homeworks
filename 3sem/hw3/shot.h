@@ -1,8 +1,12 @@
 #pragma once
 
+#include <QGraphicsItem>
+#include <QObject>
 
-class Shot
+
+class Shot : public QObject
 {
+    Q_OBJECT
 public:
-    virtual void makeShot() const = 0;
+    virtual void makeShot(QGraphicsItem *sourceOfShot) = 0;
 };

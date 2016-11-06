@@ -18,7 +18,7 @@ GameGUI::GameGUI(QWidget *parent) :
     keyDown->setKey(Qt::Key_Down);
     keyLeft->setKey(Qt::Key_Left);
     keyRight->setKey(Qt::Key_Right);
-    keyEnter->setKey(Qt::Key_Enter);
+    keyEnter->setKey(Qt::Key_Return);
 
     connect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
     connect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));

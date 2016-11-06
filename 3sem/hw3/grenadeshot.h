@@ -4,5 +4,5 @@
 class GrenadeShot : public Shot
 {
 public:
-    void makeShot() const;
+    void makeShot(QGraphicsItem *sourceOfShot);
 };
