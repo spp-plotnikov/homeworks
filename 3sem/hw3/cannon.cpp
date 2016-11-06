@@ -48,7 +48,7 @@ Cannon::Cannon(Cannon::CannonColour colour, Cannon::ShotType shotType)
 
     if (shotType == LittleBullet)
     {
-        shotMaker = new LittleBulletShot();
+        shotMaker = new LittleBulletShot(itemInScene);
     }
     else
     {
@@ -158,7 +158,7 @@ void Cannon::reflect()
 
 void Cannon::shot()
 {
-    shotMaker->makeShot(itemInScene);
+    shotMaker->makeShot();
 }
 
 

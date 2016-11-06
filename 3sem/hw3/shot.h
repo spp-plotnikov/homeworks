@@ -8,5 +8,5 @@ class Shot : public QObject
 {
     Q_OBJECT
 public:
-    virtual void makeShot(QGraphicsItem *sourceOfShot) = 0;
+    virtual void makeShot() = 0;
 };
