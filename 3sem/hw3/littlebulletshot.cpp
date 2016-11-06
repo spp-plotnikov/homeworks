@@ -1,6 +1,6 @@
 #include "littlebulletshot.h"
 
-#include <QDebug>
+#include <QPoint>
 #include <QtMath>
 #include <QPixmap>
 #include <QGraphicsScene>
@@ -12,7 +12,7 @@ LittleBulletShot::LittleBulletShot(QGraphicsItem *sourceOfShot) :
 }
 
 
-void LittleBulletShot::makeShot()
+void LittleBulletShot::makeShot(bool rightSide)
 {
     if (shootRightNow)
     {
@@ -20,8 +20,18 @@ void LittleBulletShot::makeShot()
     }
     shootRightNow = true;
 
-    x = sourceOfShot->x() + sourceOfShot->transformOriginPoint().x();
-    y = sourceOfShot->y() + sourceOfShot->transformOriginPoint().y();
+    if (rightSide)
+    {
+        direction = 1;
+    }
+    else
+    {
+        direction = -1;
+    }
+
+    QPoint muzzle(60, 30);  //  the place where the bullets emerge
+    x = sourceOfShot->mapToScene(muzzle).x();
+    y = sourceOfShot->mapToScene(muzzle).y();
 
     double angle = 40 - sourceOfShot->rotation();   //  40 is angle of cannon in picture
     angle = qDegreesToRadians(angle);
@@ -47,9 +57,12 @@ void LittleBulletShot::updatePos()
     t += 0.1f;
 
     const int shift = 20;   //  correction for GUI
-    bulletInScene->setPos(x + t * vx - shift, y - (t * vy - (g / 2) * t * t) - shift);
+    bulletInScene->setPos(x + t * vx * direction - shift, y - (t * vy - (g / 2) * t * t) - shift);
 
-    if ((!(bulletInScene->collidesWithItem(sourceOfShot))) && bulletInScene->collidingItems().size() > 0)
+    if ((!(bulletInScene->collidesWithItem(sourceOfShot)))
+            && bulletInScene->collidingItems().size() > 0
+            || bulletInScene->x() < 0
+            || bulletInScene->x() > sourceOfShot->scene()->width())
     {
         timer.stop();
         delete bulletInScene;

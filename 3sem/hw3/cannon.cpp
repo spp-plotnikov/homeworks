@@ -158,7 +158,7 @@ void Cannon::reflect()
 
 void Cannon::shot()
 {
-    shotMaker->makeShot();
+    shotMaker->makeShot(isRightOrientation);
 }
 
 

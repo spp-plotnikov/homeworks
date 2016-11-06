@@ -8,5 +8,5 @@ class Shot : public QObject
 {
     Q_OBJECT
 public:
-    virtual void makeShot() = 0;
+    virtual void makeShot(bool  rightSide) = 0;
 };

@@ -13,7 +13,7 @@ class LittleBulletShot : public Shot
     Q_OBJECT
 public:
     LittleBulletShot(QGraphicsItem *sourceOfShot);
-    void makeShot();
+    void makeShot(bool  rightSide);
 
 private slots:
     void updatePos();
@@ -33,4 +33,5 @@ private:
     int x = 0;      ///< position of source cannon
     int y = 0;      ///< position of source cannon
     float t = 0;    ///<  time
+    int direction = 1;  ///< 1 if right, -1 if left
 };
