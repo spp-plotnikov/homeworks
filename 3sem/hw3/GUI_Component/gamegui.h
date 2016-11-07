@@ -10,6 +10,8 @@ namespace Ui {
 class GameGUI;
 }
 
+/// \brief class for GUI of  S P P  Simple Scorched Earth game
+/// \author © Sasha Plotnikov Production, Ltd.
 class GameGUI : public QMainWindow
 {
     Q_OBJECT

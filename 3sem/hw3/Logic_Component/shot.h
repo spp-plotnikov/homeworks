@@ -4,6 +4,8 @@
 #include <QObject>
 
 
+/// \brief parent class for bullets for Cannon in Simple Scorched Earth game
+/// \author © Sasha Plotnikov Production, Ltd.
 class Shot : public QObject
 {
     Q_OBJECT

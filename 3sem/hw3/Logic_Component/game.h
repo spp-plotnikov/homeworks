@@ -7,6 +7,8 @@
 #include <QList>
 
 
+/// \brief main class of Simple Scorched Earth game
+/// \author © Sasha Plotnikov Production, Ltd.
 class Game : public QObject
 {
     Q_OBJECT

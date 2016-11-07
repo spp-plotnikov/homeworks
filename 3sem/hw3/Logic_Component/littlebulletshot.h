@@ -8,6 +8,8 @@
 #include <QGraphicsPixmapItem>
 
 
+/// \brief implementation of abstract class Shot
+/// \author © Sasha Plotnikov Production, Ltd.
 class LittleBulletShot : public Shot
 {
     Q_OBJECT
