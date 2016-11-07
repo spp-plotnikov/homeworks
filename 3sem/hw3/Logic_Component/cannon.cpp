@@ -6,7 +6,8 @@
 #include <QTransform>
 
 
-Cannon::Cannon(Cannon::CannonColour colour, Cannon::ShotType shotType)
+Cannon::Cannon(QGraphicsScene *ownerScene, Cannon::CannonColour colour, Cannon::ShotType shotType) :
+    ownerScene(ownerScene)
 {
     QPixmap cannon;
     switch (colour)
@@ -54,19 +55,15 @@ Cannon::Cannon(Cannon::CannonColour colour, Cannon::ShotType shotType)
     {
         shotMaker = new GrenadeShot();
     }
-}
 
-
-void Cannon::addToScene(QGraphicsScene *scene)
-{
-    scene->addItem(itemInScene);
+    ownerScene->addItem(itemInScene);
     setPosition(0);
 }
 
 
 void Cannon::setPosition(int x)
 {
-    const int realMaxWidth = itemInScene->scene()->width() - itemInScene->boundingRect().width();
+    const int realMaxWidth = ownerScene->width() - itemInScene->boundingRect().width();
     if (x < 0 || x > realMaxWidth)
         return;
 
@@ -124,7 +121,7 @@ void Cannon::findVerticalPositionOnLandscape()
     qreal y = itemInScene->y();
     if (y == 0)
     {
-        y = (itemInScene->scene()->height()) / 2;
+        y = (ownerScene->height()) / 2;
         itemInScene->setY(y);
     }
 

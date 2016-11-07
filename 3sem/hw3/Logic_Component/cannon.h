@@ -16,11 +16,9 @@ public:
     /// \brief Your cannon can shoot a variety of ammo
     enum ShotType {LittleBullet, Grenade};
 
-    Cannon(Cannon::CannonColour colour = Cannon::Black, Cannon::ShotType shotType = Cannon::LittleBullet);
-    /// \attention please add cannon to scene before using
-    void addToScene(QGraphicsScene *scene);
-
-    // Warning, the following methods work only after setting the scene
+    Cannon(QGraphicsScene *ownerScene,
+           Cannon::CannonColour colour = Cannon::Black,
+           Cannon::ShotType shotType = Cannon::LittleBullet);
 
     /// \brief sets cannon in certain position (is within the scene)
     void setPosition(int x);
@@ -41,6 +39,7 @@ private:
     void reflect();
 
     QGraphicsPixmapItem *itemInScene = nullptr;
+    QGraphicsScene *ownerScene = nullptr;
     bool isRightOrientation = true;
     Shot *shotMaker = nullptr;
 };

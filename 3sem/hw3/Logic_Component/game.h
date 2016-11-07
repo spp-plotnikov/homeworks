@@ -31,5 +31,5 @@ private:
     QGraphicsScene *scene = new QGraphicsScene();
     QList<Cannon> listOfCannons;
     QList<Cannon>::iterator currentCannon;
-    Cannon blackCannon;
+    Cannon *blackCannon = nullptr;
 };
