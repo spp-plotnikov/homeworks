@@ -12,34 +12,34 @@ Cannon::Cannon(QGraphicsScene *ownerScene, Cannon::CannonColour colour, Cannon::
     QPixmap cannon;
     switch (colour)
     {
-    case Blue:
+    case blue:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/blue-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/blue-cannon.png").scaled(64, 64));
         break;
     }
-    case Gray:
+    case gray:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/gray-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/gray-cannon.png").scaled(64, 64));
         break;
     }
-    case Orange:
+    case orange:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/orange-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/orange-cannon.png").scaled(64, 64));
         break;
     }
-    case Purple:
+    case purple:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/purple-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/purple-cannon.png").scaled(64, 64));
         break;
     }
-    case Red:
+    case red:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/red-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/red-cannon.png").scaled(64, 64));
         break;
     }
     default:
     {
-        cannon.convertFromImage(QImage(":/new/prefix1/cannons/black-cannon.png").scaled(64, 64));
+        cannon.convertFromImage(QImage(":/new/prefix1/images/cannons/black-cannon.png").scaled(64, 64));
     }
     }
     itemInScene = new QGraphicsPixmapItem(cannon);
@@ -47,7 +47,7 @@ Cannon::Cannon(QGraphicsScene *ownerScene, Cannon::CannonColour colour, Cannon::
     // (30, 50) is a pivot point (the centre of the wheel)
     itemInScene->setTransformOriginPoint(30, 50);
 
-    if (shotType == LittleBullet)
+    if (shotType == littleBullet)
     {
         shotMaker = new LittleBulletShot(itemInScene);
     }
@@ -162,5 +162,4 @@ void Cannon::shot()
 Cannon::~Cannon()
 {
     delete shotMaker;
-    delete itemInScene;
 }

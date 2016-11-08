@@ -10,7 +10,7 @@ GameGUI::GameGUI(QWidget *parent) :
 
     statusBar()->showMessage("© Sasha Plotnikov Production, Ltd.");
     statusBar()->setEnabled(false);
-    setWindowIcon(QIcon(":/new/prefix1/logoSPP.ico"));
+    setWindowIcon(QIcon(":/new/prefix1/images/logoSPP.ico"));
 
     ui->gameField->setScene(game.getScene());
 

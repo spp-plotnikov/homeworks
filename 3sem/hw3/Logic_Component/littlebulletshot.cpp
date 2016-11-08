@@ -9,6 +9,9 @@
 LittleBulletShot::LittleBulletShot(QGraphicsItem *sourceOfShot) :
     sourceOfShot(sourceOfShot)
 {
+    QPixmap bullet;
+    bullet.convertFromImage(QImage(":/new/prefix1/images/bang.png").scaled(30, 30));
+    bulletInScene = new QGraphicsPixmapItem(bullet);
 }
 
 
@@ -40,10 +43,6 @@ void LittleBulletShot::makeShot(bool rightSide)
     vy = v * qSin(angle);
     t = 0;
 
-
-    QPixmap bullet;
-    bullet.convertFromImage(QImage(":/new/prefix1/bang.png").scaled(30, 30));
-    bulletInScene = new QGraphicsPixmapItem(bullet);
     sourceOfShot->scene()->addItem(bulletInScene);
 
     connect(&timer, SIGNAL(timeout()), this, SLOT(updatePos()));
@@ -66,8 +65,17 @@ void LittleBulletShot::updatePos()
             || bulletInScene->x() > sourceOfShot->scene()->width())
     {
         timer.stop();
-        delete bulletInScene;
+        bulletInScene->scene()->removeItem(bulletInScene);
         shootRightNow = false;
         disconnect(&timer, SIGNAL(timeout()), this, SLOT(updatePos()));
+    }
+}
+
+
+LittleBulletShot::~LittleBulletShot()
+{
+    if (!shootRightNow)
+    {
+        delete bulletInScene;
     }
 }

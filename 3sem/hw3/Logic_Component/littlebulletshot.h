@@ -17,6 +17,8 @@ public:
     LittleBulletShot(QGraphicsItem *sourceOfShot);
     void makeShot(bool  rightSide);
 
+    ~LittleBulletShot();
+
 private slots:
     void updatePos();
 
@@ -27,7 +29,7 @@ private:
 
     bool shootRightNow = false;
 
-    // phisical items:
+    // physical items:
     const int v = 60;   ///< speed 60 m/s
     const int g = 10;   ///<  Gravitational acceleration
     int vx = 0;     ///< horisontal speed

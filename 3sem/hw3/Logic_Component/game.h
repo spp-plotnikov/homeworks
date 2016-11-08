@@ -25,7 +25,6 @@ private slots:
     void shotCurrentCannon();
 
 private:
-    /// \attention This method contains hardcode
     void setLandscape();
 
     QGraphicsScene *scene = new QGraphicsScene();

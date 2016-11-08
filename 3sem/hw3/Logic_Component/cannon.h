@@ -12,13 +12,13 @@ class Cannon
 {
 public:
     /// \brief You can create cannon of various colors
-    enum CannonColour {Black, Blue, Gray, Orange, Purple, Red};
+    enum CannonColour {black, blue, gray, orange, purple, red};
     /// \brief Your cannon can shoot a variety of ammo
-    enum ShotType {LittleBullet, Grenade};
+    enum ShotType {littleBullet, grenade};
 
     Cannon(QGraphicsScene *ownerScene,
-           Cannon::CannonColour colour = Cannon::Black,
-           Cannon::ShotType shotType = Cannon::LittleBullet);
+           Cannon::CannonColour colour = Cannon::black,
+           Cannon::ShotType shotType = Cannon::littleBullet);
 
     /// \brief sets cannon in certain position (is within the scene)
     void setPosition(int x);

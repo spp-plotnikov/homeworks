@@ -31,4 +31,4 @@ HEADERS  += GUI_Component\gamegui.h \
 FORMS    += GUI_Component\gamegui.ui
 
 RESOURCES += \
-    GUI_Component\images\images.qrc
+    GUI_Component\images.qrc
