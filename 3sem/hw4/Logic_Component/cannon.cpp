@@ -53,7 +53,7 @@ Cannon::Cannon(QGraphicsScene *ownerScene, Cannon::CannonColour colour, Cannon::
     }
     else
     {
-        shotMaker = new GrenadeShot();
+        shotMaker = new GrenadeShot(itemInScene);
     }
 
     const int objectName = 0;

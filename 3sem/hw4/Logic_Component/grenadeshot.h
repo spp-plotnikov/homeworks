@@ -1,13 +1,21 @@
+#pragma once
+
 #include "shot.h"
 
+#include <QObject>
 
-/// \brief future implementation of abstract class Shot
-/// \warning non implemented
-/// \todo make implementation
-/// \note it will be needed in task4_1
+
+
+/// \brief child of parent class Shot, represents big gtenade bang
 /// \author © Sasha Plotnikov Production, Ltd.
 class GrenadeShot : public Shot
 {
+    Q_OBJECT
 public:
-    void makeShot(bool  rightSide);
+    GrenadeShot(QGraphicsItem *sourceOfTheShot);
+
+private:
+    void otherCannonCollisionCheck();
+
+    int speed = 70;
 };

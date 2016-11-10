@@ -10,5 +10,6 @@
         <file>images/cannons/purple-cannon.png</file>
         <file>images/cannons/red-cannon.png</file>
         <file>landscape.spp_lndscp</file>
+        <file>images/bomb.png</file>
     </qresource>
 </RCC>

@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     Logic_Component\game.cpp \
     Logic_Component\cannon.cpp \
     Logic_Component\littlebulletshot.cpp \
-    Logic_Component\grenadeshot.cpp
+    Logic_Component\grenadeshot.cpp \
+    Logic_Component/shot.cpp
 
 HEADERS  += GUI_Component\gamegui.h \
     Logic_Component\game.h \

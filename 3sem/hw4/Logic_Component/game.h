@@ -22,6 +22,7 @@ private slots:
     void moveCurrentCannonRight();
     void moveCurrentCannonLeft();
     void shotCurrentCannon();
+    void announceWinner();
 
 private:
     void setLandscape();

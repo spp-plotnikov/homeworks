@@ -1,9 +1,11 @@
 #include "game.h"
 
+#include <QFont>
 #include <QFile>
 #include <QPixmap>
 #include <QPolygon>
 #include <QTextStream>
+#include <QGraphicsTextItem>
 
 
 Game::Game(QObject *parent) : QObject(parent)
@@ -50,6 +52,7 @@ void Game::setLandscape()
     redCannon = new Cannon(scene, Cannon::red);
     redCannon->setPosition(300);
     currentCannon = blackCannon;
+    connect(currentCannon, SIGNAL(hasWon()), this, SLOT(announceWinner()));
 }
 
 
@@ -80,6 +83,23 @@ void Game::moveCurrentCannonRight()
 void Game::shotCurrentCannon()
 {
     currentCannon->shot();
+}
+
+
+void Game::announceWinner()
+{
+    const int fontSize = 48;
+    const int x = 150;
+    const int y = 100;
+
+    QGraphicsTextItem *message = new QGraphicsTextItem("You have won!");
+    QFont font("Comic Sans MS");
+    font.setPointSize(fontSize);
+    font.setBold(true);
+    message->setFont(font);
+    message->setDefaultTextColor(QColor(Qt::GlobalColor::darkGreen));
+    message->setPos(x, y);
+    scene->addItem(message);
 }
 
 
