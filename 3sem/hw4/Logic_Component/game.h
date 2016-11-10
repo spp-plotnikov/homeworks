@@ -16,7 +16,12 @@ public:
     QGraphicsScene* getScene() const;
     ~Game();
 
+signals:
+    void sceneLocked();
+    void sceneUnlocked();
+
 private slots:
+    void changeCurrentCannon();
     void rotateCurrentCannonUp();
     void rotateCurrentCannonDown();
     void moveCurrentCannonRight();
@@ -29,6 +34,7 @@ private:
 
     QGraphicsScene *scene = new QGraphicsScene();
     Cannon *currentCannon = nullptr;
+    Cannon *whoIsEnemy = nullptr;
     Cannon *blackCannon = nullptr;
     Cannon *redCannon = nullptr;
 };

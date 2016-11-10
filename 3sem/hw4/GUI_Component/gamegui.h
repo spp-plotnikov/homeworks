@@ -20,6 +20,10 @@ public:
     explicit GameGUI(QWidget *parent = 0);
     ~GameGUI();
 
+private slots:
+    void activateKeys();
+    void deactivateKeys();
+
 private:
     Ui::GameGUI *ui;
 

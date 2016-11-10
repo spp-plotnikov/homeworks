@@ -11,12 +11,43 @@
 Game::Game(QObject *parent) : QObject(parent)
 {
     setLandscape();
+
+    blackCannon = new Cannon(scene);
+    redCannon = new Cannon(scene, Cannon::red, Cannon::grenade);
+    redCannon->setPosition(300);
+    currentCannon = blackCannon;
+    whoIsEnemy = redCannon;
+
+    connect(redCannon, SIGNAL(hasWon()), this, SLOT(announceWinner()));
+    connect(blackCannon, SIGNAL(hasWon()), this, SLOT(announceWinner()));
 }
 
 
 QGraphicsScene* Game::getScene() const
 {
     return scene;
+}
+
+
+void Game::changeCurrentCannon()
+{
+    if (currentCannon == blackCannon)
+    {
+        currentCannon = redCannon;
+    }
+    else
+    {
+        currentCannon = blackCannon;
+    }
+
+    if (currentCannon == whoIsEnemy)
+    {
+        emit sceneLocked();
+    }
+    else
+    {
+        emit sceneUnlocked();
+    }
 }
 
 
@@ -47,12 +78,6 @@ void Game::setLandscape()
     QPixmap sun;
     sun.convertFromImage(QImage(":/new/prefix1/images/sun.png").scaled(100, 100).mirrored(true, false));
     scene->addPixmap(sun);
-
-    blackCannon = new Cannon(scene);
-    redCannon = new Cannon(scene, Cannon::red);
-    redCannon->setPosition(300);
-    currentCannon = blackCannon;
-    connect(currentCannon, SIGNAL(hasWon()), this, SLOT(announceWinner()));
 }
 
 
@@ -83,6 +108,7 @@ void Game::moveCurrentCannonRight()
 void Game::shotCurrentCannon()
 {
     currentCannon->shot();
+    changeCurrentCannon();
 }
 
 
@@ -92,14 +118,30 @@ void Game::announceWinner()
     const int x = 150;
     const int y = 100;
 
-    QGraphicsTextItem *message = new QGraphicsTextItem("You have won!");
+    QGraphicsTextItem *message = nullptr;
+    if (currentCannon == whoIsEnemy)
+    {
+        message = new QGraphicsTextItem("You have won!");
+        message->setDefaultTextColor(QColor(Qt::GlobalColor::darkGreen));
+    }
+    else
+    {
+        message = new QGraphicsTextItem("You lose!");
+        message->setDefaultTextColor(QColor(Qt::GlobalColor::darkRed));
+    }
+
+
     QFont font("Comic Sans MS");
     font.setPointSize(fontSize);
     font.setBold(true);
     message->setFont(font);
-    message->setDefaultTextColor(QColor(Qt::GlobalColor::darkGreen));
     message->setPos(x, y);
     scene->addItem(message);
+
+    if (currentCannon != whoIsEnemy)
+    {
+        emit sceneLocked();
+    }
 }
 
 

@@ -20,11 +20,30 @@ GameGUI::GameGUI(QWidget *parent) :
     keyRight->setKey(Qt::Key_Right);
     keyEnter->setKey(Qt::Key_Return);
 
+    activateKeys();
+
+    connect(&game, SIGNAL(sceneLocked()), this, SLOT(deactivateKeys()));
+    connect(&game, SIGNAL(sceneUnlocked()), this, SLOT(activateKeys()));
+}
+
+
+void GameGUI::activateKeys()
+{
     connect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
     connect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
     connect(keyLeft, SIGNAL(activated()), &game, SLOT(moveCurrentCannonLeft()));
     connect(keyRight, SIGNAL(activated()), &game, SLOT(moveCurrentCannonRight()));
     connect(keyEnter, SIGNAL(activated()), &game, SLOT(shotCurrentCannon()));
+}
+
+
+void GameGUI::deactivateKeys()
+{
+    disconnect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
+    disconnect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
+    disconnect(keyLeft, SIGNAL(activated()), &game, SLOT(moveCurrentCannonLeft()));
+    disconnect(keyRight, SIGNAL(activated()), &game, SLOT(moveCurrentCannonRight()));
+    disconnect(keyEnter, SIGNAL(activated()), &game, SLOT(shotCurrentCannon()));
 }
 
 
