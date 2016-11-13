@@ -1,11 +1,10 @@
 #pragma once
 
-#include "./Game_Component/game.h"
-
 #include <QMainWindow>
 #include <QShortcut>
 
 #include "./Network_Component/networkentity.h"
+#include "./Game_Component/game.h"
 
 
 namespace Ui {
@@ -27,6 +26,7 @@ private slots:
     void deactivateKeys();
     void createClient();
     void createServer();
+    void hideNetworkFeatures();
 
 private:
     Ui::GameGUI *ui;

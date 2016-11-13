@@ -63,6 +63,8 @@ void GameGUI::createClient()
 {
     disconnect(ui->clientButton, SIGNAL(clicked(bool)), this, SLOT(createClient()));
     networkEntity = new Client();
+    connect(ui->connectButton, SIGNAL(clicked(bool)), networkEntity, SLOT(connectToServer()));
+    connect(networkEntity, SIGNAL(connectedToOtherNetworkEntity()), this, SLOT(hideNetworkFeatures()));
 }
 
 
@@ -70,6 +72,17 @@ void GameGUI::createServer()
 {
     disconnect(ui->serverButton, SIGNAL(clicked(bool)), this, SLOT(createServer()));
     networkEntity = new Server();
+    connect(networkEntity, SIGNAL(connectedToOtherNetworkEntity()), this, SLOT(hideNetworkFeatures()));
+}
+
+
+void GameGUI::hideNetworkFeatures()
+{
+    ui->line->setVisible(false);
+    ui->connectButton->setVisible(false);
+    ui->serverButton->setVisible(false);
+    ui->clientButton->setVisible(false);
+    setFixedHeight(400);
 }
 
 

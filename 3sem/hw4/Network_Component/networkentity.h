@@ -1,15 +1,22 @@
 #pragma once
 
 #include <QObject>
+#include <QtNetwork>
 
 
 class NetworkEntity : public QObject
 {
     Q_OBJECT
-public:
-    explicit NetworkEntity(QObject *parent = 0);
+
+protected slots:
+    void acceptMessage();
+    void sendMessage();
+    void sessionClosed();
 
 signals:
+    void connectedToOtherNetworkEntity();
+    void disconnectedFromOtherNetworkEntity();
 
-public slots:
+protected:
+     QTcpSocket *tcpSocket = new QTcpSocket(this);
 };
