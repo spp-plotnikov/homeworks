@@ -14,6 +14,7 @@ class Game : public QObject
 public:
     explicit Game(QObject *parent = 0);
     QGraphicsScene* getScene() const;
+    void changeEnemy();
     ~Game();
 
 signals:
@@ -36,6 +37,7 @@ private slots:
 
 private:
     void setLandscape();
+    void updateSceneLocking();
 
     QGraphicsScene *scene = new QGraphicsScene();
     Cannon *currentCannon = nullptr;

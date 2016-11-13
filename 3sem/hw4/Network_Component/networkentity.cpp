@@ -10,6 +10,8 @@ void NetworkEntity::acceptMessage()
     int senderEvent;
     in >> senderEvent;
 
+    acceptability = false;
+
     switch (senderEvent)
     {
     case rotatedDown:
@@ -38,8 +40,6 @@ void NetworkEntity::acceptMessage()
         break;
     }
     }
-
-    acceptability = false;
 }
 
 

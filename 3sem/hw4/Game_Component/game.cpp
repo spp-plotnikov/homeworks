@@ -29,6 +29,20 @@ QGraphicsScene* Game::getScene() const
 }
 
 
+void Game::changeEnemy()
+{
+    if (whoIsEnemy == redCannon)
+    {
+        whoIsEnemy = blackCannon;
+    }
+    else
+    {
+        whoIsEnemy = redCannon;
+    }
+    updateSceneLocking();
+}
+
+
 void Game::changeCurrentCannon()
 {
     if (currentCannon == blackCannon)
@@ -40,6 +54,12 @@ void Game::changeCurrentCannon()
         currentCannon = blackCannon;
     }
 
+    updateSceneLocking();
+}
+
+
+void Game::updateSceneLocking()
+{
     if (currentCannon == whoIsEnemy)
     {
         emit sceneLocked();

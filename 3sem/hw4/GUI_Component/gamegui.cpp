@@ -71,6 +71,7 @@ void GameGUI::createClient()
 void GameGUI::createServer()
 {
     disconnect(ui->serverButton, SIGNAL(clicked(bool)), this, SLOT(createServer()));
+    game->changeEnemy();
     networkEntity = new Server(game);
     connect(networkEntity, SIGNAL(connectedToOtherNetworkEntity()), this, SLOT(hideNetworkFeatures()));
 }
