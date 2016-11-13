@@ -16,18 +16,24 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         GUI_Component\gamegui.cpp \
-    Logic_Component\game.cpp \
-    Logic_Component\cannon.cpp \
-    Logic_Component\littlebulletshot.cpp \
-    Logic_Component\grenadeshot.cpp \
-    Logic_Component/shot.cpp
+    Game_Component\game.cpp \
+    Game_Component\cannon.cpp \
+    Game_Component\littlebulletshot.cpp \
+    Game_Component\grenadeshot.cpp \
+    Game_Component/shot.cpp \
+    Network_Component/networkentity.cpp \
+    Network_Component/client.cpp \
+    Network_Component/server.cpp
 
 HEADERS  += GUI_Component\gamegui.h \
-    Logic_Component\game.h \
-    Logic_Component\cannon.h \
-    Logic_Component\shot.h \
-    Logic_Component\littlebulletshot.h \
-    Logic_Component\grenadeshot.h
+    Game_Component\game.h \
+    Game_Component\cannon.h \
+    Game_Component\shot.h \
+    Game_Component\littlebulletshot.h \
+    Game_Component\grenadeshot.h \
+    Network_Component/networkentity.h \
+    Network_Component/client.h \
+    Network_Component/server.h
 
 FORMS    += GUI_Component\gamegui.ui
 

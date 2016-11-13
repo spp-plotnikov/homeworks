@@ -1,9 +1,11 @@
 #pragma once
 
-#include "./Logic_Component/game.h"
+#include "./Game_Component/game.h"
 
 #include <QMainWindow>
 #include <QShortcut>
+
+#include "./Network_Component/networkentity.h"
 
 
 namespace Ui {
@@ -23,6 +25,8 @@ public:
 private slots:
     void activateKeys();
     void deactivateKeys();
+    void createClient();
+    void createServer();
 
 private:
     Ui::GameGUI *ui;
@@ -34,4 +38,6 @@ private:
     QShortcut *keyEnter = new QShortcut(this);
 
     Game game;
+
+    NetworkEntity *networkEntity = nullptr;
 };

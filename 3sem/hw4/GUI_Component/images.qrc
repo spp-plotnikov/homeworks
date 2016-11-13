@@ -11,5 +11,8 @@
         <file>images/cannons/red-cannon.png</file>
         <file>landscape.spp_lndscp</file>
         <file>images/bomb.png</file>
+        <file>images/client.png</file>
+        <file>images/server.png</file>
+        <file>images/connect.png</file>
     </qresource>
 </RCC>
