@@ -38,11 +38,19 @@ void NetworkEntity::acceptMessage()
         break;
     }
     }
+
+    acceptability = false;
 }
 
 
 void NetworkEntity::sendMessage(Events eventOccurred)
 {
+    if (!acceptability)
+    {
+        acceptability = true;
+        return;
+    }
+
     QByteArray outBuffer;
     QDataStream outStream(&outBuffer, QIODevice::WriteOnly);
     outStream << eventOccurred;

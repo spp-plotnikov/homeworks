@@ -41,4 +41,8 @@ private:
     enum Events {rotatedUp, rotatedDown, movedRight, movedLeft, shot};
 
     void sendMessage(NetworkEntity::Events eventOccurred);
+
+    /// \brief to avoid boomerang effect
+    /// \todo  more detailed comment for this variable
+    bool acceptability = true;
 };
