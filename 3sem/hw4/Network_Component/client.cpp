@@ -1,14 +1,16 @@
 #include <QFile>
-#include <QDebug>
 
 #include "client.h"
 
 
-Client::Client()
+Client::Client(Game *thisGame)
 {
+    game = thisGame;
     connect(tcpSocket, SIGNAL(connected()), this, SLOT(sessionOpened()));
     connect(tcpSocket, SIGNAL(disconnected()), this, SLOT(sessionClosed()));
     connect(tcpSocket, SIGNAL(readyRead()), this, SLOT(acceptMessage()));
+
+    connectSignalsAndSlotsBetweenGameAndThisObject();
 }
 
 

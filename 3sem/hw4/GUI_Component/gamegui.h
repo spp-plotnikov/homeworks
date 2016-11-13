@@ -37,7 +37,7 @@ private:
     QShortcut *keyRight = new QShortcut(this);
     QShortcut *keyEnter = new QShortcut(this);
 
-    Game game;
+    Game *game = new Game();
 
     NetworkEntity *networkEntity = nullptr;
 };

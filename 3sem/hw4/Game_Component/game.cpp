@@ -84,24 +84,28 @@ void Game::setLandscape()
 void Game::rotateCurrentCannonUp()
 {
     currentCannon->rotateUp();
+    emit currentCannonRotatedUp();
 }
 
 
 void Game::rotateCurrentCannonDown()
 {
     currentCannon->rotateDown();
+    emit currentCannonRotatedDown();
 }
 
 
 void Game::moveCurrentCannonLeft()
 {
     currentCannon->moveLeft();
+    emit currentCannonMovedLeft();
 }
 
 
 void Game::moveCurrentCannonRight()
 {
     currentCannon->moveRight();
+    emit currentCannonMovedRight();
 }
 
 
@@ -109,6 +113,7 @@ void Game::shotCurrentCannon()
 {
     currentCannon->shot();
     changeCurrentCannon();
+    emit currentCannonShot();
 }
 
 

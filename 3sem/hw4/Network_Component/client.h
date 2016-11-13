@@ -9,7 +9,7 @@ class Client : public NetworkEntity
 {
     Q_OBJECT
 public:
-    Client();
+    Client(Game *thisGame);
     ~Client();
 
 private slots:

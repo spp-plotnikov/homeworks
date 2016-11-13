@@ -18,7 +18,7 @@ GameGUI::GameGUI(QWidget *parent) :
     ui->connectButton->setIcon(QIcon(":/new/prefix1/images/connect.png"));
     ui->connectButton->setVisible(false);
 
-    ui->gameField->setScene(game.getScene());
+    ui->gameField->setScene(game->getScene());
 
     keyUp->setKey(Qt::Key_Up);
     keyDown->setKey(Qt::Key_Down);
@@ -34,35 +34,35 @@ GameGUI::GameGUI(QWidget *parent) :
     connect(ui->serverButton, SIGNAL(clicked(bool)), ui->clientButton, SLOT(setEnabled(bool)));
     connect(ui->serverButton, SIGNAL(clicked(bool)), this, SLOT(createServer()));
 
-    connect(&game, SIGNAL(sceneLocked()), this, SLOT(deactivateKeys()));
-    connect(&game, SIGNAL(sceneUnlocked()), this, SLOT(activateKeys()));
+    connect(game, SIGNAL(sceneLocked()), this, SLOT(deactivateKeys()));
+    connect(game, SIGNAL(sceneUnlocked()), this, SLOT(activateKeys()));
 }
 
 
 void GameGUI::activateKeys()
 {
-    connect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
-    connect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
-    connect(keyLeft, SIGNAL(activated()), &game, SLOT(moveCurrentCannonLeft()));
-    connect(keyRight, SIGNAL(activated()), &game, SLOT(moveCurrentCannonRight()));
-    connect(keyEnter, SIGNAL(activated()), &game, SLOT(shotCurrentCannon()));
+    connect(keyUp, SIGNAL(activated()), game, SLOT(rotateCurrentCannonUp()));
+    connect(keyDown, SIGNAL(activated()), game, SLOT(rotateCurrentCannonDown()));
+    connect(keyLeft, SIGNAL(activated()), game, SLOT(moveCurrentCannonLeft()));
+    connect(keyRight, SIGNAL(activated()), game, SLOT(moveCurrentCannonRight()));
+    connect(keyEnter, SIGNAL(activated()), game, SLOT(shotCurrentCannon()));
 }
 
 
 void GameGUI::deactivateKeys()
 {
-    disconnect(keyUp, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonUp()));
-    disconnect(keyDown, SIGNAL(activated()), &game, SLOT(rotateCurrentCannonDown()));
-    disconnect(keyLeft, SIGNAL(activated()), &game, SLOT(moveCurrentCannonLeft()));
-    disconnect(keyRight, SIGNAL(activated()), &game, SLOT(moveCurrentCannonRight()));
-    disconnect(keyEnter, SIGNAL(activated()), &game, SLOT(shotCurrentCannon()));
+    disconnect(keyUp, SIGNAL(activated()), game, SLOT(rotateCurrentCannonUp()));
+    disconnect(keyDown, SIGNAL(activated()), game, SLOT(rotateCurrentCannonDown()));
+    disconnect(keyLeft, SIGNAL(activated()), game, SLOT(moveCurrentCannonLeft()));
+    disconnect(keyRight, SIGNAL(activated()), game, SLOT(moveCurrentCannonRight()));
+    disconnect(keyEnter, SIGNAL(activated()), game, SLOT(shotCurrentCannon()));
 }
 
 
 void GameGUI::createClient()
 {
     disconnect(ui->clientButton, SIGNAL(clicked(bool)), this, SLOT(createClient()));
-    networkEntity = new Client();
+    networkEntity = new Client(game);
     connect(ui->connectButton, SIGNAL(clicked(bool)), networkEntity, SLOT(connectToServer()));
     connect(networkEntity, SIGNAL(connectedToOtherNetworkEntity()), this, SLOT(hideNetworkFeatures()));
 }
@@ -71,7 +71,7 @@ void GameGUI::createClient()
 void GameGUI::createServer()
 {
     disconnect(ui->serverButton, SIGNAL(clicked(bool)), this, SLOT(createServer()));
-    networkEntity = new Server();
+    networkEntity = new Server(game);
     connect(networkEntity, SIGNAL(connectedToOtherNetworkEntity()), this, SLOT(hideNetworkFeatures()));
 }
 
@@ -97,5 +97,6 @@ GameGUI::~GameGUI()
     delete keyLeft;
     delete keyDown;
     delete keyUp;
+    delete game;
     delete ui;
 }

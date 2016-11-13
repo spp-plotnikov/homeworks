@@ -10,7 +10,7 @@ class Server : public NetworkEntity
 {
     Q_OBJECT
 public:
-    Server();
+    Server(Game *thisGame);
     ~Server();
 
 private slots:

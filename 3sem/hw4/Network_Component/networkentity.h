@@ -3,6 +3,8 @@
 #include <QObject>
 #include <QtNetwork>
 
+#include "./Game_Component/game.h"
+
 
 class NetworkEntity : public QObject
 {
@@ -10,13 +12,33 @@ class NetworkEntity : public QObject
 
 protected slots:
     void acceptMessage();
-    void sendMessage();
     void sessionClosed();
+
+private slots:
+    void notifyThatCurrentCannonRotatedUp();
+    void notifyThatCurrentCannonRotatedDown();
+    void notifyThatCurrentCannonMovedRight();
+    void notifyThatCurrentCannonMovedLeft();
+    void notifyThatCurrentCannonShot();
 
 signals:
     void connectedToOtherNetworkEntity();
     void disconnectedFromOtherNetworkEntity();
 
+    void acceptedThatCurrentCannonRotatedUp();
+    void acceptedThatCurrentCannonRotatedDown();
+    void acceptedThatCurrentCannonMovedRight();
+    void acceptedThatCurrentCannonMovedLeft();
+    void acceptedThatCurrentCannonShot();
+
 protected:
-     QTcpSocket *tcpSocket = new QTcpSocket(this);
+    void connectSignalsAndSlotsBetweenGameAndThisObject();
+
+    QTcpSocket *tcpSocket = new QTcpSocket(this);
+    Game *game = nullptr;
+
+private:
+    enum Events {rotatedUp, rotatedDown, movedRight, movedLeft, shot};
+
+    void sendMessage(NetworkEntity::Events eventOccurred);
 };

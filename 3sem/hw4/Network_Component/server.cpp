@@ -6,8 +6,9 @@
 
 #include "server.h"
 
-Server::Server()
+Server::Server(Game *thisGame)
 {
+    game = thisGame;
     QNetworkConfigurationManager manager;
 
     if (manager.capabilities() & QNetworkConfigurationManager::NetworkSessionRequired)
@@ -21,6 +22,8 @@ Server::Server()
         sessionOpened();
     }
     connect(tcpServer, SIGNAL(newConnection()), this, SLOT(connectToClient()));
+
+    connectSignalsAndSlotsBetweenGameAndThisObject();
 }
 
 

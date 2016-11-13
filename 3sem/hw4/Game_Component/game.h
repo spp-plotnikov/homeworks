@@ -19,6 +19,11 @@ public:
 signals:
     void sceneLocked();
     void sceneUnlocked();
+    void currentCannonRotatedUp();
+    void currentCannonRotatedDown();
+    void currentCannonMovedRight();
+    void currentCannonMovedLeft();
+    void currentCannonShot();
 
 private slots:
     void changeCurrentCannon();
