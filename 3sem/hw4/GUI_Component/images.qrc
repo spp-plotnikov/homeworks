@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>images/bang.png</file>
+        <file>images/logoSPP.ico</file>
+        <file>images/sun.png</file>
+        <file>images/cannons/black-cannon.png</file>
+        <file>images/cannons/blue-cannon.png</file>
+        <file>images/cannons/gray-cannon.png</file>
+        <file>images/cannons/orange-cannon.png</file>
+        <file>images/cannons/purple-cannon.png</file>
+        <file>images/cannons/red-cannon.png</file>
+        <file>landscape.spp_lndscp</file>
+        <file>images/bomb.png</file>
+        <file>images/client.png</file>
+        <file>images/server.png</file>
+        <file>images/connect.png</file>
+    </qresource>
+</RCC>
