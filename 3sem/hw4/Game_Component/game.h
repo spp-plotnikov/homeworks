@@ -14,6 +14,7 @@ class Game : public QObject
 public:
     explicit Game(QObject *parent = 0);
     QGraphicsScene* getScene() const;
+    /// \brief at first, enemy is red cannon, you can change it to black cannon and back, etc.
     void changeEnemy();
     ~Game();
 

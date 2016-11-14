@@ -6,6 +6,8 @@
 #include "./Game_Component/game.h"
 
 
+/// \brief class for network interactions for   S P P  Simple Scorched Earth game v2.0
+/// \author © Sasha Plotnikov Production, Ltd.
 class NetworkEntity : public QObject
 {
     Q_OBJECT
@@ -43,6 +45,9 @@ private:
     void sendMessage(NetworkEntity::Events eventOccurred);
 
     /// \brief to avoid boomerang effect
-    /// \todo  more detailed comment for this variable
+    /// \details when command comes to this object and forwards to game,
+    /// game executes the command and signalize about it,
+    /// this signal (that command) is sending back, etc.
+    /// This variable allows to avoid this problem
     bool acceptability = true;
 };
